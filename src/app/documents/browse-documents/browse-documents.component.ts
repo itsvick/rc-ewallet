@@ -47,13 +47,9 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   fetchCredentialCategories() {
-    if (this.authService?.currentUser?.DID) {
-      // if (this.approvalModalRef) {
-      //   this.approvalModalRef.close();
-      // }
-
+    if (this.authService?.currentUser?.did) {
       this.showApproval = false;
-      console.log("DID", this.authService.currentUser.DID);
+      console.log("DID", this.authService.currentUser.did);
       this.isLoading = true;
       this.credentialService.getAllCredentials().pipe(map((res: any) => {
         console.log("result", res);
@@ -90,7 +86,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (!this.authService.currentUser.DID) {
+    if (!this.authService.currentUser?.did) {
       // const options: NgbModalOptions = {
       //   // backdrop: 'static',
       //   animation: true,
@@ -112,7 +108,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   raiseImpressionEvent() {
-    this.telemetryService.uid = this.authService.currentUser?.DID || "anonymous";
+    this.telemetryService.uid = this.authService.currentUser?.did || "anonymous";
     const telemetryImpression: IImpressionEventInput = {
       context: {
         env: this.activatedRoute.snapshot?.data?.telemetry?.env,

@@ -5,6 +5,7 @@ import { GeneralService } from '../services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { environment } from 'src/environments/environment';
+import { AuthConfigService } from '../authentication/auth-config.service';
 
 
 @Component({
@@ -20,9 +21,11 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
     private readonly router: Router,
     private readonly generalService: GeneralService,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly telemetryService: TelemetryService
+    private readonly telemetryService: TelemetryService,
+    private readonly authConfigService: AuthConfigService
   ) {         
-    this.baseUrl = environment.baseUrl;
+    // this.baseUrl = environment.baseUrl;
+    this.baseUrl = this.authConfigService.config.bffUrl;
   }
 
   ngOnInit(): void {
@@ -36,6 +39,10 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
       console.log("Response", res);
       window.open(res.digiauthurl, "_self");
     });
+  }
+
+  login() {
+    this.router.navigate(['/login']);
   }
 
   ngAfterViewInit(): void {

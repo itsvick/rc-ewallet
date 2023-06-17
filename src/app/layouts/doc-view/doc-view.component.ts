@@ -10,6 +10,7 @@ import { IImpressionEventInput, IInteractEventInput } from 'src/app/services/tel
 import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 import { environment } from 'src/environments/environment';
+import { AuthConfigService } from 'src/app/authentication/auth-config.service';
 
 @Component({
     selector: 'app-doc-view',
@@ -38,9 +39,11 @@ export class DocViewComponent implements OnInit {
         private authService: AuthService,
         private activatedRoute: ActivatedRoute,
         private telemetryService: TelemetryService,
-        private readonly toastMessage: ToastMessageService
+        private readonly toastMessage: ToastMessageService,
+        private readonly authConfigService: AuthConfigService
     ) {
-        this.baseUrl = environment.baseUrl;
+        // this.baseUrl = environment.baseUrl;
+        this.baseUrl = this.authConfigService.config.bffUrl;
         const navigation = this.router.getCurrentNavigation();
         this.credential = navigation.extras.state;
         this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);

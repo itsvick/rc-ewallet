@@ -1,17 +1,16 @@
 
 import { KeycloakService } from 'keycloak-angular';
-import { switchMap } from 'rxjs/operators';
-import { from as fromPromise, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthConfigService } from '../authentication/auth-config.service';
 
 export function initializeKeycloak(keycloak: KeycloakService, configService: AuthConfigService) {
     return () =>
         configService.getConfig()
             .pipe(
-                switchMap<any, any>((config) => {
-                    console.log('conf---',config);
-                    if(config && config.keycloak){
-                        return fromPromise(keycloak.init({
+                map((config) => {
+                    console.log('conf---', config);
+                    if (config && config.keycloak) {
+                        return keycloak.init({
                             config: {
                                 url: config['keycloak']['url'],
                                 realm: config['keycloak']['realm'],
@@ -22,35 +21,8 @@ export function initializeKeycloak(keycloak: KeycloakService, configService: Aut
                                 checkLoginIframeInterval: 25
                             },
                             loadUserProfileAtStartUp: true
-                        }))
-                    }else{
-                        return fromPromise(keycloak.init({
-                            config: {
-                                url: 'https://skills.xiv.in/auth',
-                                realm: 'skills',
-                                clientId: 'registry-frontend',
-                            },
-                            initOptions: {
-                                checkLoginIframe: true,
-                                checkLoginIframeInterval: 25
-                            },
-                            loadUserProfileAtStartUp: true
-                        }))
+                        });
                     }
                 })
-            ).toPromise()
+            ).toPromise();
 }
-//     return () =>
-//         keycloak.init({
-//             config: {
-//                 url: 'https://ndear.xiv.in/auth',
-//                 realm: 'ndear',
-//                 clientId: 'registry-frontend',
-//             },
-//             initOptions: {
-//                 checkLoginIframe: true,
-//                 checkLoginIframeInterval: 25
-//             },
-//             loadUserProfileAtStartUp: true
-//         });
-// }
