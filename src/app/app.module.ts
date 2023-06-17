@@ -271,12 +271,12 @@ import { SettingsComponent } from './settings/settings.component';
   providers: [
     AppConfig,
     { provide: APP_INITIALIZER, useFactory: initConfig, deps: [AppConfig], multi: true },
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: initializeKeycloak,
-    //   multi: true,
-    //   deps: [KeycloakService, AuthConfigService],
-    // },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService, AuthConfigService],
+    },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } },
     {
       provide: APP_INITIALIZER,
@@ -284,7 +284,8 @@ import { SettingsComponent } from './settings/settings.component';
       deps: [HttpClient, TranslateService],
       multi: true
     },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ]
 })
 
 

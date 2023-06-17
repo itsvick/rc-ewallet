@@ -6,6 +6,7 @@ import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 import { environment } from 'src/environments/environment';
 import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
+import { AuthConfigService } from '../authentication/auth-config.service';
 
 
 @Component({
@@ -23,9 +24,11 @@ export class OauthCallbackComponent implements OnInit {
     private toastMessage: ToastMessageService,
     private router: Router,
     private telemetryService: TelemetryService,
-    private authService: AuthService
+    private authService: AuthService,
+    private readonly authConfigService: AuthConfigService
   ) {
-    this.baseUrl = environment.baseUrl;
+    // this.baseUrl = environment.baseUrl;
+    this.baseUrl = this.authConfigService.config.bffUrl;
 
     console.log("in oauth11");
     this.activatedRoute.queryParams.subscribe((params: any) => {

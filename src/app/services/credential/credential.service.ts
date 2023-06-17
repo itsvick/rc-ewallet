@@ -4,6 +4,7 @@ import { concatMap, map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data/data-request.service';
 import { environment } from 'src/environments/environment';
+import { AuthConfigService } from 'src/app/authentication/auth-config.service';
 
 
 @Injectable({
@@ -16,9 +17,11 @@ export class CredentialService {
   private schemas: any[] = [];
   constructor(
     private readonly dataService: DataService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly authConfigService: AuthConfigService
   ) { 
-    this.baseUrl = environment.baseUrl;
+    // this.baseUrl = environment.baseUrl;
+    this.baseUrl = this.authConfigService.config.bffUrl;
   }
 
   private findSchema(schemaId: string) {
@@ -37,7 +40,7 @@ export class CredentialService {
     const payload = {
       url: `${this.baseUrl}/v1/sso/student/credentials/search/student`,
       data: {
-        subject: { id: this.authService.currentUser.DID }
+        subject: { id: this.authService.currentUser?.did}
       }
     };
 

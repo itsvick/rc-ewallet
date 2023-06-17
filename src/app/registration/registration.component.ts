@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 import { IBlock, IDistrict, ISchool, IState } from '../app-interface';
+import { AuthConfigService } from '../authentication/auth-config.service';
 
 dayjs.extend(customParseFormat);
 
@@ -75,9 +76,11 @@ export class RegistrationComponent implements OnInit {
     private readonly generalService: GeneralService,
     private readonly utilService: UtilService,
     private readonly cdr: ChangeDetectorRef,
+    private readonly authConfigService: AuthConfigService
 
   ) {
-    this.baseUrl = environment.baseUrl;
+    // this.baseUrl = environment.baseUrl;
+    this.baseUrl = this.authConfigService.config.bffUrl;
 
     const navigation = this.router.getCurrentNavigation();
     this.registrationDetails = navigation.extras.state;

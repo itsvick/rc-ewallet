@@ -37,11 +37,23 @@ import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
-    path: 'digilocker-callback',
-    component: OauthCallbackComponent,
+    path: '',
+    component: OnBoardingComponent,
     data: {
+      showToolbar: false,
       telemetry: {
-        env: 'sign-in', pageid: 'digilocker-callback', type: 'view', subtype: 'scroll'
+        env: 'onboarding', pageid: 'onboarding-page', type: 'view', subtype: 'scroll'
+      }
+    }
+  },
+  {
+    path: 'login',
+    component: KeycloakloginComponent,
+    canActivate: [AuthGuard],
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'login', pageid: 'login', type: 'edit', subtype: 'scroll'
       }
     }
   },
@@ -54,58 +66,7 @@ const routes: Routes = [
         env: 'settings', pageid: 'settings', type: 'view', subtype: 'scroll'
       }
     },
-    canActivate: [AuthenticationGuard]
-  },
-  {
-    path: '',
-    component: OnBoardingComponent,
-    data: {
-      showToolbar: false,
-      telemetry: {
-        env: 'onboarding', pageid: 'onboarding-page', type: 'view', subtype: 'scroll'
-      }
-    }
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: {
-      showToolbar: false,
-      telemetry: {
-        env: 'login', pageid: 'login', type: 'edit', subtype: 'scroll'
-      }
-    }
-  },
-  {
-    path: 'ekyc',
-    component: EkycComponent,
-    data: {
-      showToolbar: false,
-      telemetry: {
-        env: 'login', pageid: 'kyc', type: 'edit', subtype: 'scroll'
-      }
-    }
-  },
-  // { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
-  {
-    path: 'set-username',
-    component: SetUsernameComponent,
-    data: {
-      showToolbar: false,
-      telemetry: {
-        env: 'registration', pageid: 'set-username', type: 'view', subtype: 'scroll'
-      },
-    }
-  },
-  {
-    path: 'register',
-    component: RegistrationComponent,
-    data: {
-      showToolbar: false,
-      telemetry: {
-        env: 'registration', pageid: 'register', type: 'view', subtype: 'scroll'
-      },
-    }
+    canActivate: [AuthGuard]
   },
   {
     path: 'home',
@@ -116,7 +77,7 @@ const routes: Routes = [
         env: 'home', pageid: 'home', type: 'list', subtype: 'scroll'
       },
     },
-    canActivate: [AuthenticationGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'search-certificates',
@@ -127,7 +88,7 @@ const routes: Routes = [
         env: 'search', pageid: 'search', type: 'list', subtype: 'scroll'
       },
     },
-    canActivate: [AuthenticationGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'doc-view',
@@ -138,7 +99,7 @@ const routes: Routes = [
         env: 'doc-view', pageid: 'doc-view', type: 'view', subtype: 'scroll'
       }
     },
-    canActivate: [AuthenticationGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'scan-code',
@@ -149,15 +110,7 @@ const routes: Routes = [
         env: 'scan certificate', pageid: 'scan-code', type: 'view', subtype: 'scroll'
       }
     },
-    canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'change-password',
-    component: ChangePasswordComponent,
-    data: {
-      showToolbar: false,
-    },
-    canActivate: [AuthenticationGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'logout',
@@ -167,12 +120,74 @@ const routes: Routes = [
       telemetry: {
         env: 'dashboard', pageid: 'sign-out', type: 'view', subtype: 'scroll'
       }
-    }
+    },
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
     redirectTo: ''
   }
+  // {
+  //   path: 'digilocker-callback',
+  //   component: OauthCallbackComponent,
+  //   data: {
+  //     telemetry: {
+  //       env: 'sign-in', pageid: 'digilocker-callback', type: 'view', subtype: 'scroll'
+  //     }
+  //   }
+  // },
+  // {
+  //   path: 'change-password',
+  //   component: ChangePasswordComponent,
+  //   data: {
+  //     showToolbar: false,
+  //   },
+  //   canActivate: [AuthenticationGuard]
+  // },
+  // {
+  //   path: 'ekyc',
+  //   component: EkycComponent,
+  //   data: {
+  //     showToolbar: false,
+  //     telemetry: {
+  //       env: 'login', pageid: 'kyc', type: 'edit', subtype: 'scroll'
+  //     }
+  //   }
+  // },
+  // { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
+  // {
+  //   path: 'set-username',
+  //   component: SetUsernameComponent,
+  //   data: {
+  //     showToolbar: false,
+  //     telemetry: {
+  //       env: 'registration', pageid: 'set-username', type: 'view', subtype: 'scroll'
+  //     },
+  //   }
+  // },
+  // {
+  //   path: 'register',
+  //   component: RegistrationComponent,
+  //   data: {
+  //     showToolbar: false,
+  //     telemetry: {
+  //       env: 'registration', pageid: 'register', type: 'view', subtype: 'scroll'
+  //     },
+  //   }
+  // },
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Auth
   // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},

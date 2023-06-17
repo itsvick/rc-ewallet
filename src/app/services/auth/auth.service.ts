@@ -9,6 +9,8 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthConfigService } from 'src/app/authentication/auth-config.service';
+import { KeycloakService } from 'keycloak-angular';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,9 +19,14 @@ export class AuthService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   _currentUser;
   _digilockerAccessToken: string;
-  constructor(private http: HttpClient, public router: Router) {
+  constructor(
+    private http: HttpClient,
+    public router: Router,
+    private keycloakService: KeycloakService,
+    // private readonly authConfigService: AuthConfigService
+  ) {
     this.baseUrl = environment.baseUrl;
-
+    // this.baseUrl = this.authConfigService.config.bffUrl;
   }
 
   // Sign-up
@@ -72,7 +79,8 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('accessToken');
+    // return localStorage.getItem('accessToken');
+    return localStorage.getItem('token');
   }
 
   get isLoggedIn(): boolean {
@@ -97,8 +105,12 @@ export class AuthService {
   }
 
   doLogout() {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('currentUser');
+    // localStorage.removeItem('accessToken');
+    // localStorage.removeItem('currentUser');
+    localStorage.clear();
+
+    this.keycloakService.clearToken();
+    this.keycloakService.logout(window.location.origin);
     this.router.navigate(['']);
   }
 

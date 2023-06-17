@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { IImpressionEventInput, IInteractEventInput } from 'src/app/services/telemetry/telemetry-interface';
 import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
@@ -15,10 +16,15 @@ export class LogoutComponent implements OnInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly telemetryService: TelemetryService,
     private readonly router: Router,
+    private readonly keycloakService: KeycloakService
   ) { }
 
   ngOnInit(): void {
-    this.authService.doLogout();
+    // this.authService.doLogout();
+    localStorage.clear();
+
+    this.keycloakService.clearToken();
+    this.keycloakService.logout(window.location.origin);
   }
   ngAfterViewInit(): void {
     this.raiseImpressionEvent();

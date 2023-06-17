@@ -1,15 +1,22 @@
 {
   "environment": "development",
+  "keycloak": {
+    "url": "https://ulp-sbrc.uniteframework.io/auth",
+    "clientId": "registry-frontend",
+    "realm": "sunbird-rc"
+  },
   "appType": "digital_wallet",
   "configFolder": "/assets/config/ui-config",
+  "languageFolder": "/assets/i18n",
   "logoPath": "/assets/images/logo.svg",
   "title": "AVSAR Learner Wallet",
-  "baseUrl": "https://ulp.uniteframework.io/ulp-bff",
-  "schemaUrl": "https://ulp.uniteframework.io/registry/api/docs/swagger.json",
+  "baseUrl": "http://localhost:4200/registry/api/v1",
+  "bffUrl": "http://139.59.45.135:4000",
+  "schemaUrl": "http://localhost:4200/registry/api/docs/swagger.json",
   "footerText": "AVSAR Learner Wallet",
   "languages": [
     "en",
     "hi"
   ],
-"languageUrl": "https://elocker.xiv.in/elocker/api/v1/Localization/search"
+  "languageUrl": "https://elocker.xiv.in/elocker/api/v1/Localization/search"
 }

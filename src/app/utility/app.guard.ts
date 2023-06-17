@@ -22,15 +22,27 @@ export class AuthGuard extends KeycloakAuthGuard {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Promise<any> {
+        const isLoggedIn = await this.keycloak.isLoggedIn();
+        console.log('isLoggedIn', isLoggedIn);
         // Force the user to log in if currently unauthenticated.
         if (!this.authenticated) {
             /* await this.keycloak.login({
                  redirectUri: window.location.origin + state.url,
              });*/
+            // this.keycloak
+            //     .getKeycloakInstance()
+            //     .login(<KeycloakLoginOptions>{
+            //         locale: localStorage.getItem('ELOCKER_LANGUAGE')
+            //     })
+            //     .then((res) => {
+            //         console.log({ res });
+            //     });
+
             this.keycloak
                 .getKeycloakInstance()
                 .login(<KeycloakLoginOptions>{
-                    locale: localStorage.getItem('ELOCKER_LANGUAGE')
+                    locale: localStorage.getItem('setLanguage'),
+                    redirectUri: window.location.origin + state.url
                 })
                 .then((res) => {
                     console.log({ res });
