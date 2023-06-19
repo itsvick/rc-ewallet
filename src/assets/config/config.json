@@ -10,9 +10,9 @@
   "languageFolder": "/assets/i18n",
   "logoPath": "/assets/images/logo.svg",
   "title": "AVSAR Learner Wallet",
-  "baseUrl": "http://localhost:4200/registry/api/v1",
+  "baseUrl": "https://ulp-sbrc.uniteframework.io/registry",
   "bffUrl": "http://139.59.45.135:4000",
-  "schemaUrl": "http://localhost:4200/registry/api/docs/swagger.json",
+  "schemaUrl": "https://ulp-sbrc.uniteframework.io/registry/api/docs/swagger.json",
   "footerText": "AVSAR Learner Wallet",
   "languages": [
     "en",

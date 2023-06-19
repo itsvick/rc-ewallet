@@ -5,6 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable, Subscriber } from 'rxjs';
 import { AppConfig } from 'src/app/app.config';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthConfigService } from 'src/app/authentication/auth-config.service';
 
 
 @Injectable({
@@ -17,6 +18,8 @@ export class GeneralService {
   }
 
   postData(apiUrl, data) {
+    this.baseUrl = `${this.config.getEnv('baseUrl')}/api/v1`;
+    console.log("baseUrl", this.baseUrl);
     var url;
     if (apiUrl.indexOf('http') > -1) {
       url = apiUrl

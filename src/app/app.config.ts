@@ -6,7 +6,9 @@ import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AppConfig {
 
     private config: Object = null;
@@ -69,6 +71,7 @@ export class AppConfig {
                 if (request) {
                     request
                         .subscribe((responseData) => {
+                            console.log("responseData", responseData);
                             this.config = responseData;
                             this.titleService.setTitle(responseData.title);
                             resolve(true);
