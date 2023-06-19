@@ -109,7 +109,7 @@ export function constValidationMessage(err, field: FormlyFieldConfig) {
 }
 
 function initConfig(config: AppConfig) {
-  return () => config.load()
+  return () => config.load().then((res) => {console.log(res)})
 }
 
 import ISO6391 from 'iso-639-1';
@@ -284,7 +284,7 @@ import { SettingsComponent } from './settings/settings.component';
       deps: [HttpClient, TranslateService],
       multi: true
     },
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })
 
