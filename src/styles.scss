@@ -197,6 +197,9 @@ body {
 .fs-8 {
   font-size: 0.7rem;
 }
+.fs-20{
+  font-size: 20px !important;
+}
 
 .w-70 {
   width: 70% !important;
@@ -527,13 +530,9 @@ label {
   text-align: center;
 }
 .text-circle {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  background: #ff2929;
-  line-height: 1.5rem;
-  color: #ffffff;
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #3632D5;
   text-align: center;
 }
 .fs-10 {
@@ -648,7 +647,6 @@ label {
 .heading2 {
   font-weight: 600;
   font-size: 32.8571px;
-  line-height: 49px;
   color: var(--headingColor);
 }
 .heading3 {
