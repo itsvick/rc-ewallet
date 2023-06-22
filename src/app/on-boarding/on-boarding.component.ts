@@ -45,6 +45,10 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/login']);
   }
 
+  register() {
+    this.router.navigate(['/register']);
+  }
+
   ngAfterViewInit(): void {
     this.raiseImpressionEvent();
   }

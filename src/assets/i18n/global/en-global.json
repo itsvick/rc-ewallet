@@ -314,5 +314,12 @@
     "Invalid_QR-Code": "Invalid QR-Code",
     "SELECT_APP_LANGUAGE": "Select App Language",
     "RETRY_SCAN": "Retry Scan",
-    "SCAN_QR_CODE":"Scan QR Code"
+    "SCAN_QR_CODE":"Scan QR Code",
+    "GENDER": "Gender",
+    "AADHAR_NO": "Aadhaar Number",
+    "ENTER_YOUR_USERNAME": "Enter your username",
+    "ENTER_PASSWORD": "Enter Password",
+    "SELECT_GENDER": "Select Gender",
+    "MALE": "Male",
+    "FEMALE": "Female"
 }
