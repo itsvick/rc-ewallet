@@ -59,9 +59,11 @@ export class RegisterComponent implements OnInit {
         this.isLoading = false;
         this.toasterService.success("", "User registered successfully");
         this.router.navigate(['']);
-      }, error  => {
+      }, (error: any)  => {
+        console.log("error",error);
         this.isLoading = false;
-        this.toasterService.success("", "User registration failed! Please try again");
+        const message =  error?.error?.message ? error?.error?.message : "User registration failed! Please try again";
+        this.toasterService.error("", message);
       })
     }
 
