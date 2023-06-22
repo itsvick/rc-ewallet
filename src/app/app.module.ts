@@ -139,6 +139,7 @@ import { EkycComponent } from './ekyc/ekyc.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MonthYearPickerComponent } from './month-year-picker/month-year-picker.component';
 import { SettingsComponent } from './settings/settings.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -189,7 +190,8 @@ import { SettingsComponent } from './settings/settings.component';
     EkycComponent,
     PageNotFoundComponent,
     MonthYearPickerComponent,
-    SettingsComponent
+    SettingsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

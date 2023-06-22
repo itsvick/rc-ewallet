@@ -34,6 +34,7 @@ import { SearchCertificatesComponent } from './search-certificates/search-certif
 import { EkycComponent } from './ekyc/ekyc.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SettingsComponent } from './settings/settings.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,16 @@ const routes: Routes = [
       showToolbar: false,
       telemetry: {
         env: 'login', pageid: 'login', type: 'edit', subtype: 'scroll'
+      }
+    }
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'register', pageid: 'register', type: 'edit', subtype: 'scroll'
       }
     }
   },

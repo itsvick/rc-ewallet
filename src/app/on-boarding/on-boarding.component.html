@@ -8,6 +8,8 @@
    <div class="pb-20">{{ "WELCOME_TO_YOUR_ACADEMIC_WALLET" | translate }}</div>
    <div class="pb-10">
       <button type="button" class="login-btn bg-blue-dark w-100 text-uppercase"
-         (click)="login();raiseInteractEvent('login-sso')">{{'LOGIN' | translate}}</button>
+         (click)="register();raiseInteractEvent('register')">{{'REGISTER' | translate}}</button>
+      <button type="button" class="login-btn bg-blue-dark w-100 text-uppercase mt-2"
+         (click)="login();raiseInteractEvent('login')">{{'LOGIN' | translate}}</button>
    </div>
 </div>
