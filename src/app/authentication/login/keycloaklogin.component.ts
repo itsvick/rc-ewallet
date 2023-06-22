@@ -32,11 +32,10 @@ export class KeycloakloginComponent implements OnInit {
     if (isLoggedIn) {
       this.keycloakService.loadUserProfile().then((res: any) => {
         console.log("res", res);
-        console.log(res['attributes'].entity[0]);
         if (res?.attributes?.entity?.[0]) {
+          console.log(res['attributes'].entity[0]);
           this.entity = res.attributes.entity[0];
         }
-        this.entity = res['attributes'].entity[0];
         if (res['attributes'].hasOwnProperty('locale') && res['attributes'].locale.length) {
           localStorage.setItem('ELOCKER_LANGUAGE', res['attributes'].locale[0]);
         }
