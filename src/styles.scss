@@ -163,10 +163,10 @@ $primary-color-dark: #000;
   color: $primary-color-dark;
 }
 
-html,
-body {
-  height: 100%;
-}
+// html,
+// body {
+//   height: 100%;
+// }
 
 body {
   margin: 0;
@@ -178,8 +178,6 @@ body {
   background-repeat: no-repeat;
   overflow-x: hidden;
   background-size: cover !important;
-  height: 100% !important;
-  width: 100% !important;
 }
 
 .fs-7 {
