@@ -76,7 +76,7 @@
           <div class="text-center form-group fs-20">
             <label for="language" class="fs-16">{{"CHOOSE_LANGUAGE" | translate}}</label>
             <div class="d-flex justify-content-space-evenly pt-3">
-              <a class="langauge-bx" *ngFor="let language of languages" (click)="changeLanguage(language.code)">
+              <a class="language-bx" *ngFor="let language of languages" (click)="changeLanguage(language.code)" [ngClass]="{'selected-box': language?.isSelected}">
                 <div class="fs-16">
                   {{ language?.name }}
                 </div>
