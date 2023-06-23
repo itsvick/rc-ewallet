@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
-import { Router } from '@angular/router';
+import { Router, RouterStateSnapshot } from '@angular/router';
 import { AppConfig } from '../../app.config';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { map } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { DataService } from 'src/app/services/data/data-request.service';
 import { AuthConfigService } from '../auth-config.service';
+import { KeycloakLoginOptions } from 'keycloak-js';
 
 @Component({
   selector: 'app-keycloaklogin',
@@ -60,6 +61,17 @@ export class KeycloakloginComponent implements OnInit {
           console.log(err);
         });
       });
+    } else {
+      const snapshot: RouterStateSnapshot = this.router.routerState.snapshot;
+      this.keycloakService
+        .getKeycloakInstance()
+        .login(<KeycloakLoginOptions>{
+          locale: localStorage.getItem('setLanguage'),
+          redirectUri: window.location.origin + snapshot.url
+        })
+        .then((res) => {
+          console.log({ res });
+        });
     }
   }
 

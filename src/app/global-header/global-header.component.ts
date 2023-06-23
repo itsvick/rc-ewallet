@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemeService } from "../../app/services/theme/theme.service";
+import { AuthService } from '../services/auth/auth.service';
 
 
 @Component({
@@ -11,14 +12,13 @@ export class GlobalHeaderComponent implements OnInit {
 
   @Input() showBackground = false;
   @Input() showTitle = false;
+  @Input() showUsername = false;
   ELOCKER_THEME: string;
 
   constructor(
-     private themeService: ThemeService
-
-  ) {
-    
-   }
+    private readonly themeService: ThemeService,
+    public readonly authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.ELOCKER_THEME = localStorage.getItem('ELOCKER_THEME');

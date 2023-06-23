@@ -5,7 +5,8 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="mb-3 pb-10">
         <label for="name">{{'NAME' | translate}}<span class="text-danger">*</span></label>
-        <input type="text" class="form-control p-4" id="name" name="name" formControlName="name" placeholder="">
+        <input type="text" class="form-control p-4" id="name" name="name" formControlName="name"
+          placeholder="{{'ENTER_YOUR_NAME' | translate}}">
         <p class="text-red pt-2 mb-0" *ngIf="registerFormControl.name.invalid && registerFormControl.name.touched">
           {{'NAME_REQUIRED' | translate }}</p>
       </div>
@@ -20,7 +21,7 @@
 
       <div class="mb-3 pb-10">
         <label for="gender">{{'GENDER' | translate}}<span class="text-danger">*</span></label>
-        <select class="ml-2 w-20 form-select" formControlName="gender">
+        <select class="w-20 form-select" formControlName="gender">
           <option [ngValue]="undefined" [disabled]="true">{{'SELECT_GENDER' | translate}}</option>
           <option value="M">{{'MALE' | translate}}</option>
           <option value="F">{{'FEMALE' | translate}}</option>

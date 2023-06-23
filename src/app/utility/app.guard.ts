@@ -4,6 +4,7 @@ import {
     Router,
     RouterStateSnapshot,
 } from '@angular/router';
+import { error } from 'console';
 import { KeycloakAuthGuard, KeycloakEvent, KeycloakEventType, KeycloakService } from 'keycloak-angular';
 import { KeycloakLoginOptions } from 'keycloak-js';
 
@@ -38,15 +39,35 @@ export class AuthGuard extends KeycloakAuthGuard {
             //         console.log({ res });
             //     });
 
-            this.keycloak
-                .getKeycloakInstance()
-                .login(<KeycloakLoginOptions>{
-                    locale: localStorage.getItem('setLanguage'),
-                    redirectUri: window.location.origin + state.url
-                })
-                .then((res) => {
-                    console.log({ res });
-                });
+            // this.keycloak
+            //     .getKeycloakInstance()
+            //     .login(<KeycloakLoginOptions>{
+            //         locale: localStorage.getItem('setLanguage'),
+            //         redirectUri: window.location.origin + state.url
+            //     })
+            //     .then((res) => {
+            //         console.log({ res });
+            //     });
+            const isTokenAvailable = localStorage.getItem('token');
+            if (isTokenAvailable) {
+                this.keycloak
+                    .getKeycloakInstance()
+                    .login(<KeycloakLoginOptions>{
+                        locale: localStorage.getItem('setLanguage'),
+                        redirectUri: window.location.origin + state.url
+                    })
+                    .then((res) => {
+                        console.log({ res });
+                    }, error => {
+                        console.log(error);
+                    });
+            } else {
+                if (state.url === '/login') {
+                    return true;
+                }
+                this.router.navigate(['']);
+            }
+
         }
 
         // Get the roles required from the route.

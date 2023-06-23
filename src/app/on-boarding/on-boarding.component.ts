@@ -6,6 +6,7 @@ import { IImpressionEventInput, IInteractEventInput } from '../services/telemetr
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { environment } from 'src/environments/environment';
 import { AuthConfigService } from '../authentication/auth-config.service';
+import { KeycloakService } from 'keycloak-angular';
 
 
 @Component({
@@ -22,14 +23,19 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
     private readonly generalService: GeneralService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly telemetryService: TelemetryService,
-    private readonly authConfigService: AuthConfigService
+    private readonly authConfigService: AuthConfigService,
+    private readonly keycloakService: KeycloakService
   ) {         
     // this.baseUrl = environment.baseUrl;
     this.baseUrl = this.authConfigService.config.bffUrl;
   }
 
   ngOnInit(): void {
-    if (this.authService.isLoggedIn) {
+    // if (this.authService.isLoggedIn) {
+    //   this.router.navigate(['/home']);
+    // }
+
+    if (this.keycloakService.isLoggedIn()) {
       this.router.navigate(['/home']);
     }
   }
