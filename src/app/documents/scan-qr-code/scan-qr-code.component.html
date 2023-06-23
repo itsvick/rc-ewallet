@@ -1,4 +1,5 @@
-<img src="assets/images/camera.png" *ngIf="!isScanCompleted" alt="" class="img-center">
+<div class="pb-200">
+    <img src="assets/images/camera.png" *ngIf="!isScanCompleted" alt="" class="img-center">
 <h4 class="text-align">{{'SCAN_QR_CODE'|translate}}</h4>
 
 <div class="scanner" *ngIf="!isScanCompleted">
@@ -24,4 +25,5 @@
     <div>
         <button type="button" class="btn btn-secondary" (click)="scanAgain()">{{'RETRY_SCAN' | translate}}</button>
     </div>
+</div>
 </div>
