@@ -18,6 +18,7 @@ export class SettingsComponent implements OnInit {
 
   languageSwitchRef: NgbModalRef;
   languages = [];
+  currentLanguage: string;
 
   ELOCKER_THEME: string;
   @ViewChild('languageSwitchModal') languageSwitchModal: TemplateRef<any>;
@@ -42,9 +43,17 @@ export class SettingsComponent implements OnInit {
 
   getAllLanguages() {
     const languages = localStorage.getItem('languages');
+    const selectedLanguage = localStorage.getItem('setLanguage');
     if (languages) {
       this.languages = JSON.parse(languages);
+
+      this.languages = this.languages.map(item => {
+        item.isSelected = item.code === selectedLanguage;
+        return item;
+      });
     }
+
+    console.log("languages", this.languages);
   }
 
   showLanguageModal() {

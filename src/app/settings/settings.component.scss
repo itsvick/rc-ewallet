@@ -12,14 +12,22 @@ select.form-control:focus {
   outline: 0;
   box-shadow: none;
 }
-.langauge-bx {
-  border: 1px solid var(--searchBoxBorder) !important;
-
+.language-bx {
+  border: 1px solid var(--primaryColor) !important;
   padding: 5px 30px;
   border-radius: 7px;
-  .fs-16 {
-    color: var(--btnNameColor);
-    //   color: var(--btnPrimaryColor);
-  }
+  color: var(--primaryColor);
   cursor: pointer;
+  background: var(--cardBackground);
+}
+
+.language-bx:focus, .language-bx:hover {
+  background: var(--primaryColor);
+  color: white;
+  opacity: 0.8;
+}
+
+.selected-box {
+  background: var(--primaryColor);
+  color: var(--cardBackground);
 }
