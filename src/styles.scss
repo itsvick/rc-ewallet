@@ -455,7 +455,7 @@ label {
   align-items: center;
   padding: 8px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  position: fixed;
+  // position: fixed;
   min-height: 60px;
   left: 0;
   right: 0;
@@ -675,6 +675,10 @@ label {
   justify-content: space-evenly !important;
 }
 .flex-justify-center {
+  justify-content: center;
+}
+.flex-center{
+  display: flex;
   justify-content: center;
 }
 .btn-padding {
@@ -1121,5 +1125,11 @@ ngb-modal-window {
 @media (max-width:385px) {
   .fs-sm-10{
     font-size:11px !important;
+  }
+  .fs-sm-8{
+    font-size: 8px !important;
+  }
+  .fs-sm-17{
+    font-size: 17px !important;
   }
 }
