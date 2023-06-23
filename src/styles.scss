@@ -98,12 +98,6 @@ textarea.form-control {
   font-size: 12px;
 }
 
-.btn-primary {
-  background-color: var(--primaryColor) !important;
-  border-color: var(--primaryColor) !important;
-  border: 0 !important;
-}
-
 .btn-style {
   border-radius: 8px !important;
   height: 40px;
@@ -154,10 +148,6 @@ $primary-color: var(--primaryColor);
 $gray-color: #8d9091;
 .primary-color {
   background-color: var(--primaryColor) !important;
-}
-
-.btn-primary {
-  background: $primary-color;
 }
 
 $primary-color-dark: #000;
@@ -244,8 +234,8 @@ a {
 
 .container {
   //margin-top: 100px;
-  padding-bottom: 50px;
-  margin-top: 75px;
+  // padding-bottom: 50px;
+  // margin-top: 75px;
 }
 
 formly-field {
@@ -333,9 +323,15 @@ formly-autocomplete-type .ng-select {
 }
 
 .btn-primary {
-  color: var(--secondarytextColor) !important;
-  background-color: var(--primarybgColor) !important;
-  border-color: var(--primarybgColor) !important;
+  color: var(--cardBackground) !important;
+  background: var(--primaryColor) !important;
+  border-color: var(--primaryColor) !important;
+}
+
+.btn-outline-primary {
+  color: var(--headerPrimaryColor) !important;
+  background-color: var();
+  border-color: var(--primaryColor) !important;
 }
 
 /* Tabs */

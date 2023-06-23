@@ -1,15 +1,17 @@
-<div class="container text-center pb-0 mt-20 wallet">
+<div class="container text-center pb-0 wallet">
    <!-- <app-global-header [showTitle]="true"></app-global-header> -->
-   <img class="img-fluid mb-4 mt-4" src="../../assets/images/headerlogo1.png" alt="header-logo">
-   <div>
-      <img class="img-fluid" src="../../assets/images/passport.png" alt="password">
-   </div>
-   <div class="heading2 fs-20 pb-10 mt-4">ULP Learner Wallet</div>
-   <div class="pb-20">{{ "WELCOME_TO_YOUR_ACADEMIC_WALLET" | translate }}</div>
+   <img class="img-fluid mb-4 mt-4" src="assets/images/headerlogo1.png" alt="header-logo">
+</div>
+<div>
+   <img class="img-fluid" src="assets/images/passport.svg" width="100%" alt="password">
+</div>
+<div class="container">
+   <div class="heading2 fs-20 pb-10 mt-4 text-center">Universal Learners Passport</div>
+   <div class="pb-20 text-center">{{ "WELCOME_TO_YOUR_ACADEMIC_WALLET" | translate }}</div>
    <div class="pb-10">
-      <button type="button" class="login-btn bg-blue-dark w-100 text-uppercase"
+      <button type="button" class="btn btn-primary btn-block btn-lg"
          (click)="register();raiseInteractEvent('register')">{{'REGISTER' | translate}}</button>
-      <button type="button" class="login-btn bg-blue-dark w-100 text-uppercase mt-2"
+      <button type="button" class="btn btn-outline-primary btn-block btn-lg mt-2"
          (click)="login();raiseInteractEvent('login')">{{'LOGIN' | translate}}</button>
    </div>
 </div>
