@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -19,6 +19,12 @@ export class SearchCertificatesComponent implements OnInit {
   credentials$: Observable<any>;
   searchKey: string = '';
   schema: any;
+
+  credentialList = [];
+
+  @Input() credentials: any;
+  @Input() category: string;
+  @Output() back = new EventEmitter();
   constructor(
     private readonly credentialService: CredentialService,
     public readonly authService: AuthService,
@@ -26,8 +32,8 @@ export class SearchCertificatesComponent implements OnInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly telemetryService: TelemetryService
   ) {
-    const navigation = this.router.getCurrentNavigation();
-    this.schema = navigation.extras.state;
+    // const navigation = this.router.getCurrentNavigation();
+    // this.schema = navigation.extras.state;
   }
 
   ngOnInit(): void {
@@ -35,17 +41,41 @@ export class SearchCertificatesComponent implements OnInit {
   }
 
   fetchCredentials() {
-    this.credentials$ = this.credentialService.getAllCredentials().pipe(
-      map((res: any) => {
-        if (this.schema?.name) {
-          return res.filter(
-            (item: any) => item.credential_schema.name === this.schema.name
-          );
-        }
-        return res;
-      }),
-      catchError((error) => of([]))
-    );
+    // this.credentials$ = this.credentialService.getAllCredentials().pipe(
+    //   map((res: any) => {
+    //     if (this.schema?.name) {
+    //       return res.filter(
+    //         (item: any) => item.credential_schema.name === this.schema.name
+    //       );
+    //     }
+    //     return res;
+    //   }),
+    //   catchError((error) => of([]))
+    // );
+
+    // if (this.category) {
+    //   this.credentials$ = of(this.credentials.map((item: any) => item.credential_schema.name === this.category));
+    // }
+    // else {
+    //   this.credentials$ = of(this.credentials);
+    // }
+
+    const list = this.category ? this.credentials.filter((item: any) => item.credential_schema.name === this.category) : this.credentials;
+    console.log("list", list);
+    this.credentialList = list.map((item: any) => {
+      const placeholderList = item.credential_schema.schema.description.match(/(?<=<).*?(?=>)/g) || [];
+      let details = {};
+      placeholderList.map((ph: any) => {
+        details = { ...details, [ph]: item.credentialSubject[ph] };
+      });
+
+      item.credential_schema.schema.description = item.credential_schema.schema.description.replace(/\<(.*?)\>/g, function (placeholder, capturedText, matchingIndex, inputString) {
+        // console.log(placeholder + " - " + capturedText + " - " + matchingIndex);
+        return details[placeholder.substring(1, placeholder.length - 1)] || "N/A";
+      });
+      return item;
+    });
+    console.log("v", this.credentialList);
   }
 
   renderCertificate(credential: any) {
@@ -57,6 +87,10 @@ export class SearchCertificatesComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.raiseImpressionEvent();
+  }
+
+  goBack() {
+    this.back.emit();
   }
 
   raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {
