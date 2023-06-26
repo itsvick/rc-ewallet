@@ -1,9 +1,8 @@
 <div class="container text-center pb-0 mt-5 wallet">
     <app-global-header [showBackground]="false" [showTitle]="true" [showUsername]="true"></app-global-header>
 </div>
-<div class="pb-200">
+<div class="pb-200" *ngIf="!showCredentialList">
     <div class="container text-center pb-0 mt-20">
-        <!-- <div class="fs-16 fw-600 pb-4 text-left">Issued Credentials</div> -->
         <div class="row">
             <div class="col-12 col-sm-4" *ngFor="let category of categories">
                 <div class="card mb-3" (click)="showCredentials(category)">
@@ -24,14 +23,11 @@
                 </div>
             </div>
             <div *ngIf="!isLoading && !showApproval && categories.length === 0">
-                <!-- <h4 class="text-primary-color font-weight-bold">Universal Learners Passport</h4>
-                <p class="subtitle">Welcome to your academic wallet</p> -->
-    
-    
                 <div class="mt-3 pt-3">
                     <div class="d-flex align-items-start m-2">
                         <img src="assets/images/check-mark.svg" alt="" class="icon mt-1">
-                        <p class="text-start text-primary-color ml-2 fs-15">{{ "IF_YOU_ARE_GOVERNMENT" | translate }}</p>
+                        <p class="text-start text-primary-color ml-2 fs-15">{{ "IF_YOU_ARE_GOVERNMENT" | translate }}
+                        </p>
                     </div>
                     <div class="d-flex align-items-start m-2">
                         <img src="assets/images/check-mark.svg" alt="" class="icon mt-1">
@@ -65,7 +61,7 @@
                 </div> -->
             </div>
         </div>
-    
+
         <div *ngIf="showApproval" [ngClass]="isClaimRejected ? 'alert alert-danger': 'alert alert-info'"
             [attr.role]="isClaimRejected ? 'alert' : ''">
             <div>
@@ -81,6 +77,10 @@
         </div>
     </div>
 </div>
+
+
+<app-search-certificates *ngIf="showCredentialList" [credentials]="allCredentials" [category]="selectedCategory"
+    (back)="showCredentialList = !showCredentialList"></app-search-certificates>
 
 <!-- GET Approval POPUP -->
 <!-- <ng-template #approvalModal tabindex="-1" role="dialog" aria-labelledby="approvalModal">

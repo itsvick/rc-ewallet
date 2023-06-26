@@ -69,10 +69,6 @@ export class DocViewComponent implements OnInit {
         }
     }
 
-    getSchema(id): Observable<any> {
-        return this.generalService.getData(`https://ulp.uniteframework.io/cred-schema/schema/jsonld?id=${id}`, true);
-    }
-
     getTemplate(id: string): Observable<any> {
         return this.generalService.getData(`${this.baseUrl}/v1/sso/student/credentials/rendertemplateschema/${id}`, true).pipe(
             map((res: any) => {

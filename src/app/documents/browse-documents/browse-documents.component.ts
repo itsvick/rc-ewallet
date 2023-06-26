@@ -22,13 +22,10 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   approvalModalRef: NgbModalRef;
   showApproval = false;
   isClaimRejected = false;
+  allCredentials: any;
+  showCredentialList = false;
+  selectedCategory: any;
   @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
-
-  certificatesDetails = [
-    { name: 'Academic Certificates', image: 'assets/images/acadmic.png' },
-    { name: 'Enrollement Certificates', image: 'assets/images/enroll.png' },
-    { name: 'Benefit Records', image: 'assets/images/benefit.png' },
-  ];
 
   constructor(
     private router: Router,
@@ -53,7 +50,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       this.isLoading = true;
       this.credentialService.getAllCredentials().pipe(map((res: any) => {
         console.log("result", res);
-
+        this.allCredentials = res;
         res.map((item: any) => {
           this.updateCategoryList(item.credential_schema.name);
         });
@@ -68,10 +65,12 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   showCredentials(category) {
-    const navigationExtras: NavigationExtras = {
-      state: category
-    }
-    this.router.navigate(['/search-certificates'], navigationExtras);
+    this.selectedCategory = category?.name;
+    this.showCredentialList = true;
+    // const navigationExtras: NavigationExtras = {
+    //   state: category
+    // }
+    // this.router.navigate(['/search-certificates'], navigationExtras);
   }
 
   updateCategoryList(name: string) {
