@@ -48,7 +48,7 @@
 
       <div class="mb-3 pb-10">
         <label for="password">{{'PASSWORD'| translate}}<span class="text-danger">*</span></label>
-        <input type="text" class="form-control p-4" id="password" name="password" formControlName="password"
+        <input type="password" class="form-control p-4" id="password" name="password" formControlName="password"
           placeholder="{{'ENTER_PASSWORD' | translate}}">
         <p class="text-red pt-2 mb-0"
           *ngIf="registerFormControl.password.invalid && registerFormControl.password.touched">{{'ENTER_STUDENT_ID' |

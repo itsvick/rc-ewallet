@@ -187,7 +187,7 @@ body {
   font-size: 0.8rem;
 }
 .pb-200 {
-  padding-bottom: 200px !important;
+  padding-bottom: 250px !important;
 }
 .pb-100 {
   padding-bottom: 100px !important;
@@ -239,12 +239,15 @@ a {
 .modal.fade.show .modal-dialog.panel-right {
   right: 0;
 }
-
-.container {
-  //margin-top: 100px;
-  // padding-bottom: 50px;
-  // margin-top: 75px;
+.fs-15{
+  font-size: 15px;
 }
+
+// .container {
+//   margin-top: 100px;
+//   padding-bottom: 50px;
+//   margin-top: 75px;
+// }
 
 formly-field {
   display: block;
@@ -305,7 +308,7 @@ formly-autocomplete-type .ng-select {
 }
 
 .fs-14 {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .fs-25 {
