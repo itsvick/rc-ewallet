@@ -2,7 +2,7 @@
   <app-global-header [showTitle]="true"></app-global-header>
   <div>
     <div>
-      <span class="mt-1 float-left">
+      <span routerLink="" class="mt-1 float-left">
         <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
       </span>
     </div>
@@ -62,8 +62,8 @@
 
 
       <div class="pb-10 text-center">
-        <button type="submit" class="login-btn bg-blue-dark font-600 mt-4"
-          [disabled]="registerForm.invalid">{{'REGISTER' | translate}}</button>
+        <button data-toggle="modal" data-target="#exampleModalCenter" type="submit" class="login-btn bg-blue-dark font-600 mt-4"
+          >{{'REGISTER' | translate}}</button>
       </div>
     </form>
   </div>
@@ -72,6 +72,21 @@
 <div class="text-center" *ngIf="isLoading">
   <div class="center-loading">
     <div class="spinner-border">
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bo-rd-10">
+      <div class="modal-body">
+        <div class="text-center pt-2 fs-20 fw-500 bl-text-blue pb-2">Successful registered</div>
+        <div class="flex-center">
+          <button [disabled]="registerForm.invalid" type="button" class="btn btn-primary mt-4 mb-2 px-5 fs-14 btn-lg font-weight-bold">Go to wallet</button>
+      </div>
+      </div>
     </div>
   </div>
 </div>
