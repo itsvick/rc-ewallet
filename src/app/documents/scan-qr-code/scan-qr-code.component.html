@@ -1,6 +1,29 @@
 <div class="pb-200">
+
+   <div class="mt-4">
+    <div>
+        <span class="ml-3 float-left">
+          <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+      <div class="text-center pb-0 d-flex flex-justify-center">
+        <div>
+          <img src="assets/images/headerlogo.png" class="img-fluid" alt="..." />
+        </div>
+    
+        <div class="text-center">
+          <h5 class="card-title fs-14 font-600 text-left">
+            <span class="text-gray-0 fs-12">DEPARTMENT OF</span> <br />
+            <span class="fs-16"> Basic Education</span><br />
+            <span class="text-orange fs-10">GOVERNMENT OF UTTAR PRADESH</span>
+          </h5>
+        </div>
+      </div>
+   </div>
+
     <img src="assets/images/camera.png" *ngIf="!isScanCompleted" alt="" class="img-center">
-<h4 class="text-align">{{'SCAN_QR_CODE'|translate}}</h4>
+<h4 class="text-align fs-20">{{'SCAN_QR_CODE'|translate}}</h4>
 
 <div class="scanner" *ngIf="!isScanCompleted">
     <quar-scanner (scanSuccess)="scanSuccessHandler($event)" (scanError)="onError($event)"></quar-scanner>
