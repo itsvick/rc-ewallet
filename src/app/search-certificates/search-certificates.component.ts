@@ -75,6 +75,9 @@ export class SearchCertificatesComponent implements OnInit {
       });
       return item;
     });
+
+    this.credentialService.credentialList = [...this.credentialList];
+    this.credentialService.selectedCategory = this.category;
     console.log("v", this.credentialList);
   }
 
@@ -90,6 +93,8 @@ export class SearchCertificatesComponent implements OnInit {
   }
 
   goBack() {
+    this.credentialService.selectedCategory = '';
+    this.credentialService.credentialList = [];
     this.back.emit();
   }
 

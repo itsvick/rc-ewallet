@@ -21,8 +21,8 @@
 
       <div class="mb-3 pb-10">
         <label for="gender">{{'GENDER' | translate}}<span class="text-danger">*</span></label>
-        <select pl class="w-20 form-select" formControlName="gender">
-          <option [ngValue]="undefined" [disabled]="true">{{'SELECT_GENDER' | translate}}</option>
+        <select class="w-20 form-select" formControlName="gender">
+          <option value="" disabled selected>{{'SELECT_GENDER' | translate}}</option>
           <option value="M">{{'MALE' | translate}}</option>
           <option value="F">{{'FEMALE' | translate}}</option>
         </select>

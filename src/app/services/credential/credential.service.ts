@@ -3,7 +3,6 @@ import { forkJoin, Observable, of } from 'rxjs';
 import { concatMap, map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data/data-request.service';
-import { environment } from 'src/environments/environment';
 import { AuthConfigService } from 'src/app/authentication/auth-config.service';
 
 
@@ -12,9 +11,10 @@ import { AuthConfigService } from 'src/app/authentication/auth-config.service';
 })
 export class CredentialService {
   baseUrl: string;
-
-
   private schemas: any[] = [];
+  selectedCategory: string = '';
+  credentialList = [];
+
   constructor(
     private readonly dataService: DataService,
     private readonly authService: AuthService,
