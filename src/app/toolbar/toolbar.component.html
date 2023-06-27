@@ -1,5 +1,5 @@
 <div class="toolbar">
-  <div (click)="raiseInteractEvent('home-tab')" class="tab" [routerLink]="['/home']" routerLinkActive="active"
+  <div (click)="raiseInteractEvent('home-tab');clearCredentials();" class="tab" [routerLink]="['/home']" routerLinkActive="active"
     [routerLinkActiveOptions]="{exact:true}">
     <i class="fa fa-home fs-18"></i>
     <div class="tab-label"> {{'HOME' | translate}}</div>
@@ -9,12 +9,12 @@
     <i class="fa fa-search fs-18"></i>
     <div class="tab-label"> {{'SEARCH' | translate}}</div>
   </div> -->
-  <div (click)="raiseInteractEvent('scan-code-tab')" class="tab" [routerLink]="['/scan-code']" routerLinkActive="active"
+  <div (click)="raiseInteractEvent('scan-code-tab');clearCredentials();" class="tab" [routerLink]="['/scan-code']" routerLinkActive="active"
     [routerLinkActiveOptions]="{exact:true}">
     <i class="fa fa-qrcode fs-18"></i>
     <div class="tab-label"> {{'SCAN' | translate}}</div>
   </div>
-  <div (click)="raiseInteractEvent('account-tab')" class="tab" [routerLink]="['/settings']" routerLinkActive="active"
+  <div (click)="raiseInteractEvent('account-tab');clearCredentials()" class="tab" [routerLink]="['/settings']" routerLinkActive="active"
     [routerLinkActiveOptions]="{exact:true}">
     <i class="fa fa-user-circle-o fs-18"></i>
     <div class="tab-label"> {{'ACCOUNT' | translate}}</div>

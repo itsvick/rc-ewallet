@@ -14,12 +14,12 @@ export class RegisterComponent implements OnInit {
 
   isLoading: boolean = false;
   registerForm = new FormGroup({
-    name: new FormControl(null, [Validators.required]),
-    dob: new FormControl(null, [Validators.required]),
-    gender: new FormControl(null, [Validators.required]),
-    aadharId: new FormControl(null, [Validators.required]),
-    username: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
+    name: new FormControl('', [Validators.required]),
+    dob: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
+    aadharId: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
 
   constructor(

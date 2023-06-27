@@ -9,7 +9,6 @@ import { GeneralService } from 'src/app/services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput } from 'src/app/services/telemetry/telemetry-interface';
 import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
-import { environment } from 'src/environments/environment';
 import { AuthConfigService } from 'src/app/authentication/auth-config.service';
 
 @Component({
@@ -40,12 +39,12 @@ export class DocViewComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private telemetryService: TelemetryService,
         private readonly toastMessage: ToastMessageService,
-        private readonly authConfigService: AuthConfigService
+        private readonly authConfigService: AuthConfigService,
     ) {
         // this.baseUrl = environment.baseUrl;
         this.baseUrl = this.authConfigService.config.bffUrl;
         const navigation = this.router.getCurrentNavigation();
-        this.credential = navigation.extras.state;
+        this.credential = {...navigation.extras.state};
         this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
 
         if (!this.credential) {
@@ -126,7 +125,7 @@ export class DocViewComponent implements OnInit {
     }
 
     goBack() {
-        window.history.go(-1);
+        this.location.back();
     }
 
     downloadCertificate(asJSON?: boolean) {
