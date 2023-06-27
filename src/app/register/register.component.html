@@ -19,7 +19,7 @@
       <div class="mb-3 pb-10">
         <label for="dob">{{'DOB' | translate}}<span class="text-danger">*</span></label>
         <input type="date" class="form-control p-4" id="dob" name="dob" formControlName="dob"
-          placeholder="Enter Date of Birth">
+          placeholder="Enter Date of Birth" max="{{today | date:'yyyy-MM-dd'}}">
         <p class="text-red pt-2 mb-0" *ngIf="registerFormControl.dob.invalid && registerFormControl.dob.touched">
           {{'ENTER_VALID_DOB' | translate }}</p>
       </div>
@@ -31,6 +31,8 @@
           <option value="M">{{'MALE' | translate}}</option>
           <option value="F">{{'FEMALE' | translate}}</option>
         </select>
+        <p class="text-red pt-2 mb-0" *ngIf="registerFormControl.gender.invalid && registerFormControl.gender.touched">
+          {{'GENDER_REQUIRED' | translate }}</p>
       </div>
 
       <div class="mb-3 pb-10">
@@ -38,7 +40,8 @@
         <input type="text" class="form-control p-4" id="aadharId" name="aadharId" formControlName="aadharId"
           placeholder="{{'ENTER_AADHAAR_NO' | translate}}">
         <p class="text-red pt-2 mb-0"
-          *ngIf="registerFormControl.aadharId.invalid && registerFormControl.aadharId.touched">{{'ENTER_STUDENT_ID' |
+          *ngIf="registerFormControl.aadharId.invalid && registerFormControl.aadharId.touched">
+          {{'ENTER_VALID_AADHAAR_NUMBER' |
           translate }}</p>
       </div>
 
@@ -47,7 +50,8 @@
         <input type="text" class="form-control p-4" id="username" name="username" formControlName="username"
           placeholder="{{'ENTER_YOUR_USERNAME' | translate}}">
         <p class="text-red pt-2 mb-0"
-          *ngIf="registerFormControl.username.invalid && registerFormControl.username.touched">{{'ENTER_STUDENT_ID' |
+          *ngIf="registerFormControl.username.invalid && registerFormControl.username.touched">{{'ENTER_VALID_USERNAME'
+          |
           translate }}</p>
       </div>
 
@@ -56,14 +60,14 @@
         <input type="password" class="form-control p-4" id="password" name="password" formControlName="password"
           placeholder="{{'ENTER_PASSWORD' | translate}}">
         <p class="text-red pt-2 mb-0"
-          *ngIf="registerFormControl.password.invalid && registerFormControl.password.touched">{{'ENTER_STUDENT_ID' |
+          *ngIf="registerFormControl.password.invalid && registerFormControl.password.touched">{{'PASSWORD_REQUIRED' |
           translate }}</p>
       </div>
 
 
       <div class="pb-10 text-center">
-        <button data-toggle="modal" data-target="#exampleModalCenter" type="submit" class="login-btn bg-blue-dark font-600 mt-4"
-          >{{'REGISTER' | translate}}</button>
+        <button type="submit" [disabled]="registerForm.invalid"
+          class="login-btn bg-blue-dark font-600 mt-4">{{'REGISTER' | translate}}</button>
       </div>
     </form>
   </div>
@@ -78,15 +82,14 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content bo-rd-10">
-      <div class="modal-body">
-        <div class="text-center pt-2 fs-20 fw-500 bl-text-blue pb-2">Successful registered</div>
-        <div class="flex-center">
-          <button [disabled]="registerForm.invalid" type="button" class="btn btn-primary mt-4 mb-2 px-5 fs-14 btn-lg font-weight-bold">Go to wallet</button>
-      </div>
+<ng-template #registerModal tabindex="-1" role="dialog" aria-labelledby="registerModal">
+  <div class="modal-content bo-rd-10">
+    <div class="modal-body">
+      <div class="text-center pt-2 fs-20 fw-500 bl-text-blue pb-2">{{'SUCCESSFULLY_REGISTERED' | translate}}</div>
+      <div class="flex-center">
+        <button type="button" class="btn btn-primary mt-4 mb-2 px-5 fs-14 btn-lg font-weight-bold"
+          (click)="gotoLoginPage()">{{'GO_TO_WALLET' | translate}}</button>
       </div>
     </div>
   </div>
-</div>
+</ng-template>

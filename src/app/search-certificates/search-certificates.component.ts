@@ -66,12 +66,14 @@ export class SearchCertificatesComponent implements OnInit {
       const placeholderList = item.credential_schema.schema.description.match(/(?<=<).*?(?=>)/g) || [];
       let details = {};
       placeholderList.map((ph: any) => {
-        details = { ...details, [ph]: item.credentialSubject[ph] };
+        if (item?.credentialSubject?.[ph]) {
+          details = { ...details, [ph]: item.credentialSubject[ph] };
+        }
       });
 
       item.credential_schema.schema.description = item.credential_schema.schema.description.replace(/\<(.*?)\>/g, function (placeholder, capturedText, matchingIndex, inputString) {
         // console.log(placeholder + " - " + capturedText + " - " + matchingIndex);
-        return details[placeholder.substring(1, placeholder.length - 1)] || "N/A";
+        return details[placeholder.substring(1, placeholder.length - 1)] || item.credential_schema.schema.description;
       });
       return item;
     });
