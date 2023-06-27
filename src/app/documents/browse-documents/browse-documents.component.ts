@@ -40,7 +40,13 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.fetchCredentialCategories();
+    if (this.credentialService.selectedCategory) {
+      this.selectedCategory = this.credentialService.selectedCategory;
+      this.showCredentialList = true;
+      this.allCredentials = [...this.credentialService.credentialList];
+    } else {
+      this.fetchCredentialCategories();
+    }
   }
 
   fetchCredentialCategories() {
@@ -82,6 +88,11 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         this.categories.push({ name: name, count: 1, image: 'assets/images/enroll.png' });
       }
     }
+  }
+
+  onBack() {
+    this.showCredentialList = false;
+    this.fetchCredentialCategories();
   }
 
   ngAfterViewInit() {
