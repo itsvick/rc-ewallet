@@ -64,6 +64,7 @@ export class DocViewComponent implements OnInit {
                 this.getPDF(res?.template);
             });
         } else {
+            this.router.navigate(['/home']);
             console.error("Something went wrong!");
         }
     }
