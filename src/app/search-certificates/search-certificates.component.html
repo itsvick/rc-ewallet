@@ -43,7 +43,7 @@
                         {{ item?.credentialSubject?.school_name || item?.credential_schema?.name | titlecase}}
                       </div>
                       <div class="text-grey fs-12"> 
-                        {{ item?.credential_schema?.schema?.description }}
+                        {{ item | replacePlaceholder }}
                       </div>
                     </div>
                   </div>

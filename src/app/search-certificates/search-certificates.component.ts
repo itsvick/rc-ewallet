@@ -62,21 +62,25 @@ export class SearchCertificatesComponent implements OnInit {
 
     const list = this.category ? this.credentials.filter((item: any) => item.credential_schema.name === this.category) : this.credentials;
     console.log("list", list);
-    this.credentialList = list.map((item: any) => {
-      const placeholderList = item.credential_schema.schema.description.match(/(?<=<).*?(?=>)/g) || [];
-      let details = {};
-      placeholderList.map((ph: any) => {
-        if (item?.credentialSubject?.[ph]) {
-          details = { ...details, [ph]: item.credentialSubject[ph] };
-        }
-      });
+    this.credentialList = list;
+    // this.credentialList = list.map((item: any) => {
+    //   const placeholderList = item.credential_schema.schema.description.match(/(?<=<).*?(?=>)/g) || [];
+    //   let details = {};
+    //   placeholderList.map((ph: any) => {
+    //     if (item?.credentialSubject?.[ph]) {
+    //       details = { ...details, [ph]: item.credentialSubject[ph] };
+    //     }
+    //   });
 
-      item.credential_schema.schema.description = item.credential_schema.schema.description.replace(/\<(.*?)\>/g, function (placeholder, capturedText, matchingIndex, inputString) {
-        // console.log(placeholder + " - " + capturedText + " - " + matchingIndex);
-        return details[placeholder.substring(1, placeholder.length - 1)] || item.credential_schema.schema.description;
-      });
-      return item;
-    });
+    //   if (Object.keys(details).length) {
+    //     item.credential_schema.schema.description = item.credential_schema.schema.description.replace(/\<(.*?)\>/g, function (placeholder, capturedText, matchingIndex, inputString) {
+    //       return details[placeholder.substring(1, placeholder.length - 1)];
+    //     });
+    //   }
+    //   return item;
+    // });
+
+    // console.log("val", this.credentialList);
 
     this.credentialService.credentialList = [...this.credentialList];
     this.credentialService.selectedCategory = this.category;
