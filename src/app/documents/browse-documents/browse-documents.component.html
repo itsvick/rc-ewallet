@@ -1,4 +1,4 @@
-<div class="container text-center pb-0 mt-5 wallet">
+<div class="container text-center pb-0 mt-3 wallet">
     <app-global-header [showBackground]="true" [showTitle]="true" [showUsername]="true"></app-global-header>
 </div>
 <div class="pb-200" *ngIf="!showCredentialList">
@@ -9,8 +9,7 @@
                     <div class="row g-0 p-4">
                         <div class="col-2 p-0">
                             <div class="img-circle">
-                                <img [src]="category?.image" class="img-fluid rounded-circle bg-secondary-light"
-                                    alt="..." />
+                                <img [src]="category?.image" alt="..." />
                             </div>
                         </div>
                         <div class="col-7 align-self-center">
