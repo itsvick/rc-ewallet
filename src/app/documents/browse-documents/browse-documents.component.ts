@@ -85,7 +85,8 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       if (category) {
         category.count++;
       } else {
-        this.categories.push({ name: name, count: 1, image: 'assets/images/enroll.png' });
+        const image = name === 'Assessment Credentials' ? 'assets/images/acadmic.png' : 'assets/images/enroll.png';
+        this.categories.push({ name: name, count: 1, image });
       }
     }
   }

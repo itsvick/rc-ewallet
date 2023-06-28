@@ -1,9 +1,13 @@
+<div class="head-title text-center mb-2">
+  {{ "HI" | translate }}
+  <span class="text-blue-shade0 pl-1">{{authService?.currentUser?.name | titlecase}}</span>
+</div>
 <div class="text-center container flex-center">
   <div class="row">
     <div class="col-12" [ngClass]="{ 'card mb-3 linear-bg': showBackground }">
       <div class="row g-0 px-3">
         <div class="col-4 col-md-3 px-0 pr-2">
-          <img src="../../assets/images/header-round.svg" alt="header-logo">
+          <img src="assets/images/header-round.svg" alt="header-logo">
         </div>
         <div class="col-8 col-md-9 text-left px-0">
           <h5 class="card-title fs-14 font-600 br-l ml-2 pl-3">
@@ -17,7 +21,7 @@
     </div>
   </div>
 </div>
-  <div class="mt-4 pb-10">
-    <h4 class="text-primary-color font-weight-bold fs-20 text-center">Universal Learners Passport</h4>
-    <p class="subtitle fs-16 text-center">Welcome to your academic wallet</p>
-  </div>
+<div class="mt-4 pb-10">
+  <h4 class="text-primary-color font-weight-bold fs-20 text-center">Universal Learners Passport</h4>
+  <p class="subtitle fs-16 text-center">{{'WELCOME_TO_YOUR_ACADEMIC_WALLET' | translate}}</p>
+</div>

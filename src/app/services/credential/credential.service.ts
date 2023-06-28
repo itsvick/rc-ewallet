@@ -56,7 +56,10 @@ export class CredentialService {
 
     const payload = { url: `${this.baseUrl}/v1/sso/student/credentials/schema/json/${schemaId}` };
     return this.dataService.get(payload).pipe(map((res: any) => {
-      this.schemas.push(res.result);
+      const schema = this.findSchema(res.result.id);
+      if (!schema) {
+        this.schemas.push(res.result);
+      }
       return res.result;
     }));
   }
@@ -73,8 +76,7 @@ export class CredentialService {
                   cred.schemaId = res.credential_schema;
                   return this.getSchema(res.credential_schema).pipe(
                     map((schema: any) => {
-                      cred.credential_schema = schema;
-                      // this.updateCategoryList(schema);
+                      cred.credential_schema = {...schema};
                       return cred;
                     })
                   );
