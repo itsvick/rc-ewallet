@@ -84,7 +84,7 @@ export class SearchCertificatesComponent implements OnInit {
 
     this.credentialService.credentialList = [...this.credentialList];
     this.credentialService.selectedCategory = this.category;
-    console.log("v", this.credentialList);
+    // console.log("v", this.credentialList);
   }
 
   renderCertificate(credential: any) {
