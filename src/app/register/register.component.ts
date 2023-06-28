@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../services/data/data-request.service';
 import { AuthConfigService } from '../authentication/auth-config.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,9 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   isLoading: boolean = false;
+  registerModalRef: NgbModalRef;
+  @ViewChild('registerModal') registerModal: TemplateRef<any>;
+  today: string;
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     dob: new FormControl('', [Validators.required]),
@@ -26,10 +30,12 @@ export class RegisterComponent implements OnInit {
     private readonly dataService: DataService,
     private readonly authConfigService: AuthConfigService,
     private readonly toasterService: ToastMessageService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
+    this.today = new Date().toISOString().slice(0, 10);
   }
 
   get registerFormControl() {
@@ -53,20 +59,29 @@ export class RegisterComponent implements OnInit {
         }
       }
 
-
       this.dataService.post(payload).subscribe((result: any) => {
         console.log("User registered successfully");
         this.isLoading = false;
-        this.toasterService.success("", "User registered successfully");
-        this.router.navigate(['']);
-      }, (error: any)  => {
-        console.log("error",error);
+        const options: NgbModalOptions = {
+          backdrop: 'static',
+          animation: true,
+          centered: true,
+        };
+        this.registerModalRef = this.modalService.open(this.registerModal, options);
+        // this.toasterService.success("", "User registered successfully");
+
+      }, (error: any) => {
+        console.log("error", error);
         this.isLoading = false;
-        const message =  error?.error?.message ? error?.error?.message : "User registration failed! Please try again";
+        const message = error?.error?.message ? error?.error?.message : "User registration failed! Please try again";
         this.toasterService.error("", message);
       })
     }
+  }
 
+  gotoLoginPage() {
+    this.registerModalRef.dismiss();
+    this.router.navigate(['']);
   }
 
 }

@@ -5,7 +5,7 @@
     </span>
   </div>
 
-  <div class="text-center pb-0 d-flex flex-justify-center">
+  <div class="text-center pb-0 d-flex flex-justify-center" *ngIf="!credential?.credentialSubject?.school_name">
     <div>
       <img src="assets/images/headerlogo.png" class="img-fluid" alt="..." />
     </div>
@@ -20,18 +20,19 @@
   </div>
 
 
-  <!-- <div class="flex-center">
-    <img src="../../../assets/images/header-round.svg" alt="header-round">
-  </div>
- 
-    <div class="text-center  fw-700 fs-14 ps-4">
-      Rajkeey Balika Inter College <br> Sarosa Bharosa
+  <div *ngIf="credential?.credentialSubject?.school_name">
+    <div class="flex-center">
+      <img src="assets/images/header-round.svg" alt="header-round">
     </div>
-    <div class="text-center fs-12 ps-3">
+    <div class="text-center fw-700 fs-14 ps-4 pt-2">
+      {{credential?.credentialSubject?.school_name}}
+    </div>
+    <!-- <div class="text-center fs-12 ps-3">
       UP State Board
     </div> -->
+  </div>
 
-  
+
 
   <div class="text-center" *ngIf="loader">
     <div class="center-loading">
@@ -40,30 +41,33 @@
     </div>
   </div>
 
-  
+
 
   <div class="scanner">
-   <div>
-    <ng-container *ngIf="extension === 'pdf'">
-      <div class="text-center img-mb">
-        <ngx-extended-pdf-viewer [showToolbar]="false" [showBorders]="false" [src]="docUrl"></ngx-extended-pdf-viewer>
-      </div>
-    </ng-container>
-   </div>
+    <div>
+      <ng-container *ngIf="extension === 'pdf'">
+        <div class="text-center img-mb">
+          <ngx-extended-pdf-viewer [showToolbar]="false" [showBorders]="false" [src]="docUrl"></ngx-extended-pdf-viewer>
+        </div>
+      </ng-container>
+    </div>
   </div>
 
   <div class="pt-2">
     <div class="text-center mt-4 d-flex justify-content-space-evenly text-center" *ngIf="docUrl">
       <div class="p-2">
-        <img src="assets/images/download.png" (click)="downloadCertificate()" (click)="raiseInteractEvent('download-pdf')">
+        <img src="assets/images/download.png" (click)="downloadCertificate()"
+          (click)="raiseInteractEvent('download-pdf')">
         <div>{{'DOWNLOAD_PDF' | translate}}</div>
       </div>
       <div class="p-2" *ngIf="canShareFile">
-        <img src="assets/images/share.png" (click)="shareFile()" class="pr-3" (click)="raiseInteractEvent('share-file')">
+        <img src="assets/images/share.png" (click)="shareFile()" class="pr-3"
+          (click)="raiseInteractEvent('share-file')">
         <div>{{'SHARE' | translate}}</div>
       </div>
       <div class="p-2 d-none">
-        <img src="assets/images/download.png" (click)="downloadCertificate(true)" (click)="raiseInteractEvent('download-json')">
+        <img src="assets/images/download.png" (click)="downloadCertificate(true)"
+          (click)="raiseInteractEvent('download-json')">
         <div>{{'DOWNLOAD_JSON' | translate}}</div>
       </div>
     </div>

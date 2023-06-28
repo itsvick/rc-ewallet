@@ -24,7 +24,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   isClaimRejected = false;
   allCredentials: any;
   showCredentialList = false;
-  selectedCategory: any;
+  selectedCategory: string = '';
   @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
 
   constructor(
@@ -91,6 +91,9 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   onBack() {
+    this.allCredentials = [];
+    this.selectedCategory = '';
+    this.categories = [];
     this.showCredentialList = false;
     this.fetchCredentialCategories();
   }
