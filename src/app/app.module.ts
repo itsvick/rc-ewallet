@@ -140,6 +140,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { MonthYearPickerComponent } from './month-year-picker/month-year-picker.component';
 import { SettingsComponent } from './settings/settings.component';
 import { RegisterComponent } from './register/register.component';
+import { ReplacePlaceholderPipe } from './replace-placeholder.pipe';
 
 @NgModule({
   declarations: [
@@ -191,7 +192,8 @@ import { RegisterComponent } from './register/register.component';
     PageNotFoundComponent,
     MonthYearPickerComponent,
     SettingsComponent,
-    RegisterComponent
+    RegisterComponent,
+    ReplacePlaceholderPipe
   ],
   imports: [
     BrowserModule,
