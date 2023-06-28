@@ -183,10 +183,8 @@ body {
   //  background: var(--bodyBackground) !important;
   background: linear-gradient(193deg, var(--bgPrimaryColor) 0%, var(--bgSecondaryColor) 100%) !important;
   background-repeat: no-repeat;
-  overflow-x: hidden;
   background-size: cover !important;
   height: 100% !important;
-
 }
 
 .fs-7 {
@@ -1161,5 +1159,4 @@ ngb-modal-window {
 }
 .bl-text-blue{
   color: #060461;
-
 }
