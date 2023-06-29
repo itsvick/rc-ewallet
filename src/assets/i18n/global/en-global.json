@@ -325,7 +325,7 @@
     "MALE": "Male",
     "FEMALE": "Female",
     "SUCCESSFULLY_REGISTERED": "Successfully registered!",
-    "GO_TO_WALLET": "Go to wallet",
+    "GO_TO_WALLET": "Go to Login",
     "ENTER_VALID_AADHAAR_NUMBER": "Enter valid Aadhaar number",
     "GENDER_REQUIRED": "Gender is required"
 }
