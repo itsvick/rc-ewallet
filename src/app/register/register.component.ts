@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
 
   gotoLoginPage() {
     this.registerModalRef.dismiss();
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
   }
 
 }
