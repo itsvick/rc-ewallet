@@ -325,5 +325,6 @@
     "MALE": "पुस्र्ष",
     "FEMALE": "स्री",
     "ENTER_VALID_AADHAAR_NUMBER": "वैध आधार नंबर दर्ज करें",
-    "GENDER_REQUIRED": "लिंग आवश्यक है"
+    "GENDER_REQUIRED": "लिंग आवश्यक है",
+    "LOGIN_VIA_MERI_PEHCHAAN":"लोगिन और लोगिन वाया मेरी पहचान"
 }
