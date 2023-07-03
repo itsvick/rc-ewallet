@@ -3,7 +3,11 @@
 }
 
 .tab.active {
-  color: #3772ff;
+  color: #060461 !important;
+  font-weight: 700;
+  border-radius: 10%;
+  padding:5px 25px;
+  background-color: #EAECED;
 }
 
 .tab {
@@ -12,6 +16,7 @@
   align-items: center;
   margin: 0 10px;
   min-width: 50px;
+  padding:5px 25px;
 }
 .tab-label {
   margin-top: 5px;
