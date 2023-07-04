@@ -1,4 +1,4 @@
-<div class="head-title text-center mb-2">
+<div class="head-title text-center mb-2" *ngIf="showUsername">
   {{ "HI" | translate }}
   <span class="text-blue-shade0 pl-1">{{authService?.currentUser?.name | titlecase}}</span>
 </div>
