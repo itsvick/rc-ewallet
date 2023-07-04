@@ -37,7 +37,7 @@
 
       <div class="mb-3 pb-10">
         <label for="aadharId">{{'AADHAR_NO' | translate}}<span class="text-danger">*</span></label>
-        <input type="text" class="form-control p-4" id="aadharId" name="aadharId" formControlName="aadharId"
+        <input type="number" class="form-control p-4" id="aadharId" name="aadharId" formControlName="aadharId"
           placeholder="{{'ENTER_AADHAAR_NO' | translate}}">
         <p class="text-red pt-2 mb-0"
           *ngIf="registerFormControl.aadharId.invalid && registerFormControl.aadharId.touched">
