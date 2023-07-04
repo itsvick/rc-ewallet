@@ -19,10 +19,10 @@ export class RegisterComponent implements OnInit {
   today: string;
 
   registerForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'),  ]),
+    name: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'),]),
     dob: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
-    aadharId: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$') ] ),
+    aadharId: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
