@@ -10,12 +10,17 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="mb-3 pb-10">
         <label for="name">{{'NAME' | translate}}<span class="text-danger">*</span></label>
-        <input type="text" class="form-control p-4" id="name" name="name" formControlName="name"
-          placeholder="{{'ENTER_YOUR_NAME' | translate}}">
-        <p class="text-red pt-2 mb-0" *ngIf="registerFormControl.name.invalid && registerFormControl.name.touched">
-          {{'NAME_REQUIRED' | translate }}</p>
+        <input type="text" class="form-control p-4" id="name" name="name"
+          formControlName="name" placeholder="{{'ENTER_YOUR_NAME' | translate}}">
+        <div *ngIf="registerFormControl.name.invalid && (registerFormControl.name.dirty || registerFormControl.name.touched)" class="alert">
+          <div class="text-red pt-2 mb-0" *ngIf="registerFormControl?.name?.errors?.required">
+            {{'NAME_REQUIRED' | translate }}
+          </div>
+          <div class="text-red pt-2 mb-0" *ngIf="registerFormControl?.name?.errors?.pattern">
+            {{'SPECIAL_CHARACTER' | translate }}
+          </div>
+        </div>
       </div>
-
       <div class="mb-3 pb-10">
         <label for="dob">{{'DOB' | translate}}<span class="text-danger">*</span></label>
         <input type="date" class="form-control p-4" id="dob" name="dob" formControlName="dob"
@@ -35,10 +40,13 @@
           {{'GENDER_REQUIRED' | translate }}</p>
       </div>
 
+
       <div class="mb-3 pb-10">
         <label for="aadharId">{{'AADHAR_NO' | translate}}<span class="text-danger">*</span></label>
-        <input type="text" class="form-control p-4" id="aadharId" name="aadharId" formControlName="aadharId"
-          placeholder="{{'ENTER_AADHAAR_NO' | translate}}">
+        <!-- <input type="text" class="form-control p-4" id="aadharId" name="aadharId" formControlName="aadharId"
+          minlength="12" maxlength="12" placeholder="{{'ENTER_AADHAAR_NO' | translate}}"> -->
+          <input type="text" class="form-control p-4" id="aadharId" name="aadharId" formControlName="aadharId"
+           placeholder="{{'ENTER_AADHAAR_NO' | translate}}">
         <p class="text-red pt-2 mb-0"
           *ngIf="registerFormControl.aadharId.invalid && registerFormControl.aadharId.touched">
           {{'ENTER_VALID_AADHAAR_NUMBER' |
