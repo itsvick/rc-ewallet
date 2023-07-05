@@ -56,17 +56,17 @@
   <div class="pt-2">
     <div class="text-center mt-4 d-flex justify-content-space-evenly text-center" *ngIf="docUrl">
       <div class="p-2 text-center">
-        <img src="assets/images/download.png" (click)="downloadCertificate()"
+        <img src="assets/images/download.svg" (click)="downloadCertificate()"
           (click)="raiseInteractEvent('download-pdf')">
         <div>{{'DOWNLOAD_PDF' | translate}}</div>
       </div>
       <div class="p-2 text-center" *ngIf="canShareFile">
-        <img src="assets/images/share.png" (click)="shareFile()"
+        <img src="assets/images/share.svg" (click)="shareFile()"
           (click)="raiseInteractEvent('share-file')">
         <div>{{'SHARE' | translate}}</div>
       </div>
       <div class="p-2 d-none">
-        <img src="assets/images/download.png" (click)="downloadCertificate(true)"
+        <img src="assets/images/download.svg" (click)="downloadCertificate(true)"
           (click)="raiseInteractEvent('download-json')">
         <div>{{'DOWNLOAD_JSON' | translate}}</div>
       </div>
