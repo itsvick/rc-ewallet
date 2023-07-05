@@ -17,15 +17,18 @@ export class RegisterComponent implements OnInit {
   registerModalRef: NgbModalRef;
   @ViewChild('registerModal') registerModal: TemplateRef<any>;
   today: string;
+
+
+
   registerForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'),]),
     dob: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
+    // aadharId: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
     aadharId: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-
   constructor(
     private readonly dataService: DataService,
     private readonly authConfigService: AuthConfigService,
