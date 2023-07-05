@@ -42,6 +42,9 @@
                       <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.name === 'Enrollment Credentials'">
                         {{ item?.credentialSubject?.school_name || item?.credential_schema?.name | titlecase}}
                       </div>
+                      <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.name === 'Benefits Credentials'">
+                        {{ item?.credentialSubject?.school_name || item?.credential_schema?.schemeName | titlecase}}
+                      </div>
                       <div class="text-grey fs-12">
                         {{ item | replacePlaceholder }}
                       </div>
