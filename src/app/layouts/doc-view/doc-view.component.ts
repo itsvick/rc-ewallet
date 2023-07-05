@@ -44,7 +44,7 @@ export class DocViewComponent implements OnInit {
         // this.baseUrl = environment.baseUrl;
         this.baseUrl = this.authConfigService.config.bffUrl;
         const navigation = this.router.getCurrentNavigation();
-        this.credential = {...navigation.extras.state};
+        this.credential = { ...navigation.extras.state };
         this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
 
         if (!this.credential) {
@@ -105,10 +105,11 @@ export class DocViewComponent implements OnInit {
         });
         let requestOptions = { headers: headerOptions, responseType: 'blob' as 'json' };
         const credential_schema = this.credential.credential_schema;
-        delete this.credential.credential_schema;
-        delete this.credential.schemaId;
+        const currentCredential = { ...this.credential };
+        delete currentCredential.credential_schema;
+        delete currentCredential.schemaId;
         const request = {
-            credential: this.credential,
+            credential: currentCredential,
             schema: credential_schema,
             template: template,
             output: "HTML"
@@ -136,11 +137,11 @@ export class DocViewComponent implements OnInit {
             const url = window.URL.createObjectURL(blob);
             link = document.createElement("a");
             link.href = url;
-            link.download = `${this.authService.currentUser?.student_name}_certificate.json`.replace(/\s+/g, '_');;
+            link.download = `${this.authService.currentUser?.name}_certificate.json`.replace(/\s+/g, '_');;
         } else {
             link = document.createElement("a");
             link.href = this.docUrl;
-            link.download = `${this.authService.currentUser?.student_name}_certificate.pdf`.replace(/\s+/g, '_');;
+            link.download = `${this.authService.currentUser?.name}_certificate.pdf`.replace(/\s+/g, '_');;
         }
         link.style.visibility = 'hidden';
         document.body.appendChild(link);
@@ -153,7 +154,7 @@ export class DocViewComponent implements OnInit {
         const pdf = new File([this.blob], "certificate.pdf", { type: "application/pdf" });
         const shareData = {
             title: "Certificate",
-            text: "Enrollment certificate",
+            text: `${this.authService.currentUser.name}-${this.credential.credential_schema.name}`,
             files: [pdf]
         };
 
@@ -161,10 +162,11 @@ export class DocViewComponent implements OnInit {
             navigator.share(shareData).then((res: any) => {
                 console.log("File shared successfully!");
             }).catch((error: any) => {
-                this.toastMessage.error("", this.generalService.translateString('SHARED_OPERATION_FAILED'));
+                // this.toastMessage.error("", this.generalService.translateString('SHARED_OPERATION_FAILED'));
                 console.error("Shared operation failed!", error);
             })
         } else {
+            this.toastMessage.error("", this.generalService.translateString('SHARED_OPERATION_FAILED'));
             console.log("Share not supported");
         }
     }

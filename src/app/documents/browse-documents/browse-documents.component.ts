@@ -88,16 +88,16 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         let image: string = '';
         switch (name) {
           case 'Assessment Credentials':
-            image = 'assets/images/acadmic.png';
+            image = 'assets/images/academic.svg';
             break;
           case 'Enrollment Credentials':
-            image = 'assets/images/enroll.png';
+            image = 'assets/images/enroll.svg';
             break;
           case 'Benefits Credentials':
-            image = 'assets/images/benefit.png';
+            image = 'assets/images/benefit.svg';
             break;
           default:
-            image = 'assets/images/enroll.png';
+            image = 'assets/images/enroll.svg';
         }
 
         this.categories.push({ name, count: 1, image });
