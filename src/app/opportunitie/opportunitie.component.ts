@@ -31,6 +31,24 @@ export class OpportunitieComponent implements OnInit {
         apply:this.generalService.translateString('APPLY_NOW')
 
       },
+      {
+        label: this.generalService.translateString('ID_REAMCAREER'),
+        imgClass:'./../../assets/icons/sarthi.svg',
+        Pilot :this.generalService.translateString('PILOT'),
+        subLabel:this.generalService.translateString('PREVENT_DROPOUT'),
+        eligibility:this.generalService.translateString('ELIGIBILITY_CRITERIA'),
+        apply:this.generalService.translateString('APPLY_NOW')
+
+      },
+      {
+        label: this.generalService.translateString('ID_REAMCAREER'),
+        imgClass:'./../../assets/icons/sarthi.svg',
+        Pilot :this.generalService.translateString('PILOT'),
+        subLabel:this.generalService.translateString('PREVENT_DROPOUT'),
+        eligibility:this.generalService.translateString('ELIGIBILITY_CRITERIA'),
+        apply:this.generalService.translateString('APPLY_NOW')
+
+      },
       
     ];
   }
