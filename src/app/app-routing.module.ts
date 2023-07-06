@@ -35,6 +35,8 @@ import { EkycComponent } from './ekyc/ekyc.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SettingsComponent } from './settings/settings.component';
 import { RegisterComponent } from './register/register.component';
+import { OpportuntiesComponent } from './opportunties_dynamic/opportunties.component';
+import { OpportunitieComponent } from './opportunitie/opportunitie.component';
 
 const routes: Routes = [
   {
@@ -69,6 +71,16 @@ const routes: Routes = [
     }
   },
   {
+    path: 'opportunties',
+    component: OpportuntiesComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'opportunties', pageid: 'opportunties', type: 'edit', subtype: 'scroll'
+      }
+    }
+  },
+  {
     path: 'settings',
     component: SettingsComponent,
     data: {
@@ -82,6 +94,17 @@ const routes: Routes = [
   {
     path: 'home',
     component: BrowseDocumentsComponent,
+    data: {
+      showToolbar: true,
+      telemetry: {
+        env: 'home', pageid: 'home', type: 'list', subtype: 'scroll'
+      },
+    },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'opportunitie',
+    component: OpportunitieComponent,
     data: {
       showToolbar: true,
       telemetry: {

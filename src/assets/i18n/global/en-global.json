@@ -329,5 +329,10 @@
     "ENTER_VALID_AADHAAR_NUMBER": "Enter valid Aadhaar number",
     "GENDER_REQUIRED": "Gender is required",
     "LOGIN_VIA_MERI_PEHCHAAN":"Login or Login via Meri Pehchaan",
-    "SPECIAL_CHARACTER":"Special character not allowed"
+    "SPECIAL_CHARACTER":"Special character not allowed",
+    "ID_REAMCAREER":"IDreamCareer | Career Counselling for Girls",
+    "PILOT":"Pilot Goal",
+    "PREVENT_DROPOUT":"Prevent dropout of girl child from school education after 10th & 12th by providing career guidance.",
+    "ELIGIBILITY_CRITERIA":"Eligibility Criteria",
+    "APPLY_NOW":"Apply Now"
 }

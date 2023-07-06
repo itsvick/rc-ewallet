@@ -1,0 +1,33 @@
+<div class="pb-200">
+    <div class=" mt-4">
+        <div class="px-4">
+            <span routerLink="" class="mt-1 float-left">
+            <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
+            </span>
+        </div>
+    <div class="fs-18 fw-600 text-center"> Opportunties &nbsp; <img src="./../../assets/icons/opportunities.svg" alt="camera"></div>
+    </div>
+
+    <!-- <div *ngFor="let item of opportuntie" class="menu mb-4 s-3">
+        <i [class]="item.class"></i>
+        <div class="title pr-2"></div>
+    </div> -->
+
+    <div *ngFor="let item of opportuntie">
+        <div class="flex-center mt-4">
+            <div class="border-box1">
+                <div class="d-flex justify-content-between">
+                    <div class="fw-700 fs-14 text-dec">{{item.label}}</div>
+                    <div>
+                        <img [src]="item.imgClass" alt="sarthi">
+                    </div>
+                </div>
+                <div class="fs-12 line-18 pt-2 pb-2 br-botm"> <span class="fw-600">{{item.Pilot}}</span>{{item.subLabel}}</div>
+                <div class="d-flex justify-content-between pt-2">
+                    <a class="fs-12 fw-700 text-dec" target="_blank" href="https://sarthi-maharashtragov.in/">{{item.eligibility}}</a>
+                    <a class="fs-12 fw-700 text-dec" target="_blank" href="https://sarthi-maharashtragov.in/">{{item.apply}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

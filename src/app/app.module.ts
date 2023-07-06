@@ -141,6 +141,8 @@ import { MonthYearPickerComponent } from './month-year-picker/month-year-picker.
 import { SettingsComponent } from './settings/settings.component';
 import { RegisterComponent } from './register/register.component';
 import { ReplacePlaceholderPipe } from './replace-placeholder.pipe';
+import { OpportuntiesComponent } from './opportunties_dynamic/opportunties.component';
+import { OpportunitieComponent } from './opportunitie/opportunitie.component';
 
 @NgModule({
   declarations: [
@@ -193,7 +195,9 @@ import { ReplacePlaceholderPipe } from './replace-placeholder.pipe';
     MonthYearPickerComponent,
     SettingsComponent,
     RegisterComponent,
-    ReplacePlaceholderPipe
+    ReplacePlaceholderPipe,
+    OpportuntiesComponent,
+    OpportunitieComponent
   ],
   imports: [
     BrowserModule,
