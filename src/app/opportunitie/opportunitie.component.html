@@ -22,10 +22,10 @@
                         <img [src]="item.imgClass" alt="sarthi">
                     </div>
                 </div>
-                <div class="fs-12 line-18 pt-2 pb-2 br-botm"> <span class="fw-600">{{item.Pilot}}</span>{{item.subLabel}}</div>
+                <div class="fs-12 line-18 pt-2 pb-2 br-botm"> <span class="fw-600">{{'PILOT' | translate}}</span>{{'PREVENT_DROPOUT' | translate}}</div>
                 <div class="d-flex justify-content-between pt-2">
-                    <a class="fs-12 fw-700 text-dec" target="_blank" href="https://sarthi-maharashtragov.in/">{{item.eligibility}}</a>
-                    <a class="fs-12 fw-700 text-dec" target="_blank" href="https://sarthi-maharashtragov.in/">{{item.apply}}</a>
+                    <a class="fs-12 fw-700 text-dec" target="_blank" [href]="item.sarthiLink">{{'ELIGIBILITY_CRITERIA' | translate}}</a>
+                    <a class="fs-12 fw-700 text-dec" target="_blank" [href]="item.sarthiLink">{{'APPLY_NOW' | translate}}</a>
                 </div>
             </div>
         </div>
