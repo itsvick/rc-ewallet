@@ -35,8 +35,17 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
     //   this.router.navigate(['/home']);
     // }
 
-    if (this.keycloakService.isLoggedIn()) {
-      this.router.navigate(['/home']);
+    try {
+      if (this.keycloakService.isLoggedIn() && !this.keycloakService.isTokenExpired()) {
+        this.router.navigate(['/home']);
+      } else {
+        localStorage.clear();
+        this.keycloakService.clearToken();
+      }
+    } catch(error) {
+      console.log("error==>", error);
+      localStorage.clear();
+      this.keycloakService.clearToken();
     }
   }
 
