@@ -8,7 +8,7 @@ import { GeneralService } from '../services/general/general.service';
   styleUrls: ['./opportunitie.component.scss']
 })
 export class OpportunitieComponent implements OnInit {
-  opportuntie: any[];
+  opportunities: any[];
 
   constructor( private readonly generalService: GeneralService,private readonly translate: TranslateService ) {
    
@@ -22,22 +22,25 @@ export class OpportunitieComponent implements OnInit {
   }
 
     initialize(){
-      this.opportuntie = 
+      this.opportunities = 
       [
         {
-          label: this.generalService.translateString('ID_REAMCAREER'),
-          imgClass:'./../../assets/icons/sarthi.svg',
-          sarthiLink:'https://sarthi-maharashtragov.in/',
+          label: 'IDreamCareer | Career Counselling for Girls',
+          img:'assets/icons/sarthi.svg',
+          eligibilityLink:'https://sarthi-maharashtragov.in/',
+          applyLink:"https://sarthi-maharashtragov.in/"
         },
         {
-          label: this.generalService.translateString('ID_REAMCAREER'),
-          imgClass:'./../../assets/icons/sarthi.svg',
-          sarthiLink:'https://sarthi-maharashtragov.in/',
+          label: 'IDreamCareer | Career Counselling for Girls',
+          img:'assets/icons/sarthi.svg',
+          eligibilityLink:'https://sarthi-maharashtragov.in/',
+          applyLink:"https://sarthi-maharashtragov.in/"
         },
         {
-          label: this.generalService.translateString('ID_REAMCAREER'),
-          imgClass:'./../../assets/icons/sarthi.svg',
-          sarthiLink:'https://sarthi-maharashtragov.in/',
+          label: 'IDreamCareer | Career Counselling for Girls',
+          img:'assets/icons/sarthi.svg',
+          eligibilityLink:'https://sarthi-maharashtragov.in/',
+          applyLink:"https://sarthi-maharashtragov.in/"
         },
     ];
   }
