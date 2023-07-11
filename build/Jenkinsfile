@@ -40,13 +40,13 @@ node() {
     if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'dev') {
         parallel(
             "prod-deploy": {
-                build job: 'ULP/deploy-staging/deploy-avsar/', parameters: [string(name: 'tag', value: 'latest')]
+                build job: 'ULP/deploy-staging/deploy-avsar/', parameters: [string(name: 'tag', value: 'dev')]
             },
             "dev-deploy": {
-                build job: 'SBRC-deploy/deploy-services/deploy-staging/deploy-avsar/', parameters: [string(name: 'tag', value: 'latest')]
+                build job: 'SBRC-deploy/deploy-services/deploy-staging/deploy-avsar/', parameters: [string(name: 'tag', value: 'dev')]
             },
             "uat-deploy": {
-                build job: 'UAT/deploy-uat/deploy-avsar/', parameters: [string(name: 'tag', value: 'latest')]
+                build job: 'UAT/deploy-uat/deploy-avsar/', parameters: [string(name: 'tag', value: 'dev')]
             }
         )
     }
