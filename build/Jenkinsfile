@@ -19,7 +19,7 @@ node() {
         sh '''
         docker build -t $docker_server/$docker_repo:$commit_id .
         '''
-        if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master') {
+        if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'dev') {
             sh '''
             docker build -t $docker_server/$docker_repo:latest .
             '''
@@ -30,14 +30,14 @@ node() {
         sh '''
         docker push $docker_server/$docker_repo:$commit_id
         '''
-        if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master') {
+        if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'dev') {
             sh '''
             docker push $docker_server/$docker_repo:latest
             '''
         }
     }
    stage('Start deploy job with latest tag') {
-    if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master') {
+    if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'dev') {
         parallel(
             "prod-deploy": {
                 build job: 'ULP/deploy-staging/deploy-avsar/', parameters: [string(name: 'tag', value: 'latest')]
