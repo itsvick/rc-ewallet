@@ -1,7 +1,7 @@
 {
-  "environment": "development",
+  "environment": "production",
   "keycloak": {
-    "url": "https://ulp.uniteframework.io/auth",
+    "url": "https://produlp.uniteframework.io/auth",
     "clientId": "registry-frontend",
     "realm": "sunbird-rc"
   },
