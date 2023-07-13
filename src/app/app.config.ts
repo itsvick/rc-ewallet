@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AuthConfigService } from './authentication/auth-config.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,9 +15,12 @@ export class AppConfig {
     private config: Object = null;
     private environment: Object = null;
 
-    constructor(private http: HttpClient, public router: Router, private titleService: Title) {
-
-    }
+    constructor(
+        private readonly http: HttpClient,
+        private readonly titleService: Title,
+        private readonly authConfig: AuthConfigService,
+        public readonly router: Router
+    ) { }
 
     /**
      * Use to get the data found in the second file (config file)
@@ -45,7 +49,7 @@ export class AppConfig {
      */
     public load() {
         return new Promise((resolve, reject) => {
-            this.http.get('/assets/config/config.json').subscribe((envResponse) => {
+            this.authConfig.getConfig().subscribe((envResponse) => {
                 this.environment = envResponse;
                 let request: any = null;
 
