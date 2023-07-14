@@ -8,12 +8,6 @@
         <div class="fs-18 fw-600 text-center"> Opportunties &nbsp; <img src="assets/icons/opportunities.svg"
                 alt="camera"></div>
     </div>
-
-    <!-- <div *ngFor="let item of opportuntie" class="menu mb-4 s-3">
-        <i [class]="item.class"></i>
-        <div class="title pr-2"></div>
-    </div> -->
-
     <div *ngFor="let item of opportunities">
         <div class="flex-center mt-4 mx-3 border">
             <div class="border-box1">
@@ -38,10 +32,10 @@
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="d-flex pt-3 align-content-center">
                         <h5 class="modal-title text-black fs-18 fw-500 text-center w-100 text-dec"
-                            id="exampleModalLabel">Eligibility</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            id="exampleModalLabel">{{'ELIGIBILITY' | translate}}</h5>
+                        <button type="button" class="close mr-3" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

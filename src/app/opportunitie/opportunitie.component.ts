@@ -16,36 +16,6 @@ export class OpportunitieComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // this.initialize();
-    // this.translate.onLangChange.subscribe(_ => {
-    //   this.initialize();
-    // });
     this.opportunities= (opp as any).default;
   }
-
-  //   initialize(){
-  //     this.opportunities = 
-  //     [
-  //       {
-  //         label: 'IDreamCareer | Career Counselling for Girls',
-  //         img:'assets/icons/sarthi.svg',
-  //         eligibilityLink:'https://sarthi-maharashtragov.in/',
-  //         applyLink:"https://sarthi-maharashtragov.in/"
-  //       },
-  //       {
-  //         label: 'IDreamCareer | Career Counselling for Girls',
-  //         img:'assets/icons/sarthi.svg',
-  //         eligibilityLink:'https://sarthi-maharashtragov.in/',
-  //         applyLink:"https://sarthi-maharashtragov.in/"
-  //       },
-  //       {
-  //         label: 'IDreamCareer | Career Counselling for Girls',
-  //         img:'assets/icons/sarthi.svg',
-  //         eligibilityLink:'https://sarthi-maharashtragov.in/',
-  //         applyLink:"https://sarthi-maharashtragov.in/"
-  //       },
-  //   ];
-  // }
-
-
 }
