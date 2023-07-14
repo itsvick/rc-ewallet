@@ -181,7 +181,8 @@ body {
   color: rgb(0, 0, 0);
   color: var(--subheadingColor) !important;
   //  background: var(--bodyBackground) !important;
-  background: linear-gradient(193deg, var(--bgPrimaryColor) 0%, var(--bgSecondaryColor) 100%) !important;
+  // background: linear-gradient(193deg, var(--bgPrimaryColor) 0%, var(--bgSecondaryColor) 100%) !important;
+  background: #fff !important;
   background-repeat: no-repeat;
   background-size: cover !important;
   height: 100% !important;
@@ -1156,4 +1157,17 @@ ngb-modal-window {
 }
 .bl-text-blue{
   color: #060461;
+}
+.login-btn{
+  width: 256px;
+  height: 43px;
+  background: #1E2060 !important;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.disable-btn{
+  background-color:rgba(6, 4, 97, 0.2)!important;
+  cursor: alias;
 }
