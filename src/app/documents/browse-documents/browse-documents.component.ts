@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { forkJoin, Observable, of } from 'rxjs';
-import { concatMap, map, switchMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CredentialService } from 'src/app/services/credential/credential.service';
 import { DataService } from 'src/app/services/data/data-request.service';
@@ -86,20 +85,6 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         category.count++;
       } else {
         let image: string = 'assets/images/enroll.svg';
-        // switch (name) {
-        //   case 'Assessment Credentials':
-        //     image = 'assets/images/academic.svg';
-        //     break;
-        //   case 'Enrollment Credentials':
-        //     image = 'assets/images/enroll.svg';
-        //     break;
-        //   case 'Benefits Credentials':
-        //     image = 'assets/images/benefit.svg';
-        //     break;
-        //   default:
-        //     image = 'assets/images/enroll.svg';
-        // }
-
         this.categories.push({ name, count: 1, image });
       }
     }
@@ -114,24 +99,6 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (!this.authService.currentUser?.did) {
-      // const options: NgbModalOptions = {
-      //   // backdrop: 'static',
-      //   animation: true,
-      //   centered: true,
-      // };
-      // this.approvalModalRef = this.modalService.open(this.approvalModal, options);
-      // this.isLoading = true;
-      // this.authService.getUserProfile().subscribe((res) => {
-      //   this.isClaimRejected = res.detail.claim_status === 'rejected';
-      //   this.showApproval = res.detail.claim_status !== 'approved';
-      //   this.isLoading = false;
-      //   this.fetchCredentialCategories();
-      // }, error => {
-      //   this.showApproval = true;
-      //   this.isLoading = false;
-      // });
-    }
     this.raiseImpressionEvent();
   }
 
