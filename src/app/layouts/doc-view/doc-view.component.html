@@ -7,7 +7,7 @@
 
   <div class="text-center pb-0 d-flex flex-justify-center" *ngIf="!credential?.credentialSubject?.school_name">
     <div>
-      <img src="assets/images/headerlogo.png" class="img-fluid" alt="..." />
+      <img src="assets/images/logo.png" class="img-fluid" alt="..." />
     </div>
 
     <div class="text-center">
@@ -20,19 +20,17 @@
   </div>
 
 
-  <div *ngIf="credential?.credentialSubject?.school_name">
+  <!-- <div *ngIf="credential?.credentialSubject?.school_name">
     <div class="flex-center">
       <img src="assets/images/header-round.svg" alt="header-round">
     </div>
     <div class="text-center fw-700 fs-14 ps-4 pt-2">
       {{credential?.credentialSubject?.school_name}}
-    </div>
+    </div> -->
     <!-- <div class="text-center fs-12 ps-3">
       UP State Board
     </div> -->
-  </div>
-
-
+  <!-- </div> -->
 
   <div class="text-center" *ngIf="loader">
     <div class="center-loading">
@@ -40,8 +38,6 @@
       </div>
     </div>
   </div>
-
-
 
   <div class="scanner">
     <div>

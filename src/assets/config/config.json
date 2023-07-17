@@ -1,18 +1,18 @@
 {
   "environment": "development",
   "keycloak": {
-    "url": "https://ulp-test.sunbirdrc.dev/ulp-bff/auth",
+    "url": "https://dev-ulp.uniteframework.io/auth",
     "clientId": "registry-frontend",
     "realm": "sunbird-rc"
   },
   "appType": "digital_wallet",
   "configFolder": "/assets/config/ui-config",
   "languageFolder": "/assets/i18n",
-  "logoPath": "/assets/images/logo.svg",
+  "logoPath": "/assets/images/logo.png",
   "title": "Learner Wallet",
-  "baseUrl": "https://ulp-test.sunbirdrc.dev/ulp-bff/registry",
-  "bffUrl": "https://ulp-test.sunbirdrc.dev/ulp-bff",
-  "schemaUrl": "https://ulp-test.sunbirdrc.dev/ulp-bff/registry/api/docs/swagger.json",
+  "baseUrl": "https://ulp-sbrc.uniteframework.io/registry",
+  "bffUrl": "https://dev-ulp.uniteframework.io/ulp-bff",
+  "schemaUrl": "https://ulp-sbrc.uniteframework.io/registry/api/docs/swagger.json",
   "footerText": "Learner Wallet",
   "languages": [
     "en",
