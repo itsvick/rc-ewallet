@@ -143,6 +143,7 @@ import { RegisterComponent } from './register/register.component';
 import { ReplacePlaceholderPipe } from './replace-placeholder.pipe';
 import { OpportuntiesComponent } from './opportunties_dynamic/opportunties.component';
 import { OpportunitieComponent } from './opportunitie/opportunitie.component';
+import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
 
 @NgModule({
   declarations: [
@@ -197,7 +198,8 @@ import { OpportunitieComponent } from './opportunitie/opportunitie.component';
     RegisterComponent,
     ReplacePlaceholderPipe,
     OpportuntiesComponent,
-    OpportunitieComponent
+    OpportunitieComponent,
+    AadharKycComponent
   ],
   imports: [
     BrowserModule,

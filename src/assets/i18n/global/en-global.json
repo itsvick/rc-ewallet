@@ -334,5 +334,9 @@
     "PILOT":"Pilot Goal",
     "PREVENT_DROPOUT":": Prevent dropout of girl child from school education after 10th & 12th by providing career guidance.",
     "ELIGIBILITY_CRITERIA":"Eligibility Criteria",
-    "APPLY_NOW":"Apply Now"
+    "APPLY_NOW":"Apply Now",
+    "OPPORTUNITIES":"Opportunities",
+    "PLEASE_COMPLETE_YOUR_AADHAR_KYC":"Welcome to your wallet. Please complete your Aadhar KYC to start receiving your academic credentials. (This is a one-time process.)",
+    "ENTER_AADHAAR":"Enter Aadhaar no.",
+    "ELIGIBILITY":"Eligibility"
 }
