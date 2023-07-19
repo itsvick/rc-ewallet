@@ -4,6 +4,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { TelemetryService } from './services/telemetry/telemetry.service';
 import { AuthService } from './services/auth/auth.service';
+import { Title } from "@angular/platform-browser";
+import { AuthConfigService } from './authentication/auth-config.service';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +16,13 @@ export class AppComponent implements OnInit {
   showToolbar = false;
   ELOCKER_THEME: string;
   constructor(
-    private themeService: ThemeService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private telemetryService: TelemetryService,
-    private authService: AuthService
+    private readonly themeService: ThemeService,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly router: Router,
+    private readonly telemetryService: TelemetryService,
+    private readonly authService: AuthService,
+    private readonly titleService: Title,
+    private readonly authConfigService: AuthConfigService
   ) {
     this.ELOCKER_THEME = localStorage.getItem('ELOCKER_THEME');
 
@@ -27,12 +31,12 @@ export class AppComponent implements OnInit {
       this.ELOCKER_THEME = 'default';
     }
     this.themeService.setTheme(this.ELOCKER_THEME);
+    // this.titleService.setTitle(this.authConfigService.config.title);
   }
 
   ngOnInit(): void {
     this.getRouteData();
-    this.telemetryService.uid =
-      this.authService.currentUser?.DID || 'anonymous';
+    this.telemetryService.uid = this.authService.currentUser?.DID || 'anonymous';
     if (EkTelemetry) {
       EkTelemetry.getFingerPrint((deviceId, components, version) => {
         console.log('deviceId', deviceId);
