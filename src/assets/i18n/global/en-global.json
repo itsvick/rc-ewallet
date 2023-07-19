@@ -4,7 +4,7 @@
     "HOME": "Home",
     "INSTITUTE": "Institute",
     "ATTESTATIONS": "Attestations",
-    "REGISTER": "Register",
+    "REGISTER": "Register Here",
     "EMAILT_NOT_VALID": "Email is not valid.",
     "ACCEPT_TERMS_CONDITIONS": "I accept Terms & Conditions",
     "INSTITUTE_SETUP": "Institute Setup",
@@ -157,6 +157,7 @@
     "NOTE": "Note",
     "NOTE_SENT_ON_USER": "note sent on user",
     "INVITE": "Invite",
+    "VIEW_DETAILS":"View Details",
     "COMMENTS": "Comments",
     "ADD_A_COMMENT": "Add a Comment",
     "SAVE": "Save",
@@ -338,5 +339,6 @@
     "OPPORTUNITIES":"Opportunities",
     "PLEASE_COMPLETE_YOUR_AADHAR_KYC":"Welcome to your wallet. Please complete your Aadhar KYC to start receiving your academic credentials. (This is a one-time process.)",
     "ENTER_AADHAAR":"Enter Aadhaar no.",
-    "ELIGIBILITY":"Eligibility"
+    "ELIGIBILITY":"Eligibility",
+    "RAISE_A_CLAIM":"Raise a claim"
 }

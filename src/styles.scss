@@ -6,6 +6,7 @@
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 @import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css2?family=Convergence&family=DM+Sans:wght@400;500;700&family=EB+Garamond&family=Inter&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @font-face {
   font-family: "Gilroy-Bold";
   src: url("./assets/fonts/Gilroy-Black.ttf") format("embedded-opentype"),
@@ -177,7 +178,7 @@ $primary-color-dark: #000;
 // }
 body {
   margin: 0;
-  font-family: "Lato", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   color: rgb(0, 0, 0);
   color: var(--subheadingColor) !important;
   //  background: var(--bodyBackground) !important;
@@ -186,6 +187,14 @@ body {
   background-repeat: no-repeat;
   background-size: cover !important;
   height: 100% !important;
+}
+
+.Dn-sans{
+  font-family: 'DM Sans', sans-serif;
+  
+}
+.urbanist{
+  font-family: 'Urbanist', sans-serif;
 }
 
 .fs-7 {
@@ -206,6 +215,9 @@ body {
 
 .w-70 {
   width: 70% !important;
+}
+.max-w400{
+  max-width: 400px !important;
 }
 
 a {
@@ -560,10 +572,13 @@ label {
   font-size: 16px !important;
 }
 .font-600 {
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 .font-700 {
   font-weight: 700;
+}
+.w-95{
+  width: 95%;
 }
 .pb-0 {
   padding-bottom: 0 !important;
@@ -1158,6 +1173,9 @@ ngb-modal-window {
 .bl-text-blue{
   color: #060461;
 }
+.reg-text{
+  color: #1E2060 !important;
+}
 .login-btn{
   width: 256px;
   height: 43px;
@@ -1170,4 +1188,11 @@ ngb-modal-window {
 .disable-btn{
   background-color:rgba(6, 4, 97, 0.2)!important;
   cursor: alias;
+}
+.br-bn-2{
+  border-bottom: 2px solid #1E2060;
+  display: inline-block;
+}
+.br-grey{
+  border-bottom: 2px solid #D8DADC;
 }
