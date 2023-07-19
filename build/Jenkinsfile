@@ -26,9 +26,9 @@ node() {
         sh '''
         docker build -t $docker_server/$docker_repo:$commit_id .
         '''
-        if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master') {
+        if (env.BRANCH_NAME == 'main') {
             sh '''
-            docker build -t $docker_server/$docker_repo:latest .
+            docker build -t $docker_server/$docker_repo:main .
             '''
         }
     }
@@ -37,15 +37,15 @@ node() {
         sh '''
         docker push $docker_server/$docker_repo:$commit_id
         '''
-        if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master') {
+        if (env.BRANCH_NAME == 'main') {
             sh '''
-            docker push $docker_server/$docker_repo:latest
+            docker push $docker_server/$docker_repo:main
             '''
         }
     }
     stage('Start deploy job with latest tag') {
-        if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master') { 
-                build job: 'ULP/deploy-staging/deploy-avsar/', parameters: [string(name: 'tag', value: 'latest')]
+        if (env.BRANCH_NAME == 'main') { 
+                build job: 'ULP/deploy-staging/deploy-avsar/', parameters: [string(name: 'tag', value: 'main')]
         }
     }
 }
