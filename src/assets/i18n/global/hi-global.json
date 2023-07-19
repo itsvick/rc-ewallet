@@ -4,7 +4,7 @@
     "HOME": "होम",
     "Yes": "हां",
     "ATTESTATIONS": "प्रमाणीकरण",
-    "REGISTER": "पंजीकृत करना",
+    "REGISTER": "यहां रजिस्टर करें",
     "EMAILT_NOT_VALID": "ईमेल मान्य नहीं है।",
     "ACCEPT_TERMS_CONDITIONS": "मुझे नियम और शर्तें स्वीकार हैं",
     "INSTITUTE_SETUP": "संस्थान सेटअप",
@@ -32,6 +32,7 @@
     "PROFESSIONAL_EXPERIENCE": "पेशेवर अनुभव",
     "STUDENT_PROFILE": "विद्यार्थी प्रोफ़ाइल",
     "EDUCATION_DEATILS": "शिक्षा विवरण",
+    "WELCOME":"स्वागत!",
     "SEARCH_INSTITUTE": "खोज संस्थान",
     "BOARD": "बोर्ड",
     "INSTITUTE_NAME": "संस्थान का नाम",
@@ -332,5 +333,10 @@
     "PILOT":"पायलट लक्ष्य",
     "PREVENT_DROPOUT":": कैरियर मार्गदर्शन प्रदान करके 10वीं और 12वीं के बाद लड़कियों को स्कूली शिक्षा छोड़ने से रोकें।",
     "ELIGIBILITY_CRITERIA":"पात्रता मापदंड",
-    "APPLY_NOW":"अभी अप्लाई करें"
+    "APPLY_NOW":"अभी अप्लाई करें",
+    "OPPORTUNITIES":"अवसर",
+    "PLEASE_COMPLETE_YOUR_AADHAR_KYC":"आपके बटुए में आपका स्वागत है. अपनी शैक्षणिक साख प्राप्त करना शुरू करने के लिए कृपया अपना आधार केवाईसी पूरा करें। (यह एक बार की प्रक्रिया है।)",
+    "ENTER_AADHAAR":"आधार नंबर दर्ज करें.",
+    "ELIGIBILITY":"पात्रता",
+    "RAISE_A_CLAIM":"दावा उठाएँ"
 }
