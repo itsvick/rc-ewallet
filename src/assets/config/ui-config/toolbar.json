@@ -1,0 +1,28 @@
+{
+  "type": "opensaberLayoutSchema",
+  "version": "0.1",
+  "sidebar": [
+    {
+      "default": [
+        {
+          "id": "home",
+          "title": "HOME",
+          "redirectTo": "/home",
+          "className": "fa fa-home"
+        },
+        {
+          "id": "scan-qr-code",
+          "title": "SCAN",
+          "redirectTo": "/scan-code",
+          "className": "fa fa-user-circle-o"
+        },
+        {
+          "id": "settings",
+          "title": "ACCOUNT",
+          "redirectTo": "/settings",
+          "className": "fa fa-user-circle-o"
+        }
+      ]
+    }
+  ]
+}
