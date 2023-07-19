@@ -9,11 +9,11 @@
   "configFolder": "/assets/config/ui-config",
   "languageFolder": "/assets/i18n",
   "logoPath": "/assets/images/logo.svg",
-  "title": "AVSAR Learner Wallet",
-  "baseUrl": "https://ulp-sbrc.uniteframework.io/registry",
+  "title": "Universal Learners Passport",
+  "baseUrl": "https://devulp.uniteframework.io/registry",
   "bffUrl": "https://devulp.uniteframework.io/ulp-bff",
-  "schemaUrl": "https://ulp-sbrc.uniteframework.io/registry/api/docs/swagger.json",
-  "footerText": "AVSAR Learner Wallet",
+  "schemaUrl": "https://devulp.uniteframework.io/registry/api/docs/swagger.json",
+  "footerText": "Universal Learners Passport",
   "languages": [
     "en",
     "hi"
