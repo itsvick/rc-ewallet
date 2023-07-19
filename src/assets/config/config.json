@@ -13,7 +13,7 @@
   "baseUrl": "https://devulp.uniteframework.io/registry",
   "bffUrl": "https://devulp.uniteframework.io/ulp-bff",
   "schemaUrl": "https://devulp.uniteframework.io/registry/api/docs/swagger.json",
-  "footerText": "Universal Learners Passport",
+  "footerText": "Learners Passport",
   "languages": [
     "en",
     "hi"
