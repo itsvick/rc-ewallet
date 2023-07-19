@@ -1,10 +1,7 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { AuthConfigService } from './authentication/auth-config.service';
 
 @Injectable({
@@ -16,11 +13,12 @@ export class AppConfig {
     private environment: Object = null;
 
     constructor(
-        private readonly http: HttpClient,
-        private readonly titleService: Title,
         private readonly authConfig: AuthConfigService,
-        public readonly router: Router
-    ) { }
+        private readonly http: HttpClient, 
+        private readonly titleService: Title,
+        public readonly router: Router, 
+        ) {
+    }
 
     /**
      * Use to get the data found in the second file (config file)

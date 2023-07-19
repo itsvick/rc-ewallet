@@ -1,8 +1,8 @@
-import { catchError } from 'rxjs/operators';
 import { forkJoin, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-import { TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 import ISO6391 from 'iso-639-1';
 import { AuthConfigService } from './authentication/auth-config.service';
 
@@ -35,7 +35,6 @@ export function initLang(http: HttpClient, translate: TranslateService, authConf
       translate.setTranslation(setLanguage, translatedKeys || {}, true);
 
       translate.setDefaultLang(defaultSetLanguage);
-      // translate.use(setLanguage);
 
       const languages = authConfig.config.languages;
       let installedLanguages = [];

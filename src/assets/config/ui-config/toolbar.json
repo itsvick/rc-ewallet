@@ -11,10 +11,10 @@
           "className": "fa fa-home"
         },
         {
-          "id": "scan-qr-code",
-          "title": "SCAN",
-          "redirectTo": "/scan-code",
-          "className": "fa fa-user-circle-o"
+          "id": "opportunities",
+          "title": "OPPORTUNITIES",
+          "redirectTo": "/opportunities",
+          "className": "fa fa-solid fa-briefcase"
         },
         {
           "id": "settings",

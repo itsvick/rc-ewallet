@@ -1,0 +1,36 @@
+<div class="pb-100">
+    <div class="container pb-0 mt-20">
+        <app-global-header [showTitle]="false"></app-global-header>
+    </div>
+    <div class="container">
+        <div class="fs-16 fw-400 text-center text-black-grey">
+             {{'PLEASE_COMPLETE_YOUR_AADHAR_KYC' | translate}}
+        </div>
+        <div class="pt-3 flex-center">
+            <div class="flex-center w-400">
+                <div class="w-90">
+                    <div class="label-float w-100">
+                        <input type="text" placeholder=" " />
+                        <label>{{'ENTER_AADHAAR' | translate}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-center">
+            <button type="button" class="login-btn mt-4 fs-14 fw-600"> {{'GET_OTP' | translate}}</button>
+        </div>
+        <div class="pt-3 flex-center">
+            <div class="flex-center w-400">
+                <div class="w-90">
+                    <div class="label-float w-100">
+                        <input type="text" placeholder=" " />
+                        <label>{{'ENTER_OTP' | translate}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-center">
+            <button type="button" class="login-btn disable-btn mt-4 fs-14 fw-600">{{'SUBMIT' | translate}}</button>
+        </div>
+    </div>
+</div>
