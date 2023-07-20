@@ -38,6 +38,7 @@ import { RegisterComponent } from './register/register.component';
 import { OpportuntiesComponent } from './opportunties_dynamic/opportunties.component';
 import { OpportunitieComponent } from './opportunitie/opportunitie.component';
 import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
+import { AadharverificationComponent } from './aadharverification/aadharverification.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,16 @@ const routes: Routes = [
       showToolbar: false,
       telemetry: {
         env: 'opportunties', pageid: 'opportunties', type: 'edit', subtype: 'scroll'
+      }
+    }
+  },
+  {
+    path: 'Aadharverification',
+    component: AadharverificationComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'Aadharverification', pageid: 'Aadharverification', type: 'edit', subtype: 'scroll'
       }
     }
   },

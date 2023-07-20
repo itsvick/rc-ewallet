@@ -319,7 +319,7 @@
     "ENTER_YOUR_USERNAME": "एक उपयोगकर्ता नाम चुनें",
     "ENTER_PASSWORD": "एक पासवर्ड चुनें",
     "SUCCESSFULLY_REGISTERED": "पंजीकरण सफलतापूर्वक हो गया है!",
-    "GO_TO_WALLET": "लॉगइन पर जाएं",
+    "GO_TO_LOGIN": "लॉगइन पर जाएं",
     "GENDER": "लिंग",
     "AADHAR_NO": "आधार नंबर",
     "SELECT_GENDER": "लिंग चुनें",
@@ -338,5 +338,11 @@
     "PLEASE_COMPLETE_YOUR_AADHAR_KYC":"आपके बटुए में आपका स्वागत है. अपनी शैक्षणिक साख प्राप्त करना शुरू करने के लिए कृपया अपना आधार केवाईसी पूरा करें। (यह एक बार की प्रक्रिया है।)",
     "ENTER_AADHAAR":"आधार नंबर दर्ज करें.",
     "ELIGIBILITY":"पात्रता",
-    "RAISE_A_CLAIM":"दावा उठाएँ"
+    "RAISE_A_CLAIM":"दावा उठाएँ",
+    "CONGRATULATIONS":"बधाई हो!",
+    "FAILED":"असफल",
+    "KYC_SUCCESSFULLY":"आधार केवाईसी सफलतापूर्वक पूरा हो गया.",
+    "AADHAR_KYC":"आधार केवाईसी विफल.",
+    "GO_TO_WALLET":"वॉलेट पर जाएँ",
+    "TRY_AGAIN":"पुनः प्रयास करें"
 }

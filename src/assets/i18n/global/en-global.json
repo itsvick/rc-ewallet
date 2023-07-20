@@ -326,7 +326,7 @@
     "MALE": "Male",
     "FEMALE": "Female",
     "SUCCESSFULLY_REGISTERED": "Successfully registered!",
-    "GO_TO_WALLET": "Go to Login",
+    "GO_TO_LOGIN": "Go to Login",
     "ENTER_VALID_AADHAAR_NUMBER": "Enter valid Aadhaar number",
     "GENDER_REQUIRED": "Gender is required",
     "LOGIN_VIA_MERI_PEHCHAAN":"Login or Login via Meri Pehchaan",
@@ -340,5 +340,11 @@
     "PLEASE_COMPLETE_YOUR_AADHAR_KYC":"Welcome to your wallet. Please complete your Aadhar KYC to start receiving your academic credentials. (This is a one-time process.)",
     "ENTER_AADHAAR":"Enter Aadhaar no.",
     "ELIGIBILITY":"Eligibility",
-    "RAISE_A_CLAIM":"Raise a claim"
+    "RAISE_A_CLAIM":"Raise a claim",
+    "CONGRATULATIONS":"Congratulations!",
+    "FAILED":"Failed",
+    "KYC_SUCCESSFULLY":"Aadhar KYC done successfully.",
+    "AADHAR_KYC":"Aadhar KYC Failed.",
+    "GO_TO_WALLET":"Go to Wallet",
+    "TRY_AGAIN":"Try Again"
 }
