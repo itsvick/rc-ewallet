@@ -78,7 +78,7 @@ const routes: Routes = [
     data: {
       showToolbar: false,
       telemetry: {
-        env: 'opportunties', pageid: 'opportunties', type: 'edit', subtype: 'scroll'
+        env: 'opportunities', pageid: 'opportunities', type: 'edit', subtype: 'scroll'
       }
     }
   },
@@ -115,7 +115,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'opportunitie',
+    path: 'opportunities',
     component: OpportunitieComponent,
     data: {
       showToolbar: true,

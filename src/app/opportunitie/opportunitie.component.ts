@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { GeneralService } from '../services/general/general.service';
-import * as opp from '../../assets/config/ui-config/opportunitie.json'
+import * as opp from '../../assets/config/ui-config/opportunities.json';
 
 @Component({
   selector: 'app-opportunitie',
@@ -11,9 +9,7 @@ import * as opp from '../../assets/config/ui-config/opportunitie.json'
 export class OpportunitieComponent implements OnInit {
   opportunities: any[];
 
-  constructor( private readonly generalService: GeneralService,private readonly translate: TranslateService ) {
-   
-   }
+  constructor() { }
 
   ngOnInit(): void {
     this.opportunities= (opp as any).default;
