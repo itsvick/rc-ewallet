@@ -149,6 +149,7 @@ import { OpportuntiesComponent } from './opportunties_dynamic/opportunties.compo
 import { OpportunitieComponent } from './opportunitie/opportunitie.component';
 import { configurationFactory } from './configuration.factory';
 import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
+import { AadharverificationComponent } from './aadharverification/aadharverification.component';
 
 @NgModule({
   declarations: [
@@ -204,7 +205,8 @@ import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
     ReplacePlaceholderPipe,
     OpportuntiesComponent,
     OpportunitieComponent,
-    AadharKycComponent
+    AadharKycComponent,
+    AadharverificationComponent
   ],
   imports: [
     BrowserModule,
