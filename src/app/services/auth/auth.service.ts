@@ -20,13 +20,16 @@ export class AuthService {
   _currentUser;
   _digilockerAccessToken: string;
   constructor(
-    private http: HttpClient,
-    public router: Router,
-    private keycloakService: KeycloakService,
-    // private readonly authConfigService: AuthConfigService
+    private readonly http: HttpClient,
+    private readonly router: Router,
+    private readonly keycloakService: KeycloakService,
+    private readonly authConfigService: AuthConfigService
   ) {
-    this.baseUrl = environment.baseUrl;
+    // this.baseUrl = environment.baseUrl;
     // this.baseUrl = this.authConfigService.config.bffUrl;
+    this.authConfigService.getConfig().subscribe((config) => {
+      this.baseUrl = config.bffUrl;
+    })
   }
 
   // Sign-up
@@ -48,6 +51,11 @@ export class AuthService {
 
   verifyAccountAadharLink(payload: any) {
     const api = `${this.baseUrl}/v1/sso/digilocker/aadhaar`;
+    return this.http.post(api, payload);
+  }
+
+  aadhaarKYC(payload: any) {
+    const api = `${this.baseUrl}/v1/sso/learner/aadhaar`;
     return this.http.post(api, payload);
   }
 
