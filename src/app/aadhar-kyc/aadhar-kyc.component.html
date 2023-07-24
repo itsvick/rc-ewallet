@@ -1,0 +1,63 @@
+<app-aadhaar-kyc-status *ngIf="showKYCStatus" [isVerified]="isAadhaarVerified"></app-aadhaar-kyc-status>
+<div class="pb-100" *ngIf="!showKYCStatus">
+    <div class="container pb-0 mt-20">
+        <app-global-header [showTitle]="false"></app-global-header>
+    </div>
+    <div class="container">
+        <div class="fs-16 fw-400 text-center text-black-grey">
+            {{'PLEASE_COMPLETE_YOUR_AADHAR_KYC' | translate}}
+        </div>
+        <ng-container *ngIf="!showForm">
+            <div class="flex-center mt-5">
+                <button type="button" class="login-btn mt-4 fs-14 fw-600" (click)="startKYC()">
+                    {{'START_AADHAAR_KYC' | translate}}&nbsp;&nbsp;
+                    <i class="fa fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+        </ng-container>
+        <ng-container *ngIf="showForm">
+
+            <div class="pt-3 flex-center">
+                <div class="flex-center w-400">
+                    <div class="w-90">
+                        <div class="label-float w-100">
+                            <input type="number" placeholder="" #aadhaarNumberModel="ngModel"
+                                [(ngModel)]="aadhaarNumber" pattern="[0-9]{12}" required autofocus="true" />
+                            <label>{{'ENTER_AADHAAR' | translate}}</label>
+                        </div>
+                        <p class="text-danger"
+                            *ngIf="!aadhaarNumberModel?.valid && (aadhaarNumberModel?.dirty || aadhaarNumberModel?.touched)">
+                            {{'ENTER_VALID_AADHAAR_NUMBER' | translate}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-center">
+                <button type="button" class="login-btn mt-4 fs-14 fw-600"
+                    [ngClass]="{'disable-btn': !aadhaarNumberModel?.valid}" [disabled]="!aadhaarNumberModel?.valid"
+                    (click)="getOTP()"> {{'GET_OTP' | translate}}</button>
+            </div>
+            <ng-container *ngIf="isGetOTPClicked">
+                <div class="pt-3 flex-center">
+                    <div class="flex-center w-400">
+                        <div class="w-90">
+                            <div class="label-float w-100">
+                                <input type="number" placeholder="" #otpModel="ngModel" [(ngModel)]="otp"
+                                    pattern="[0-9]{4}" required autofocus="true" />
+                                <label>{{'ENTER_OTP' | translate}}</label>
+                            </div>
+                            <p *ngIf="!otpModel?.valid && (otpModel?.dirty || otpModel?.touched)">
+                                {{'INVALID_OTP' | translate}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-center">
+                    <button type="button" class="login-btn mt-4 fs-14 fw-600" [disabled]="!otpModel?.valid"
+                        [ngClass]="{'disable-btn': !otpModel?.valid}"> {{'SUBMIT' | translate}}</button>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
