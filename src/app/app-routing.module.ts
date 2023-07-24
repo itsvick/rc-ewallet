@@ -38,7 +38,6 @@ import { RegisterComponent } from './register/register.component';
 import { OpportuntiesComponent } from './opportunties_dynamic/opportunties.component';
 import { OpportunitieComponent } from './opportunitie/opportunitie.component';
 import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
-import { AadharverificationComponent } from './aadharverification/aadharverification.component';
 
 const routes: Routes = [
   {
@@ -83,16 +82,6 @@ const routes: Routes = [
     }
   },
   {
-    path: 'Aadharverification',
-    component: AadharverificationComponent,
-    data: {
-      showToolbar: false,
-      telemetry: {
-        env: 'Aadharverification', pageid: 'Aadharverification', type: 'edit', subtype: 'scroll'
-      }
-    }
-  },
-  {
     path: 'settings',
     component: SettingsComponent,
     data: {
@@ -126,7 +115,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'AadharKyc',
+    path: 'aadhaar-kyc',
     component: AadharKycComponent,
     data: {
       showToolbar: true,
