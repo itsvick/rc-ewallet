@@ -47,7 +47,7 @@
                                     pattern="[0-9]{4}" required autofocus="true" />
                                 <label>{{'ENTER_OTP' | translate}}</label>
                             </div>
-                            <p *ngIf="!otpModel?.valid && (otpModel?.dirty || otpModel?.touched)">
+                            <p class="text-danger"  *ngIf="!otpModel?.valid && (otpModel?.dirty || otpModel?.touched)">
                                 {{'INVALID_OTP' | translate}}
                             </p>
                         </div>
