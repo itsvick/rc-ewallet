@@ -298,7 +298,7 @@
     "AADHAAR_VERIFIED_SUCCESSFULLY": "Aadhar Verified Successfully",
     "ERROR_WHILE_VERIFYING_AADHAAR": "Error while verifying Aadhar",
     "ENTERED_PHONE_N0_SHOULD_BE_LINKED_TO_AADHAR": "Entered phone no. should be linked to Aadhar",
-    "ENTER_YOUR_NAME": "Enter your name",
+    "ENTER_YOUR_NAME": "Enter your name as per Aadhaar",
     "NOT_COMPLETED_YOUR_KYC_PLEASE_COMPLETE_YOUR_KYC_HERE": "It seems you have not completed your KYC. Please complete your one time KYC here",
     "INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA": "Invalid QR code or error while fetching data",
     "MY_PROFILE": "Profile",
@@ -344,7 +344,12 @@
     "CONGRATULATIONS":"Congratulations!",
     "FAILED":"Failed",
     "KYC_SUCCESSFULLY":"Aadhar KYC done successfully.",
-    "AADHAR_KYC":"Aadhar KYC Failed.",
+    "AADHAR_KYC_FAILED":"Aadhar KYC Failed.",
     "GO_TO_WALLET":"Go to Wallet",
-    "TRY_AGAIN":"Try Again"
+    "TRY_AGAIN":"Try Again",
+    "RECOVERY_PHONE": "Recovery Phone Number",
+    "ENTER_VALID_RECOVERY_PHONE": "Enter a valid Recovery Phone Number",
+    "RECOVERY_PHONE_NOTE": "In case you forget password, OTP will be sent to this number",
+    "START_AADHAAR_KYC": "Start Aadhar KYC",
+    "INVALID_OTP": "Invalid OTP"
 }
