@@ -25,6 +25,14 @@ export class AadharKycComponent implements OnInit {
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.state = { ...navigation.extras.state };
+
+    if (!Object.keys(this.state).length) {
+      if (this.authService.isLoggedIn) {
+        this.router.navigate(['/home']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+    }
   }
 
   ngOnInit(): void {
