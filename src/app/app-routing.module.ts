@@ -118,7 +118,7 @@ const routes: Routes = [
     path: 'aadhaar-kyc',
     component: AadharKycComponent,
     data: {
-      showToolbar: true,
+      showToolbar: false,
       telemetry: {
         env: 'home', pageid: 'home', type: 'list', subtype: 'scroll'
       },

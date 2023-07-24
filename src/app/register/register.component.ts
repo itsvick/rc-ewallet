@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
           "dob": this.registerForm.value.dob,
           "username": this.registerForm.value.username,
           "password": this.registerForm.value.password,
-          "recoveryphone": this.registerForm.value.recoveryPhone
+          "recoveryphone": this.registerForm.value.recoveryPhone.toString()
         }
       }
 

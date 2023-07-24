@@ -55,7 +55,7 @@
                 </div>
                 <div class="flex-center">
                     <button type="button" class="login-btn mt-4 fs-14 fw-600" [disabled]="!otpModel?.valid"
-                        [ngClass]="{'disable-btn': !otpModel?.valid}"> {{'SUBMIT' | translate}}</button>
+                        [ngClass]="{'disable-btn': !otpModel?.valid}" (click)="submitOTP()"> {{'SUBMIT' | translate}}</button>
                 </div>
             </ng-container>
         </ng-container>
