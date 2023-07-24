@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { error } from 'console';
 import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-aadhar-kyc',
@@ -10,12 +11,14 @@ import { Router } from '@angular/router';
 })
 export class AadharKycComponent implements OnInit {
   showForm = false;
-  aadhaarNumber: any;
   isGetOTPClicked = false
-  otp: any;
   showKYCStatus = false;
   isAadhaarVerified: boolean;
   state: any;
+
+
+  aadhaarFormControl = new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]{12}$')]);
+  otpFormControl = new FormControl('', [Validators.required, Validators.pattern('^[0-9]{4}$')]);
 
   @ViewChild("otpModel") otpModel: ElementRef;
 
@@ -40,12 +43,11 @@ export class AadharKycComponent implements OnInit {
 
   getOTP() {
     this.isGetOTPClicked = true;
-    // this.otpModel.nativeElement.focus();
   }
 
   submitOTP() {
     const payload = {
-      "aadhaar_id": this.aadhaarNumber.toString(),
+      "aadhaar_id": this.aadhaarFormControl.value.toString(),
       "aadhaar_name": this.state.name,
       "aadhaar_gender": this.state.gender,
       "aadhaar_dob": this.state.dob
