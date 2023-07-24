@@ -1,4 +1,4 @@
-<app-aadhaar-kyc-status *ngIf="showKYCStatus" [isVerified]="isAadhaarVerified"></app-aadhaar-kyc-status>
+<app-aadhaar-kyc-status *ngIf="showKYCStatus" [isVerified]="isAadhaarVerified" [kycState]="state"></app-aadhaar-kyc-status>
 <div class="pb-100" *ngIf="!showKYCStatus">
     <div class="container pb-0 mt-20">
         <app-global-header [showTitle]="false"></app-global-header>

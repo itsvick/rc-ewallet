@@ -28,7 +28,7 @@
     <div class="mt-5 flex-center">
       <button type="submit" *ngIf="isVerified" class="login-btn bg-blue-dark font-600 urbanist w-60 fs-14 mt-4" [routerLink]="['/home']">{{'GO_TO_WALLET' |
         translate}}</button>
-      <button type="submit" *ngIf="!isVerified" class="login-btn bg-blue-dark font-600 urbanist w-60 fs-14 mt-4" [routerLink]="['/aadhaar-kyc']"> {{'TRY_AGAIN' |
+      <button type="submit" *ngIf="!isVerified" class="login-btn bg-blue-dark font-600 urbanist w-60 fs-14 mt-4" (click)="tryAgain()"> {{'TRY_AGAIN' |
         translate}} &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
     </div>
 

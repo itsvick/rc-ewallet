@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aadhaar-kyc-status',
@@ -8,9 +9,16 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AadhaarKycStatusComponent implements OnInit {
 
   @Input() isVerified: boolean;
-  constructor() { }
+  @Input() kycState: any;
+  constructor(
+    private readonly router: Router
+  ) { }
 
   ngOnInit(): void {
+
   }
 
+  tryAgain() {
+    this.router.navigate(['/aadhaar-kyc'], { state: this.kycState });
+  }
 }
