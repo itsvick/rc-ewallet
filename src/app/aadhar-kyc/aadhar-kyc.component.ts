@@ -32,12 +32,12 @@ export class AadharKycComponent implements OnInit {
 
   getOTP() {
     this.isGetOTPClicked = true;
-    this.otpModel.nativeElement.focus();
+    // this.otpModel.nativeElement.focus();
   }
 
   submitOTP() {
     const payload = {
-      "aadhaar_id": this.aadhaarNumber,
+      "aadhaar_id": this.aadhaarNumber.toString(),
       "aadhaar_name": this.state.name,
       "aadhaar_gender": this.state.gender,
       "aadhaar_dob": this.state.dob
