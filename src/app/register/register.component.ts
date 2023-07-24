@@ -96,7 +96,6 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/aadhaar-kyc'], navigationExtras);
         });
         // this.toasterService.success("", "User registered successfully");
-
       }, (error: any) => {
         console.log("error", error);
         this.isLoading = false;
