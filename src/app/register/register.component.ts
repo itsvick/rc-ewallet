@@ -76,6 +76,13 @@ export class RegisterComponent implements OnInit {
           centered: true,
         };
         this.registerModalRef = this.modalService.open(this.registerModal, options);
+
+        setTimeout(() => {
+          if (this.registerModalRef) {
+            this.registerModalRef.dismiss();
+          }
+        }, 2000);
+
         this.registerModalRef.dismissed.subscribe((reason) => {
           console.log("reason", reason);
 
