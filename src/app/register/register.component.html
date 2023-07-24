@@ -108,7 +108,7 @@
         </div>
       </div>
       <div class="pb-10 text-center d-flex justify-content-center">
-        <button type="submit" [disabled]="registerForm.invalid"
+        <button type="submit" [disabled]="registerForm?.invalid" [ngClass]="{'disable-btn': !registerForm?.valid}"
           class="login-btn bg-blue-dark font-600 mt-4">{{'REGISTER' | translate}}</button>
       </div>
     </form>
