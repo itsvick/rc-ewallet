@@ -17,7 +17,7 @@ export class AadharKycComponent implements OnInit {
   state: any;
 
 
-  aadhaarFormControl = new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]{12}$')]);
+  aadhaarFormControl = new FormControl('', [Validators.required]);
   otpFormControl = new FormControl('', [Validators.required, Validators.pattern('^[0-9]{4}$')]);
 
   @ViewChild("otpModel") otpModel: ElementRef;
