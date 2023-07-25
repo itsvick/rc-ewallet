@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
           const navigationExtras: NavigationExtras = {
             state: {
               name: this.registerForm.value.name,
-              dob: this.registerForm.value.dob,
+              dob: dayjs(this.registerForm.value.dob).format('DD/MM/YYYY'),
               gender: this.registerForm.value.gender,
             }
           }
