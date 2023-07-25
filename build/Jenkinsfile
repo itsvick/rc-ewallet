@@ -15,13 +15,20 @@ node() {
             echo "${env.commit_id}"
     }
 
+    stage('Checkout') {
+            cleanWs()
+            checkout scm
+            env.commit_id = env.BRANCH_NAME
+            echo "${env.commit_id}"
+    }
+
     stage('docker-build') {
         sh '''
         docker build -t $docker_server/$docker_repo:$commit_id .
         '''
-        if (env.BRANCH_NAME == 'dev') {
+        if (env.BRANCH_NAME == 'main') {
             sh '''
-            docker build -t $docker_server/$docker_repo:dev .
+            docker build -t $docker_server/$docker_repo:main .
             '''
         }
     }
@@ -30,15 +37,15 @@ node() {
         sh '''
         docker push $docker_server/$docker_repo:$commit_id
         '''
-        if (env.BRANCH_NAME == 'dev') {
+        if (env.BRANCH_NAME == 'main') {
             sh '''
-            docker push $docker_server/$docker_repo:dev
+            docker push $docker_server/$docker_repo:main
             '''
         }
     }
     stage('Start deploy job with latest tag') {
-         if (env.BRANCH_NAME == 'dev') { 
-                build job: 'SBRC-deploy/deploy-services/deploy-staging/deploy-avsar/', parameters: [string(name: 'tag', value: 'dev')]
+        if (env.BRANCH_NAME == 'main') { 
+                build job: 'ULP/deploy-staging/deploy-avsar/', parameters: [string(name: 'tag', value: 'main')]
         }
-	  }
+    }
 }

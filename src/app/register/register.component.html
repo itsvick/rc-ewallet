@@ -103,12 +103,12 @@
             </div>
             <p class="pt-1 font-size-sm">{{'RECOVERY_PHONE_NOTE' | translate}}</p>
             <p class="text-danger pt-2 mb-0 font-size-sm"
-              *ngIf="registerFormControl.recoveryPhone.invalid && registerFormControl.recoveryPhone.touched">{{'RECOVERY_PHONE_REQUIRED' | translate }}</p>
+              *ngIf="registerFormControl.recoveryPhone.invalid && registerFormControl.recoveryPhone.touched">{{'ENTER_VALID_RECOVERY_PHONE' | translate }}</p>
           </div>
         </div>
       </div>
       <div class="pb-10 text-center d-flex justify-content-center">
-        <button type="submit" [disabled]="registerForm.invalid"
+        <button type="submit" [disabled]="registerForm?.invalid" [ngClass]="{'disable-btn': !registerForm?.valid}"
           class="login-btn bg-blue-dark font-600 mt-4">{{'REGISTER' | translate}}</button>
       </div>
     </form>

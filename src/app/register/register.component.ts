@@ -5,6 +5,7 @@ import { AuthConfigService } from '../authentication/auth-config.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'app-register',
@@ -60,10 +61,10 @@ export class RegisterComponent implements OnInit {
           // "aadhar_id": this.registerForm.value.aadharId,
           "name": this.registerForm.value.name,
           "gender": this.registerForm.value.gender,
-          "dob": this.registerForm.value.dob,
+          "dob": dayjs(this.registerForm.value.dob).format('DD/MM/YYYY'),
           "username": this.registerForm.value.username,
           "password": this.registerForm.value.password,
-          "recoveryphone": this.registerForm.value.recoveryPhone
+          "recoveryphone": this.registerForm.value.recoveryPhone.toString()
         }
       }
 
@@ -76,20 +77,26 @@ export class RegisterComponent implements OnInit {
           centered: true,
         };
         this.registerModalRef = this.modalService.open(this.registerModal, options);
+
+        setTimeout(() => {
+          if (this.registerModalRef) {
+            this.registerModalRef.dismiss();
+          }
+        }, 2000);
+
         this.registerModalRef.dismissed.subscribe((reason) => {
           console.log("reason", reason);
 
           const navigationExtras: NavigationExtras = {
             state: {
               name: this.registerForm.value.name,
-              dob: this.registerForm.value.dob,
+              dob: dayjs(this.registerForm.value.dob).format('DD/MM/YYYY'),
               gender: this.registerForm.value.gender,
             }
           }
           this.router.navigate(['/aadhaar-kyc'], navigationExtras);
         });
         // this.toasterService.success("", "User registered successfully");
-
       }, (error: any) => {
         console.log("error", error);
         this.isLoading = false;
