@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aadhaar-kyc-status',
@@ -8,9 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AadhaarKycStatusComponent implements OnInit {
 
   @Input() isVerified: boolean;
-  constructor() { }
+  @Output() tryAgain = new EventEmitter();
+  constructor(
+    private readonly router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  emitTryAgain() {
+    this.tryAgain.emit();
   }
-
 }

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, retry, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { Observable, throwError } from 'rxjs';
+import { map, retry, tap } from 'rxjs/operators';
+import * as config from '../../../assets/config/config.json';
 
 import {
   HttpClient,
-  HttpHeaders,
   HttpErrorResponse,
+  HttpHeaders,
 } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthConfigService } from 'src/app/authentication/auth-config.service';
 import { KeycloakService } from 'keycloak-angular';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -22,14 +22,14 @@ export class AuthService {
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router,
-    private readonly keycloakService: KeycloakService,
-    private readonly authConfigService: AuthConfigService
+    private readonly keycloakService: KeycloakService
   ) {
     // this.baseUrl = environment.baseUrl;
     // this.baseUrl = this.authConfigService.config.bffUrl;
-    this.authConfigService.getConfig().subscribe((config) => {
-      this.baseUrl = config.bffUrl;
-    })
+    // this.authConfigService.getConfig().subscribe((config) => {
+    //   this.baseUrl = config.bffUrl;
+    // })
+    this.baseUrl = config.default.bffUrl;
   }
 
   // Sign-up
