@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AadharverificationComponent } from './aadharverification.component';
+import { AadhaarKycStatusComponent } from './aadhaar-kyc-status.component';
 
-describe('AadharverificationComponent', () => {
-  let component: AadharverificationComponent;
-  let fixture: ComponentFixture<AadharverificationComponent>;
+describe('AadhaarKycStatusComponent', () => {
+  let component: AadhaarKycStatusComponent;
+  let fixture: ComponentFixture<AadhaarKycStatusComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AadharverificationComponent ]
+      declarations: [ AadhaarKycStatusComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AadharverificationComponent);
+    fixture = TestBed.createComponent(AadhaarKycStatusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
