@@ -15,7 +15,7 @@
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-12">
+        <div class="col-6 offset-3">
           <div class="mb-3 pb-10">
             <div class="label-float">
               <input type="text" class="form-control p-4" id="name" name="name" formControlName="name"
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-6 offset-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="date" class="form-control p-4" id="dob" name="dob" formControlName="dob"
@@ -44,10 +44,10 @@
               {{'ENTER_VALID_DOB' | translate }}</p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-6 offset-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
-              <select class="w-20 form-select" formControlName="gender">
+              <select class="w-20 form-control" formControlName="gender">
                 <option value="" disabled selected>{{'SELECT_GENDER' | translate}}</option>
                 <option value="M">{{'MALE' | translate}}</option>
                 <option value="F">{{'FEMALE' | translate}}</option>
@@ -59,7 +59,7 @@
               {{'GENDER_REQUIRED' | translate }}</p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-6 offset-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control p-4" id="aadharId" name="aadharId" formControlName="aadharId"
@@ -72,7 +72,7 @@
               translate }}</p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-6 offset-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control p-4" id="username" name="username" formControlName="username"
@@ -86,7 +86,7 @@
               translate }}</p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-6 offset-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="password" class="form-control p-4" id="password" name="password" formControlName="password"
