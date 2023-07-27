@@ -9,6 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { DataService } from 'src/app/services/data/data-request.service';
 import { AuthConfigService } from '../auth-config.service';
 import { KeycloakLoginOptions } from 'keycloak-js';
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'app-keycloaklogin',
@@ -19,6 +20,8 @@ export class KeycloakloginComponent implements OnInit {
   user: any;
   entity: string;
   profileUrl: string = '';
+  isDigilockerUser = false;
+  digiLockerUser: any;
   constructor(
     public keycloakService: KeycloakService,
     public router: Router,
@@ -31,30 +34,50 @@ export class KeycloakloginComponent implements OnInit {
   async ngOnInit() {
     const isLoggedIn = await this.keycloakService.isLoggedIn();
     if (isLoggedIn) {
-      this.keycloakService.loadUserProfile().then((res: any) => {
-        console.log("res", res);
-        if (res?.attributes?.entity?.[0]) {
-          console.log(res['attributes'].entity[0]);
-          this.entity = res.attributes.entity[0];
+      const accountRes: any = await this.keycloakService.loadUserProfile();
+      console.log("accountRes", accountRes);
+      if (accountRes?.attributes?.entity?.[0]) {
+        console.log(accountRes['attributes'].entity[0]);
+        this.entity = accountRes.attributes.entity[0];
+      }
+      if (accountRes?.attributes?.locale?.length) {
+        localStorage.setItem('ELOCKER_LANGUAGE', accountRes['attributes'].locale[0]);
+      }
+      if (accountRes?.attributes?.name?.length) {
+        this.isDigilockerUser = true;
+        localStorage.setItem('isDigilockerUser', 'true');
+        localStorage.setItem('currentUser', JSON.stringify({ name: accountRes.attributes.name[0] }));
+        this.digiLockerUser = {
+          name: accountRes.attributes.name[0],
+          dob: accountRes.attributes.dob[0],
+          gender: accountRes.attributes.gender[0]
         }
-        if (res['attributes'].hasOwnProperty('locale') && res['attributes'].locale.length) {
-          localStorage.setItem('ELOCKER_LANGUAGE', res['attributes'].locale[0]);
-        }
-      });
+      }
 
       this.user = this.keycloakService.getUsername();
-      this.keycloakService.getToken().then((token) => {
-        console.log('keyCloak teacher token - ', token);
-        localStorage.setItem('token', token);
-        localStorage.setItem('loggedInUser', this.user);
-        console.log('---------', this.config.getEnv('appType'))
-        // if (this.config.getEnv('appType') && this.config.getEnv('appType') === 'digital_wallet') {
-        //   this.profileUrl = this.entity + '/documents'
-        // } else {
-        //   this.profileUrl = '/profile/' + this.entity;
-        // }
-        // this.router.navigate([this.profileUrl]);
-        this.getDID().subscribe((res) => {
+      const token = await this.keycloakService.getToken();
+      console.log('keyCloak teacher token - ', token);
+      localStorage.setItem('token', token);
+      localStorage.setItem('loggedInUser', this.user);
+      console.log('---------', this.config.getEnv('appType'))
+
+      if (this.isDigilockerUser) {
+        const payload = {
+          url: `${this.authConfigService.config.bffUrl}/v1/sso/learner/digi/getdetail`,
+          data: this.digiLockerUser,
+          header: new HttpHeaders({
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          })
+        }
+        this.dataService.post(payload).subscribe((res: any) => {
+          console.log(res);
+          this.router.navigate(['/home']);
+        }, error => {
+          console.log(error);
+          this.router.navigate(['/home']);
+        });
+      } else {
+        this.getDetails().subscribe((res: any) => {
           const navigationExtras: NavigationExtras = {
             state: {
               name: res.result?.name,
@@ -75,7 +98,7 @@ export class KeycloakloginComponent implements OnInit {
           this.router.navigate(['/home']);
           console.log(err);
         });
-      });
+      }
     } else {
       const snapshot: RouterStateSnapshot = this.router.routerState.snapshot;
       this.keycloakService
@@ -90,7 +113,7 @@ export class KeycloakloginComponent implements OnInit {
     }
   }
 
-  getDID(): Observable<any> {
+  getDetails(): Observable<any> {
     // const payload = {
     //   "filters": {
     //     "username": {
@@ -107,7 +130,6 @@ export class KeycloakloginComponent implements OnInit {
     // }));
 
     let headerOptions = new HttpHeaders({
-      'Accept': 'application/pdf',
       Authorization: 'Bearer ' + localStorage.getItem('token')
     });
     return this.dataService.get({ url: `${this.authConfigService.config.bffUrl}/v1/sso/learner/getdetail`, header: headerOptions }).pipe(map((res: any) => {
@@ -117,6 +139,4 @@ export class KeycloakloginComponent implements OnInit {
       return res;
     }));
   }
-
-
 }
