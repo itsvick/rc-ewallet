@@ -15,7 +15,7 @@
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-12">
+        <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float">
               <input type="text" class="form-control p-4" id="name" name="name" formControlName="name"
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="date" class="form-control p-4" id="dob" name="dob" formControlName="dob"
@@ -44,7 +44,7 @@
               {{'ENTER_VALID_DOB' | translate }}</p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <select class="w-20 form-control" formControlName="gender">
@@ -71,7 +71,7 @@
               {{'ENTER_VALID_AADHAAR_NUMBER' | translate }}</p>
           </div>
         </div> -->
-        <div class="col-12">
+        <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control p-4" id="username" name="username" formControlName="username"
@@ -83,7 +83,7 @@
               {{'ENTER_VALID_USERNAME' | translate }}</p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="password" class="form-control p-4" id="password" name="password" formControlName="password"
@@ -94,7 +94,7 @@
               *ngIf="registerFormControl.password.invalid && registerFormControl.password.touched">{{'PASSWORD_REQUIRED' | translate }}</p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="number" class="form-control p-4" id="recoveryPhone" name="recoveryPhone" formControlName="recoveryPhone"

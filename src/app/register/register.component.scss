@@ -21,6 +21,15 @@
     font-size: 14px;
     transition: all .1s linear;
 }
+.label-float select{
+    height: 46px !important;
+    width: 100%;
+    padding: 0 10px;
+    border: 1px solid #d2d2d2 !important;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all .1s linear;
+}
 input[type=text]:focus{
     outline: 2px solid #d2d2d2 !important;
 }
@@ -37,7 +46,7 @@ input[type=password]:focus{
     left: 15px;
     transition: all .1s linear;
     background-color: white;
-    padding: 5px;
+    padding: 4px;
     box-sizing: border-box;
     color: #4A454E;
 }
@@ -49,7 +58,7 @@ input[type=password]:focus{
 }
 .label-float input:focus + label,
 .label-float input:not(:placeholder-shown) + label{
-    font-size: 13px;
+    font-size: 12px;
     top: 0;
     color: #4A454E;
 }
@@ -57,6 +66,20 @@ input[type=password]:focus{
     margin-top: -21px;
     font-size: 12px;
 }
-.font-size-sm {
+.font-size-sm{
     font-size: 0.8rem;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #d2d2d2;
+  -webkit-text-fill-color: #4A454E;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
