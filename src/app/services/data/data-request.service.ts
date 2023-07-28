@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { of, throwError, Observable, Subscriber } from 'rxjs';
 import { HttpOptions } from '../../interfaces/httpOptions.interface';
 import { map, mergeMap } from 'rxjs/operators';
-import * as _ from 'lodash-es';
 import { KeycloakService } from 'keycloak-angular';
 
 
