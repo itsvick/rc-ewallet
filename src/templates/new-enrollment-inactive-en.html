@@ -31,11 +31,13 @@
 
         .certificate {
             width: 75%;
-            border: 30px solid #1e2060;
-            padding: 2rem 2rem;
+            box-shadow: 0 -4px 0 30px #1e2060 inset;
+            padding: 3rem 3rem;
             margin-top: 30px;
             display: flex;
-            justify-content: center
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .title {
@@ -44,6 +46,7 @@
             text-align: center;
             padding-bottom: 12px;
             word-wrap: break-word;
+            font-family: Outfit, sans-serif
         }
 
         .img-holder {
@@ -66,6 +69,7 @@
             text-align: center;
             padding-top: 1rem;
             word-wrap: break-word;
+            font-family: Poppins, sans-serif
         }
 
         .stu {
@@ -75,6 +79,7 @@
             text-align: center;
             padding-top: 0.8rem;
             word-wrap: break-word;
+            font-family: 'Fira Sans', sans-serif
         }
 
         .parent {
@@ -90,6 +95,7 @@
             text-align: right;
             color: #363636;
             white-space: nowrap;
+            font-family: 'DM Sans', sans-serif;
             flex-basis: 50%
         }
 
@@ -100,6 +106,7 @@
             text-align: left;
             word-wrap: break-word;
             word-break: break-all;
+            font-family: Poppins, sans-serif;
             padding-left: 8px;
             flex-basis: 50%
         }
@@ -113,11 +120,71 @@
         .border-orange {
             border: 2px solid #d7b56d
         }
+
+        .ribbon {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .ribbon::before,
+        .ribbon::after {
+            position: absolute;
+            z-index: -1;
+            content: '';
+            display: block;
+        }
+
+        .ribbon span {
+            position: absolute;
+            display: block;
+            width: 225px;
+            padding: 8px 0;
+            background: #BC122D;
+            background: linear-gradient(135deg, #BC122D, #FF0400);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+            color: #fff;
+            font: 700 18px/1 'Lato', sans-serif;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* top left*/
+        .ribbon-top-left {
+            top: 0;
+            left: 0;
+        }
+
+        .ribbon-top-left::before,
+        .ribbon-top-left::after {
+            border-top-color: transparent;
+            border-left-color: transparent;
+        }
+
+        .ribbon-top-left::before {
+            top: 0;
+            right: 0;
+        }
+
+        .ribbon-top-left::after {
+            bottom: 0;
+            left: 0;
+        }
+
+        .ribbon-top-left span {
+            right: -25px;
+            top: 30px;
+            transform: rotate(-45deg);
+        }
     </style>
 
     <body>
         <div class='flex-ce'>
             <div class='certificate'>
+                <div class="ribbon ribbon-top-left"><span>Expired!</span></div>
                 <div>
                     <div class='title'>Student ID card</div>
                     <div>

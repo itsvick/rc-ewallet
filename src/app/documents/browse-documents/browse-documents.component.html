@@ -39,28 +39,13 @@
                 </div>
                 <!-- {{'NO_RECORDS_FOUND' | translate}} -->
             </div>
-            <div *ngIf="isLoading" class="text-center">
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
-                        <span class="sr-only">{{ "LOADING" | translate }}</span>
-                    </div>
+        </div>
+
+        <div *ngIf="isLoading" class="text-center">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                    <span class="sr-only">{{ "LOADING" | translate }}</span>
                 </div>
-                <!-- <div class="col-12 col-sm-4">
-                    <div class="card" *ngFor="let item of [1,2,3,4,5,6]">
-                        <div class="card-body">
-                            <div class="card-image skeleton">
-                            </div>
-                            <div class="card-intro-info">
-                                <div class="mb-2 fs-14">
-                                    <div class="skeleton skeleton-text"></div>
-                                </div>
-                                <div class="text-grey fs-12">
-                                    <div class="skeleton skeleton-text"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
 
