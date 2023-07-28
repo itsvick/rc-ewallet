@@ -72,31 +72,30 @@ export class RegisterComponent implements OnInit {
         console.log("User registered successfully");
         this.isLoading = false;
         const options: NgbModalOptions = {
-          // backdrop: 'static',
+          backdrop: 'static',
           animation: true,
           centered: true,
         };
         this.registerModalRef = this.modalService.open(this.registerModal, options);
 
-        setTimeout(() => {
-          if (this.registerModalRef) {
-            this.registerModalRef.dismiss();
-          }
-        }, 2000);
+        // setTimeout(() => {
+        //   if (this.registerModalRef) {
+        //     this.registerModalRef.dismiss();
+        //   }
+        // }, 2000);
 
-        this.registerModalRef.dismissed.subscribe((reason) => {
-          console.log("reason", reason);
+        // this.registerModalRef.dismissed.subscribe((reason) => {
+        //   console.log("reason", reason);
 
-          const navigationExtras: NavigationExtras = {
-            state: {
-              name: this.registerForm.value.name,
-              dob: dayjs(this.registerForm.value.dob).format('DD/MM/YYYY'),
-              gender: this.registerForm.value.gender,
-            }
-          }
-          this.router.navigate(['/aadhaar-kyc'], navigationExtras);
-        });
-        // this.toasterService.success("", "User registered successfully");
+        //   const navigationExtras: NavigationExtras = {
+        //     state: {
+        //       name: this.registerForm.value.name,
+        //       dob: dayjs(this.registerForm.value.dob).format('DD/MM/YYYY'),
+        //       gender: this.registerForm.value.gender,
+        //     }
+        //   }
+        //   this.router.navigate(['/aadhaar-kyc'], navigationExtras);
+        // });
       }, (error: any) => {
         console.log("error", error);
         this.isLoading = false;
