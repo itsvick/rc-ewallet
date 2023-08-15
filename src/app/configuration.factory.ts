@@ -1,5 +1,4 @@
 import { AppConfig } from "./app.config";
-
 export function configurationFactory(
   config: AppConfig,
   configDeps: (() => Function)[]

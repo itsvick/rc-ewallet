@@ -123,7 +123,7 @@ const routes: Routes = [
         env: 'home', pageid: 'home', type: 'list', subtype: 'scroll'
       },
     },
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'search-certificates',

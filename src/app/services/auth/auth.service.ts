@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   aadhaarKYC(payload: any) {
-    const api = `${this.baseUrl}/v1/sso/learner/aadhaar`;
+    const api = `${this.baseUrl}/v1/sso/aadhaar/ekyc`;
     return this.http.post(api, payload);
   }
 

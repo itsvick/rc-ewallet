@@ -40,7 +40,8 @@
                 max="{{today | date:'yyyy-MM-dd'}}">
               <label for="dob">{{'DOB' | translate}}</label>
             </div>
-            <p class="text-danger pt-2 mb-0 font-size-sm" *ngIf="registerFormControl.dob.invalid && registerFormControl.dob.touched">
+            <p class="text-danger pt-2 mb-0 font-size-sm"
+              *ngIf="registerFormControl.dob.invalid && registerFormControl.dob.touched">
               {{'ENTER_VALID_DOB' | translate }}</p>
           </div>
         </div>
@@ -59,18 +60,24 @@
               {{'GENDER_REQUIRED' | translate }}</p>
           </div>
         </div>
-        <!-- <div class="col-12">
+        <div class="col-md-8 col-10 offset-md-3" [ngClass]="{'col-md-4 col-12': isAadhaarVerified}">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
-              <input type="text" class="form-control p-4" id="aadharId" name="aadharId" formControlName="aadharId"
+              <input type="text" class="form-control p-4" id="aadhaarId" name="aadhaarId" formControlName="aadhaarId"
                 minlength="12" maxlength="12" placeholder="{{'ENTER_AADHAAR_NO' | translate}}">
-              <label for="aadharId">{{'AADHAR_NO' | translate}}</label>
+              <label for="aadhaarId">{{'AADHAR_NO' | translate}}</label>
+              <span class="text-success verifyIcon" *ngIf="isAadhaarVerified">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+              </span>
             </div>
             <p class="text-danger pt-2 mb-0 font-size-sm"
-              *ngIf="registerFormControl.aadharId.invalid && registerFormControl.aadharId.touched">
+              *ngIf="registerFormControl.aadhaarId.invalid && registerFormControl.aadhaarId.touched">
               {{'ENTER_VALID_AADHAAR_NUMBER' | translate }}</p>
           </div>
-        </div> -->
+        </div>
+        <div class="col-md-4 col-2 mb-3 d-flex justify-content-center align-items-center" *ngIf="!isAadhaarVerified">
+          <button type="button" (click)="verifyAadhaar()" class="btn btn-primary">{{'VERIFY_AADHAAR' | translate}}</button>
+        </div>
         <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
@@ -83,7 +90,7 @@
               {{'ENTER_VALID_USERNAME' | translate }}</p>
           </div>
         </div>
-        <div class="col-md-6 col-12 offset-md-3">
+        <!-- <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="password" class="form-control p-4" id="password" name="password" formControlName="password"
@@ -93,17 +100,18 @@
             <p class="text-danger pt-2 mb-0 font-size-sm"
               *ngIf="registerFormControl.password.invalid && registerFormControl.password.touched">{{'PASSWORD_REQUIRED' | translate }}</p>
           </div>
-        </div>
+        </div> -->
         <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
-              <input type="number" class="form-control p-4" id="recoveryPhone" name="recoveryPhone" formControlName="recoveryPhone"
-                placeholder="{{'ENTER_PASSWORD' | translate}}">
+              <input type="number" class="form-control p-4" id="recoveryPhone" name="recoveryPhone"
+                formControlName="recoveryPhone" placeholder="{{'ENTER_PASSWORD' | translate}}">
               <label for="recoveryPhone">{{'RECOVERY_PHONE'| translate}}</label>
             </div>
             <p class="pt-1 font-size-sm">{{'RECOVERY_PHONE_NOTE' | translate}}</p>
             <p class="text-danger pt-2 mb-0 font-size-sm"
-              *ngIf="registerFormControl.recoveryPhone.invalid && registerFormControl.recoveryPhone.touched">{{'ENTER_VALID_RECOVERY_PHONE' | translate }}</p>
+              *ngIf="registerFormControl.recoveryPhone.invalid && registerFormControl.recoveryPhone.touched">
+              {{'ENTER_VALID_RECOVERY_PHONE' | translate }}</p>
           </div>
         </div>
       </div>
@@ -129,6 +137,29 @@
         <button type="button" class="btn btn-primary mt-4 mb-2 px-5 fs-14 btn-lg font-weight-bold"
           (click)="gotoLoginPage()">{{'GO_TO_LOGIN' | translate}}</button>
       </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #otpModal tabindex="-1" role="dialog" aria-labelledby="otpModal">
+  <div class="modal-content bo-rd-10">
+    <div class="modal-header">
+      <h5 class="modal-title">{{'CONFIRM_OTP' | translate}}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeOtpPopup()"><span
+          aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+      <p class="p14"> {{'ENTER_OTP_MSG' | translate}}</p>
+      <label class="fw-bold p12"> {{'ENTER_OTP' | translate}}</label>
+      <input maxlength="6" type="input" [(ngModel)]="otp" name="otp" class="form-control"
+        oninput="value = value.replace(/[^0-9]/g, '').substring(0, 6)" #otpModel="ngModel" required />
+      <span class="text-danger" *ngIf="otpModel.touched && otpModel.errors?.required">
+        {{'OTP_REQUIRED' | translate}}
+      </span>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="closeOtpPopup()">{{'Cancel' | translate}}</button>
+      <button type="button" class="btn btn-primary" [disabled]="!otp" (click)="submitOtp()">{{'CONFIRM' | translate}}</button>
     </div>
   </div>
 </ng-template>

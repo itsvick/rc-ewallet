@@ -348,5 +348,14 @@
     "START_AADHAAR_KYC": "आधार केवाईसी शुरू करें",
     "ENTER_VALID_RECOVERY_PHONE": "वैध फोन नंबर दर्ज करें",
     "RECOVERY_PHONE_NOTE": "अभिभावक फोन नंबर दर्ज करने के लिए अभिभावक फोन नंबर दर्ज करें",
-    "INVALID_OTP": "अमान्य OTP"
+    "INVALID_OTP": "अमान्य OTP",
+    "CONFIRM": "पुष्टि करें",
+    "ENTER_OTP_MSG": "कृपया अपने मोबाइल नंबर पर प्राप्त OTP दर्ज करें",
+    "OTP_REQUIRED": "OTP आवश्यक है",
+    "UNABLE_TO_FETCH_DETAILS": "विवरण लाने में त्रुटि",
+    "ENTER_VALID_AADHAAR_AND_REVERIFY": "कृपया मान्य आधार नंबर दर्ज करें और पुनः सत्यापित करें",
+    "ENTER_VALID_OTP": "कृपया मान्य OTP दर्ज करें",
+    "VERIFY_AADHAAR_FIRST": "कृपया पहले आधार सत्यापित करें",
+    "REGISTRATION_FAILED_TRY_AGAIN": "पंजीकरण विफल हुआ। कृपया पुनः प्रयास करें",
+    "VERIFY_AADHAAR": "सत्यापित करें"
 }
