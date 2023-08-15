@@ -351,5 +351,14 @@
     "ENTER_VALID_RECOVERY_PHONE": "Enter a valid Recovery Phone Number",
     "RECOVERY_PHONE_NOTE": "In case you forget password, OTP will be sent to this number",
     "START_AADHAAR_KYC": "Start Aadhar KYC",
-    "INVALID_OTP": "Invalid OTP"
+    "INVALID_OTP": "Invalid OTP",
+    "CONFIRM": "Confirm",
+    "ENTER_OTP_MSG":"Please enter the OTP received on your mobile number",
+    "OTP_REQUIRED": "OTP is required",
+    "UNABLE_TO_FETCH_DETAILS": "Unable to fetch Details",
+    "ENTER_VALID_AADHAAR_AND_REVERIFY": "Please enter valid aadhaar number and reverify",
+    "ENTER_VALID_OTP": "Please enter a valid OTP",
+    "VERIFY_AADHAAR_FIRST": "Please verify aadhaar first",
+    "REGISTRATION_FAILED_TRY_AGAIN": "Registration Failed. Please try again",
+    "VERIFY_AADHAAR": "Verify"
 }
