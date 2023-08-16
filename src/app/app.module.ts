@@ -65,6 +65,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { config } from 'process';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 //form validations
@@ -217,15 +218,15 @@ import { AadhaarKycStatusComponent } from './aadhaar-kyc-status/aadhaar-kyc-stat
     ReactiveFormsModule,
     NgbModule,
     FormlyBootstrapModule,
+    BsDatepickerModule.forRoot(),
+    DatepickerModule.forRoot(),
     KeycloakAngularModule,
     Bootstrap4FrameworkModule,
     AngularMultiSelectModule,
     NgSelectModule,
     DeviceDetectorModule.forRoot(),
-
     HttpClientModule,
     TranslateModule.forRoot(),
-
     WebcamModule,
     ColorPickerModule,
     QuarModule,

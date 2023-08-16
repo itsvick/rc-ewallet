@@ -10,6 +10,7 @@ import { DataService } from 'src/app/services/data/data-request.service';
 import { AuthConfigService } from '../auth-config.service';
 import { KeycloakLoginOptions } from 'keycloak-js';
 import * as dayjs from 'dayjs';
+import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 
 @Component({
   selector: 'app-keycloaklogin',
@@ -28,7 +29,8 @@ export class KeycloakloginComponent implements OnInit {
     private config: AppConfig,
     private readonly generalService: GeneralService,
     private readonly dataService: DataService,
-    private readonly authConfigService: AuthConfigService
+    private readonly authConfigService: AuthConfigService,
+    private readonly toastMessage: ToastMessageService
   ) { }
 
   async ngOnInit() {
@@ -52,6 +54,12 @@ export class KeycloakloginComponent implements OnInit {
           dob: accountRes.attributes.dob[0],
           gender: accountRes.attributes.gender[0]
         }
+
+        if (!accountRes?.attributes?.phone_number) {
+          this.toastMessage.error('', 'Not able to fetch phone number from Meri-pehchaan');
+          this.router.navigate(['/logout']);
+          return;
+        }
       }
 
       this.user = this.keycloakService.getUsername();
@@ -73,8 +81,22 @@ export class KeycloakloginComponent implements OnInit {
           console.log(res);
           this.router.navigate(['/home']);
         }, error => {
-          console.log(error);
-          this.router.navigate(['/home']);
+          if (error?.error?.success === false) {
+            let dob;
+            if (accountRes?.attributes?.dob?.[0]) {
+              dob = dayjs(accountRes.attributes.dob[0], 'DD/MM/YYYY').format('DD/MM/YYYY');
+            }
+            this.router.navigate(['/register'], {
+              queryParams: {
+                name: accountRes.attributes.name[0],
+                dob,
+                gender: accountRes.attributes.gender[0],
+                username: accountRes.attributes.phone_number[0]
+              }
+            })
+          } else {
+            this.router.navigate(['/logout']);
+          }
         });
       } else {
         this.getDetails().subscribe((res: any) => {

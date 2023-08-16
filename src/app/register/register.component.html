@@ -19,7 +19,7 @@
           <div class="mb-3 pb-10">
             <div class="label-float">
               <input type="text" class="form-control p-4" id="name" name="name" formControlName="name"
-                placeholder="{{'ENTER_YOUR_NAME' | translate}}">
+                placeholder="{{'ENTER_YOUR_NAME' | translate}}" [readonly]="isDigilockerUser">
               <label for="name">{{'ENTER_YOUR_NAME' | translate}}</label>
             </div>
             <div
@@ -36,8 +36,8 @@
         <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
-              <input type="date" class="form-control p-4" id="dob" name="dob" formControlName="dob"
-                max="{{today | date:'yyyy-MM-dd'}}">
+              <input type="text" class="form-control calendar p-4" id="dob" name="dob" formControlName="dob" bsDatepicker [bsConfig]="bsConfig"
+              (bsValueChange)="onDOBValueChange($event)" [readonly]="isDigilockerUser">
               <label for="dob">{{'DOB' | translate}}</label>
             </div>
             <p class="text-danger pt-2 mb-0 font-size-sm"
@@ -48,7 +48,7 @@
         <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
-              <select class="w-20 form-control" formControlName="gender">
+              <select class="w-20 form-control" formControlName="gender" [attr.disabled]="isDigilockerUser ? '' : null">
                 <option value="" disabled selected>{{'SELECT_GENDER' | translate}}</option>
                 <option value="M">{{'MALE' | translate}}</option>
                 <option value="F">{{'FEMALE' | translate}}</option>
@@ -76,13 +76,14 @@
           </div>
         </div>
         <div class="col-md-1 col-2 mb-3 d-flex justify-content-center align-items-center" *ngIf="!isAadhaarVerified">
-          <button type="button" (click)="verifyAadhaar()" class="btn btn-primary">{{'VERIFY_AADHAAR' | translate}}</button>
+          <button type="button" (click)="verifyAadhaar()" class="btn btn-primary">{{'VERIFY_AADHAAR' |
+            translate}}</button>
         </div>
         <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control p-4" id="username" name="username" formControlName="username"
-                placeholder="{{'ENTER_YOUR_USERNAME' | translate}}">
+                placeholder="{{'ENTER_YOUR_USERNAME' | translate}}" [readonly]="isDigilockerUser">
               <label for="username">{{'USERNAME' | translate}}</label>
             </div>
             <p class="text-danger pt-2 mb-0 font-size-sm"
@@ -158,8 +159,10 @@
       </span>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="closeOtpPopup()">{{'Cancel' | translate}}</button>
-      <button type="button" class="btn btn-primary" [disabled]="!otp" (click)="submitOtp()">{{'CONFIRM' | translate}}</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="closeOtpPopup()">{{'Cancel' |
+        translate}}</button>
+      <button type="button" class="btn btn-primary" [disabled]="!otp" (click)="submitOtp()">{{'CONFIRM' |
+        translate}}</button>
     </div>
   </div>
 </ng-template>

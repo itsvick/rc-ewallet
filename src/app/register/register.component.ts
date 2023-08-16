@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import * as dayjs from 'dayjs';
 import { AuthConfigService } from '../authentication/auth-config.service';
@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { DataService } from '../services/data/data-request.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 import { UtilService } from '../services/util/util.service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +23,8 @@ export class RegisterComponent implements OnInit {
   isAadhaarVerified: boolean = false;
   aadhaarUUID: string;
   aadhaarToken: string;
+  bsConfig: Partial<BsDatepickerConfig>;
+  isDigilockerUser = false;
 
   registerModalRef: NgbModalRef;
   otpModalRef: NgbModalRef;
@@ -43,11 +46,34 @@ export class RegisterComponent implements OnInit {
     private readonly router: Router,
     private readonly modalService: NgbModal,
     private readonly authService: AuthService,
-    private readonly utilService: UtilService
+    private readonly utilService: UtilService,
+    private readonly activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.today = new Date().toISOString().slice(0, 10);
+    this.bsConfig = {
+      dateInputFormat: 'DD/MM/YYYY',
+      showWeekNumbers: true,
+      containerClass: 'theme-dark-blue',
+      isAnimated: true,
+      adaptivePosition: true,
+      maxDate: new Date()
+    };
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params.name) {
+        this.isDigilockerUser = true;
+      }
+      this.registerForm.patchValue({
+        name: params['name'],
+        dob: params['dob'],
+        gender: params['gender'],
+        username: params['username'],
+      });
+      // Object.keys(params).forEach(field => {
+      //   this.registerForm.get(field).readonly();
+      // });
+    });
   }
 
   get registerFormControl() {
@@ -90,6 +116,14 @@ export class RegisterComponent implements OnInit {
     this.registerForm.get('aadhaarId').disable();
   }
 
+  onDOBValueChange(event) {
+    if (dayjs(event).isValid()) {
+      const formattedDate = dayjs(event).format('DD/MM/YYYY');
+      this.registerForm.get('dob').setValue(formattedDate, { emitEvent: false });
+      console.log(this.registerForm);
+    }
+  }
+
   onSubmit() {
     if (!this.isAadhaarVerified || !this.aadhaarToken) {
       this.toasterService.warning('', this.utilService.translateString('VERIFY_AADHAAR_FIRST'));
@@ -104,7 +138,7 @@ export class RegisterComponent implements OnInit {
         data: {
           "name": this.registerForm.value.name,
           "gender": this.registerForm.value.gender,
-          "dob": dayjs(this.registerForm.value.dob).format('DD/MM/YYYY'),
+          "dob": this.registerForm.value.dob,
           "username": this.registerForm.value.username,
           "password": this.registerForm.value.password,
           "recoveryphone": this.registerForm.value.recoveryPhone.toString(),
