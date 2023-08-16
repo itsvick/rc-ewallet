@@ -60,7 +60,7 @@
               {{'GENDER_REQUIRED' | translate }}</p>
           </div>
         </div>
-        <div class="col-md-8 col-10 offset-md-3" [ngClass]="{'col-md-4 col-12': isAadhaarVerified}">
+        <div class="col-md-5 col-10 offset-md-3" [ngClass]="{'col-md-4 col-12': isAadhaarVerified}">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control p-4" id="aadhaarId" name="aadhaarId" formControlName="aadhaarId"
@@ -75,7 +75,7 @@
               {{'ENTER_VALID_AADHAAR_NUMBER' | translate }}</p>
           </div>
         </div>
-        <div class="col-md-4 col-2 mb-3 d-flex justify-content-center align-items-center" *ngIf="!isAadhaarVerified">
+        <div class="col-md-1 col-2 mb-3 d-flex justify-content-center align-items-center" *ngIf="!isAadhaarVerified">
           <button type="button" (click)="verifyAadhaar()" class="btn btn-primary">{{'VERIFY_AADHAAR' | translate}}</button>
         </div>
         <div class="col-md-6 col-12 offset-md-3">
