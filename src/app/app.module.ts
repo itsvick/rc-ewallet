@@ -65,6 +65,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { config } from 'process';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 //form validations
@@ -148,6 +149,8 @@ import { ReplacePlaceholderPipe } from './replace-placeholder.pipe';
 import { OpportuntiesComponent } from './opportunties_dynamic/opportunties.component';
 import { OpportunitieComponent } from './opportunitie/opportunitie.component';
 import { configurationFactory } from './configuration.factory';
+import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
+import { AadhaarKycStatusComponent } from './aadhaar-kyc-status/aadhaar-kyc-status.component';
 
 @NgModule({
   declarations: [
@@ -202,7 +205,9 @@ import { configurationFactory } from './configuration.factory';
     RegisterComponent,
     ReplacePlaceholderPipe,
     OpportuntiesComponent,
-    OpportunitieComponent
+    OpportunitieComponent,
+    AadharKycComponent,
+    AadhaarKycStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -213,15 +218,15 @@ import { configurationFactory } from './configuration.factory';
     ReactiveFormsModule,
     NgbModule,
     FormlyBootstrapModule,
+    BsDatepickerModule.forRoot(),
+    DatepickerModule.forRoot(),
     KeycloakAngularModule,
     Bootstrap4FrameworkModule,
     AngularMultiSelectModule,
     NgSelectModule,
     DeviceDetectorModule.forRoot(),
-
     HttpClientModule,
     TranslateModule.forRoot(),
-
     WebcamModule,
     ColorPickerModule,
     QuarModule,
@@ -307,19 +312,6 @@ import { configurationFactory } from './configuration.factory';
       },
       deps: [HttpClient, AuthConfigService, KeycloakService, TranslateService]
     },
-    // { provide: APP_INITIALIZER, useFactory: initConfig, deps: [AppConfig, AuthConfigService], multi: true },
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: initializeKeycloak,
-    //   multi: true,
-    //   deps: [KeycloakService, AuthConfigService],
-    // },
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: initLang,
-    //   deps: [HttpClient, TranslateService, AuthConfigService],
-    //   multi: true
-    // },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
@@ -327,33 +319,4 @@ import { configurationFactory } from './configuration.factory';
 
 
 export class AppModule {
-  languages;
-  constructor(translate: TranslateService, authConfig: AuthConfigService) {
-
-    // authConfig.getConfig().subscribe((config) => {
-    //   this.languages = config.languages;
-    //   let installedLanguages = [];
-
-    //   for (let i = 0; i < this.languages.length; i++) {
-    //     installedLanguages.push({
-    //       "code": this.languages[i],
-    //       "name": ISO6391.getNativeName(this.languages[i])
-    //     });
-    //   }
-
-    //   localStorage.setItem('languages', JSON.stringify(installedLanguages));
-    //   translate.addLangs(this.languages);
-
-    //   if (localStorage.getItem('setLanguage') && this.languages.includes(localStorage.getItem('setLanguage'))) {
-    //     translate.use(localStorage.getItem('setLanguage'));
-    //   } else {
-    //     const browserLang = translate.getBrowserLang();
-    //     let lang = this.languages.includes(browserLang) ? browserLang : 'en';
-    //     translate.use(lang);
-    //     localStorage.setItem('setLanguage', lang);
-    //   }
-    // });
-
-  }
 }
-
