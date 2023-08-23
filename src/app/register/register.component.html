@@ -37,7 +37,7 @@
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control calendar p-4" id="dob" name="dob" formControlName="dob" bsDatepicker [bsConfig]="bsConfig"
-              (bsValueChange)="onDOBValueChange($event)" [readonly]="isDigilockerUser">
+              (bsValueChange)="onDOBValueChange($event)" [readonly]="true" [attr.disabled]="isDigilockerUser ? '' : null">
               <label for="dob">{{'DOB' | translate}}</label>
             </div>
             <p class="text-danger pt-2 mb-0 font-size-sm"
