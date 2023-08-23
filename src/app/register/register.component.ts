@@ -120,6 +120,9 @@ export class RegisterComponent implements OnInit {
     if (dayjs(event).isValid()) {
       const formattedDate = dayjs(event).format('DD/MM/YYYY');
       this.registerForm.get('dob').setValue(formattedDate, { emitEvent: false });
+      this.registerForm.patchValue({
+        dob: formattedDate
+      });
       console.log(this.registerForm);
     }
   }

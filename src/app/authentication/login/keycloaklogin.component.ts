@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { KeycloakService } from 'keycloak-angular';
+import { KeycloakEventType, KeycloakService } from 'keycloak-angular';
 import { NavigationExtras, Router, RouterStateSnapshot } from '@angular/router';
 import { AppConfig } from '../../app.config';
 import { GeneralService } from 'src/app/services/general/general.service';
@@ -51,7 +51,7 @@ export class KeycloakloginComponent implements OnInit {
         localStorage.setItem('currentUser', JSON.stringify({ name: accountRes.attributes.name[0] }));
         this.digiLockerUser = {
           name: accountRes.attributes.name[0],
-          dob: accountRes.attributes.dob[0],
+          dob: dayjs(accountRes.attributes.dob[0], 'DD/MM/YYYY').format('DD/MM/YYYY'),
           gender: accountRes.attributes.gender[0]
         }
 
@@ -136,21 +136,6 @@ export class KeycloakloginComponent implements OnInit {
   }
 
   getDetails(): Observable<any> {
-    // const payload = {
-    //   "filters": {
-    //     "username": {
-    //       "eq": this.user
-    //     }
-    //   }
-    // }
-
-    // return this.generalService.postData(`/${this.entity}/search`, payload).pipe(map((res: any) => {
-    //   if (res.length) {
-    //     localStorage.setItem('currentUser', JSON.stringify(res[0]));
-    //   }
-    //   console.log(res);
-    // }));
-
     let headerOptions = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token')
     });

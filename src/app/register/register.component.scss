@@ -89,3 +89,13 @@ select:-webkit-autofill:focus {
     right: 6px;
     top: 26px;
 }
+
+input[bsDatepicker] {
+    background-color: initial !important;
+    opacity: 1;
+}
+
+input[bsDatepicker][disabled] {
+    background-color: #e9ecef !important;
+    opacity: 1;
+}
