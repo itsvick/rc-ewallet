@@ -8,7 +8,7 @@
   "appType": "digital_wallet",
   "configFolder": "/assets/config/ui-config",
   "languageFolder": "/assets/i18n",
-  "logoPath": "/assets/images/logo.svg",
+  "logoPath": "/assets/images/logo.png",
   "title": "Universal Learners Passport",
   "baseUrl": "https://devulp.uniteframework.io/registry",
   "bffUrl": "https://devulp.uniteframework.io/ulp-bff",
