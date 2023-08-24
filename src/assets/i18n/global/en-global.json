@@ -361,5 +361,6 @@
     "VERIFY_AADHAAR_FIRST": "Please verify aadhaar first",
     "REGISTRATION_FAILED_TRY_AGAIN": "Registration Failed. Please try again",
     "VERIFY_AADHAAR": "Verify",
-    "UNABLE_TO_FETCH_PHONE_NUMBER_FROM_MERI_PEHCHAAN": "Unable to fetch phone number from Meri-pehchaan"
+    "UNABLE_TO_FETCH_PHONE_NUMBER_FROM_MERI_PEHCHAAN": "Unable to fetch phone number from Meri-pehchaan",
+    "USERNAME_MOBILE_NUMBER": "Username/Mobile Number"
 }

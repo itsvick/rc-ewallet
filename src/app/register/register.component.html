@@ -83,8 +83,8 @@
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control p-4" id="username" name="username" formControlName="username"
-                placeholder="{{'ENTER_YOUR_USERNAME' | translate}}" [readonly]="isDigilockerUser">
-              <label for="username">{{'USERNAME' | translate}}</label>
+              minlength="10" maxlength="10" placeholder="{{'ENTER_YOUR_USERNAME' | translate}}" [readonly]="isDigilockerUser">
+              <label for="username">{{'USERNAME_MOBILE_NUMBER' | translate}}</label>
             </div>
             <p class="text-danger pt-2 mb-0 font-size-sm"
               *ngIf="registerFormControl.username.invalid && registerFormControl.username.touched">
@@ -105,7 +105,7 @@
         <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
-              <input type="number" class="form-control p-4" id="recoveryPhone" name="recoveryPhone"
+              <input type="text" class="form-control p-4" id="recoveryPhone" name="recoveryPhone" minlength="10" maxlength="10"
                 formControlName="recoveryPhone" placeholder="{{'ENTER_PASSWORD' | translate}}">
               <label for="recoveryPhone">{{'RECOVERY_PHONE'| translate}}</label>
             </div>

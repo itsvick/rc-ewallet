@@ -35,8 +35,8 @@ export class RegisterComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'),]),
     dob: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
-    aadhaarId: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
-    username: new FormControl('', [Validators.required]),
+    aadhaarId: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]{12}$')]),
+    username: new FormControl('', [Validators.required, Validators.pattern('^[6-9]{1}[0-9]{9}$')] ),
     recoveryPhone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
   });
   constructor(
@@ -70,9 +70,18 @@ export class RegisterComponent implements OnInit {
         gender: params['gender'],
         username: params['username'],
       });
-      // Object.keys(params).forEach(field => {
-      //   this.registerForm.get(field).readonly();
-      // });
+
+      this.registerForm.controls.aadhaarId.valueChanges.subscribe((value: any) => {
+        this.registerForm.controls.aadhaarId.setValue(value.replace(/\D/g, ''), { emitEvent: false });
+      });
+
+      this.registerForm.controls.username.valueChanges.subscribe((value: any) => {
+        this.registerForm.controls.username.setValue(value.replace(/\D/g, ''), { emitEvent: false });
+      });
+
+      this.registerForm.controls.recoveryPhone.valueChanges.subscribe((value: any) => {
+        this.registerForm.controls.recoveryPhone.setValue(value.replace(/\D/g, ''), { emitEvent: false });
+      });
     });
   }
 
