@@ -71,7 +71,7 @@ export class KeycloakloginComponent implements OnInit {
 
       if (this.isDigilockerUser) {
         const payload = {
-          url: `${this.authConfigService.config.bffUrl}/v1/sso/learner/digi/getdetail`,
+          url: `${this.authConfigService.config.bulkIssuance}/bulk/v1/learner/digi/getdetail`,
           data: this.digiLockerUser,
           header: new HttpHeaders({
             Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -79,7 +79,15 @@ export class KeycloakloginComponent implements OnInit {
         }
         this.dataService.post(payload).subscribe((res: any) => {
           console.log(res);
-          this.router.navigate(['/home']);
+          if (res.result) {
+            localStorage.setItem('currentUser', JSON.stringify(res.result));
+          }
+
+          if (!res.result?.kyc_aadhaar_token) { // Check if Aadhaar KYC is completed or not
+            this.router.navigate(['/aadhaar-kyc']);
+          } else {
+            this.router.navigate(['/home']);
+          }
         }, error => {
           if (error?.error?.success === false) {
             let dob;

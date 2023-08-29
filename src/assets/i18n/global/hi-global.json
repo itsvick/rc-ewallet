@@ -361,5 +361,6 @@
     "UNABLE_TO_FETCH_PHONE_NUMBER_FROM_MERI_PEHCHAAN": "मेरी-पहचान से फ़ोन नंबर लाने में असमर्थ",
     "USERNAME_MOBILE_NUMBER": "उपयोगकर्ता नाम और मोबाइल नंबर",
     "MOBILE_NUMBER": "मोबाइल नंबर",
-    "ENTER_VALID_MOBILE_NUMBER": "कृपया मान्य मोबाइल नंबर दर्ज करें"
+    "ENTER_VALID_MOBILE_NUMBER": "कृपया मान्य मोबाइल नंबर दर्ज करें",
+    "COMPLETE_AADHAAR_KYC_FIRST": "कृपया पहले आधार केवाईसी सत्यापित करें"
 }
