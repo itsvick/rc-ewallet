@@ -9,6 +9,8 @@ import { GeneralService } from '../services/general/general.service';
 import { IInteractEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ThemeService } from '../../app/services/theme/theme.service';
+import { ToastMessageService } from '../services/toast-message/toast-message.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -27,13 +29,19 @@ export class SettingsComponent implements OnInit {
     private readonly telemetryService: TelemetryService,
     private readonly modalService: NgbModal,
     private readonly generalService: GeneralService,
-
+    private readonly toastMsgService: ToastMessageService,
+    private readonly router: Router,
     private themeService: ThemeService
   ) { }
 
   ngOnInit(): void {
-    this.getAllLanguages();
+    if (!this.authService.isKYCCompleted()) {
+      this.toastMsgService.error('', this.generalService.translateString('COMPLETE_AADHAAR_KYC_FIRST'))
+      this.router.navigate(['/aadhaar-kyc']);
+      return;
+    }
 
+    this.getAllLanguages();
     this.ELOCKER_THEME = localStorage.getItem('ELOCKER_THEME');
 
     if (!this.ELOCKER_THEME) {

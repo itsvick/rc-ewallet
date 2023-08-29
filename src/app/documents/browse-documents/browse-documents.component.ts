@@ -40,6 +40,11 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    if (!this.authService.isKYCCompleted()) {
+      this.toastMessage.error('', this.generalService.translateString('COMPLETE_AADHAAR_KYC_FIRST'))
+      this.router.navigate(['/aadhaar-kyc']);
+      return;
+    }
     if (this.credentialService.selectedCategory) {
       this.selectedCategory = this.credentialService.selectedCategory;
       this.showCredentialList = true;
@@ -48,9 +53,6 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       this.fetchCredentialCategories();
     }
 
-    if(!this.authService.isKYCCompleted()){
-      this.router.navigate(['/aadhaar-kyc']);
-    }
   }
 
   fetchCredentialCategories() {

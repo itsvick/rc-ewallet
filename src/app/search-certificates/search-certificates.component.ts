@@ -8,6 +8,8 @@ import {
   IInteractEventInput,
 } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
+import { ToastMessageService } from '../services/toast-message/toast-message.service';
+import { UtilService } from '../services/util/util.service';
 
 @Component({
   selector: 'app-search-certificates',
@@ -29,13 +31,20 @@ export class SearchCertificatesComponent implements OnInit {
     private readonly credentialService: CredentialService,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly telemetryService: TelemetryService
+    private readonly telemetryService: TelemetryService,
+    private readonly toastMsgService: ToastMessageService,
+    private readonly utilService: UtilService
   ) {
     // const navigation = this.router.getCurrentNavigation();
     // this.schema = navigation.extras.state;
   }
 
   ngOnInit(): void {
+    if (!this.authService.isKYCCompleted()) {
+      this.toastMsgService.error('', this.utilService.translateString('COMPLETE_AADHAAR_KYC_FIRST'))
+      this.router.navigate(['/aadhaar-kyc']);
+      return;
+    }
     this.fetchCredentials();
   }
 
