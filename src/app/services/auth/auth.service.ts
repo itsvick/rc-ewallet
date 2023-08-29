@@ -16,6 +16,7 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class AuthService {
   baseUrl: string;
+  bulkIssuance: string;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   _currentUser;
   _digilockerAccessToken: string;
@@ -30,6 +31,7 @@ export class AuthService {
     //   this.baseUrl = config.bffUrl;
     // })
     this.baseUrl = config.default.bffUrl;
+    this.bulkIssuance = config.default.bulkIssuance;
   }
 
   // Sign-up
@@ -55,7 +57,7 @@ export class AuthService {
   }
 
   aadhaarKYC(payload: any) {
-    const api = `${this.baseUrl}/v1/sso/aadhaar/ekyc`;
+    const api = `${this.bulkIssuance}/bulk/v1/learner/aadhaar`;
     return this.http.post(api, payload);
   }
 
@@ -102,6 +104,16 @@ export class AuthService {
       user = JSON.parse(user);
     }
     return user;
+  }
+
+  isKYCCompleted() {
+    if (this.currentUser?.kyc_aadhaar_token) {
+      if (this.currentUser?.aadhaar_token && this.currentUser?.kyc_aadhaar_token !== this.currentUser?.aadhaar_token) { // Institute given Aadhaar and Aadhaar KYC not matched
+        return false;
+      }
+      return true;
+    }
+    return false;
   }
 
   set digilockerAccessToken(token: string) {

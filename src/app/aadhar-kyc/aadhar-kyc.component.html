@@ -23,11 +23,10 @@
                     <div class="flex-center w-400">
                         <div class="w-90">
                             <div class="label-float w-100">
-                                <input type="text" placeholder="" [formControl]="aadhaarFormControl"
-                                    autofocus="true" />
+                                <input type="text" placeholder="" [formControl]="aadhaarFormControl" autofocus="true" minlength="12" maxlength="12" />
                                 <label>{{'ENTER_AADHAAR' | translate}}</label>
                             </div>
-                            <p class="text-danger" *ngIf="aadhaarFormControl?.invalid && aadhaarFormControl?.touched">
+                            <p class="text-danger fs-14 pt-2" *ngIf="aadhaarFormControl?.invalid && aadhaarFormControl?.touched">
                                 {{'ENTER_VALID_AADHAAR_NUMBER' | translate}}
                             </p>
                         </div>
@@ -35,7 +34,7 @@
                 </div>
                 <div class="flex-center">
                     <button type="submit" class="login-btn mt-4 fs-14 fw-600"
-                        [ngClass]="{'disable-btn': !aadhaarFormControl?.valid}" [disabled]="!aadhaarFormControl?.valid">
+                        [ngClass]="{'disable-btn': !aadhaarFormControl?.valid || isGetOTPClicked}" [disabled]="!aadhaarFormControl?.valid || isGetOTPClicked">
                         {{'GET_OTP' | translate}}</button>
                 </div>
             </form>
@@ -44,10 +43,10 @@
                     <div class="flex-center w-400">
                         <div class="w-90">
                             <div class="label-float w-100">
-                                <input type="number" [formControl]="otpFormControl" autofocus="true" />
+                                <input type="text" [formControl]="otpFormControl" minlength="6" maxlength="6" />
                                 <label>{{'ENTER_OTP' | translate}}</label>
                             </div>
-                            <p class="text-danger" *ngIf="otpFormControl?.invalid && otpFormControl?.touched">
+                            <p class="text-danger fs-14 pt-2" *ngIf="otpFormControl?.invalid && otpFormControl?.touched">
                                 {{'INVALID_OTP' | translate}}
                             </p>
                         </div>
@@ -55,8 +54,7 @@
                 </div>
                 <div class="flex-center">
                     <button type="button" class="login-btn mt-4 fs-14 fw-600" [disabled]="!otpFormControl?.valid"
-                        [ngClass]="{'disable-btn': !otpFormControl?.valid}" (click)="submitOTP()"> {{'SUBMIT' |
-                        translate}}</button>
+                        [ngClass]="{'disable-btn': !otpFormControl?.valid}" (click)="submitOTP()"> {{'SUBMIT' | translate}}</button>
                 </div>
             </form>
         </ng-container>
