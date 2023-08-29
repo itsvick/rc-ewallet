@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { KeycloakEventType, KeycloakService } from 'keycloak-angular';
-import { NavigationExtras, Router, RouterStateSnapshot } from '@angular/router';
-import { AppConfig } from '../../app.config';
-import { GeneralService } from 'src/app/services/general/general.service';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { DataService } from 'src/app/services/data/data-request.service';
-import { AuthConfigService } from '../auth-config.service';
-import { KeycloakLoginOptions } from 'keycloak-js';
+import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router, RouterStateSnapshot } from '@angular/router';
 import * as dayjs from 'dayjs';
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakLoginOptions } from 'keycloak-js';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { DataService } from 'src/app/services/data/data-request.service';
+import { GeneralService } from 'src/app/services/general/general.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
+import { AppConfig } from '../../app.config';
+import { AuthConfigService } from '../auth-config.service';
 
 @Component({
   selector: 'app-keycloaklogin',
@@ -117,8 +117,9 @@ export class KeycloakloginComponent implements OnInit {
             this.router.navigate(['/home']);
           }
         }, (err) => {
-          this.router.navigate(['/home']);
+          // this.router.navigate(['/home']);
           console.log(err);
+          this.router.navigate(['/logout']);
         });
       }
     } else {
@@ -139,7 +140,7 @@ export class KeycloakloginComponent implements OnInit {
     let headerOptions = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token')
     });
-    return this.dataService.get({ url: `${this.authConfigService.config.bffUrl}/v1/sso/learner/getdetail`, header: headerOptions }).pipe(map((res: any) => {
+    return this.dataService.get({ url: `${this.authConfigService.config.bulkIssuance}/bulk/v1/learner/getdetail`, header: headerOptions }).pipe(map((res: any) => {
       console.log(res);
 
       localStorage.setItem('currentUser', JSON.stringify(res.result));

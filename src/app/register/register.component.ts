@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { DataService } from '../services/data/data-request.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 import { UtilService } from '../services/util/util.service';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig, BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-register',
@@ -18,27 +18,34 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 export class RegisterComponent implements OnInit {
 
   isLoading: boolean = false;
-  otp: any;
+  // otp: any;
   today: string;
-  isAadhaarVerified: boolean = false;
-  aadhaarUUID: string;
-  aadhaarToken: string;
+  // isAadhaarVerified: boolean = false;
+  // aadhaarUUID: string;
+  // aadhaarToken: string;
   bsConfig: Partial<BsDatepickerConfig>;
   isDigilockerUser = false;
 
   registerModalRef: NgbModalRef;
-  otpModalRef: NgbModalRef;
+  // otpModalRef: NgbModalRef;
   @ViewChild('registerModal') registerModal: TemplateRef<any>;
-  @ViewChild('otpModal') otpModal: TemplateRef<any>;
+  // @ViewChild('otpModal') otpModal: TemplateRef<any>;
+  @ViewChild(BsDatepickerDirective, { static: false }) datepicker?: BsDatepickerDirective;
 
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'),]),
     dob: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
-    aadhaarId: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
-    username: new FormControl('', [Validators.required]),
-    recoveryPhone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
+    // aadhaarId: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]{12}$')]),
+    username: new FormControl('', [Validators.required, Validators.pattern('^[6-9]{1}[0-9]{9}$')]),
+    // recoveryPhone: new FormControl('',  [Validators.required, Validators.pattern('^[6-9]{1}[0-9]{9}$')])
   });
+
+  @HostListener('document:mousewheel')
+  onScrollEvent() {
+    this.datepicker?.hide();
+  }
+
   constructor(
     private readonly dataService: DataService,
     private readonly authConfigService: AuthConfigService,
@@ -70,51 +77,60 @@ export class RegisterComponent implements OnInit {
         gender: params['gender'],
         username: params['username'],
       });
-      // Object.keys(params).forEach(field => {
-      //   this.registerForm.get(field).readonly();
-      // });
+
     });
+    // this.registerForm.controls.aadhaarId.valueChanges.subscribe((value: any) => {
+    //   this.registerForm.controls.aadhaarId.setValue(value.replace(/\D/g, ''), { emitEvent: false });
+    // });
+
+    this.registerForm.controls.username.valueChanges.subscribe((value: any) => {
+      this.registerForm.controls.username.setValue(value.replace(/\D/g, ''), { emitEvent: false });
+    });
+
+    // this.registerForm.controls.recoveryPhone.valueChanges.subscribe((value: any) => {
+    //   this.registerForm.controls.recoveryPhone.setValue(value.replace(/\D/g, ''), { emitEvent: false });
+    // });
   }
 
   get registerFormControl() {
     return this.registerForm.controls;
   }
 
-  verifyAadhaar() {
-    if (!this.registerForm.value.aadhaarId || this.registerFormControl.aadhaarId.errors?.length) {
-      this.toasterService.warning('', this.utilService.translateString('ENTER_VALID_AADHAAR_AND_REVERIFY'));
-      return;
-    }
-    const payload = {
-      aadhaar_id: this.registerForm.value.aadhaarId
-    }
+  // verifyAadhaar() {
+  //   if (!this.registerForm.value.aadhaarId || this.registerFormControl.aadhaarId.errors?.length) {
+  //     this.toasterService.warning('', this.utilService.translateString('ENTER_VALID_AADHAAR_AND_REVERIFY'));
+  //     return;
+  //   }
+  //   const payload = {
+  //     aadhaar_id: this.registerForm.value.aadhaarId
+  //   }
 
-    this.authService.aadhaarKYC(payload).subscribe((res: any) => {
-      if (res.success) {
-        this.otpModalRef = this.modalService.open(this.otpModal, { size: 'sm' });
-        this.aadhaarUUID = res.result.uuid;
-      } else {
-        this.isAadhaarVerified = false;
-        this.aadhaarUUID = undefined;
-        this.toasterService.warning('', this.utilService.translateString('ENTER_VALID_AADHAAR_AND_REVERIFY'));
-      }
-    });
-  }
+  //   this.authService.aadhaarKYC(payload).subscribe((res: any) => {
+  //     if (res.success) {
+  //       this.otpModalRef = this.modalService.open(this.otpModal, { size: 'sm' });
+  //       this.aadhaarUUID = res.result.uuid;
+  //     } else {
+  //       this.isAadhaarVerified = false;
+  //       this.aadhaarUUID = undefined;
+  //       this.toasterService.warning('', this.utilService.translateString('ENTER_VALID_AADHAAR_AND_REVERIFY'));
+  //     }
+  //   });
+  // }
 
-  closeOtpPopup() {
-    this.otpModalRef.close();
-  }
+  // closeOtpPopup() {
+  //   this.otpModalRef.close();
+  // }
 
-  submitOtp() {
-    if (!this.otp) {
-      this.toasterService.warning('', this.utilService.translateString('ENTER_VALID_OTP'));
-      return;
-    }
-    this.otpModalRef.close();
-    this.aadhaarToken = this.aadhaarUUID;
-    this.isAadhaarVerified = true;
-    this.registerForm.get('aadhaarId').disable();
-  }
+  // submitOtp() {
+  //   if (!this.otp) {
+  //     this.toasterService.warning('', this.utilService.translateString('ENTER_VALID_OTP'));
+  //     return;
+  //   }
+  //   this.otpModalRef.close();
+  //   this.aadhaarToken = this.aadhaarUUID;
+  //   this.isAadhaarVerified = true;
+  //   this.registerForm.get('aadhaarId').disable();
+  // }
 
   onDOBValueChange(event) {
     if (dayjs(event).isValid()) {
@@ -128,24 +144,24 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.isAadhaarVerified || !this.aadhaarToken) {
-      this.toasterService.warning('', this.utilService.translateString('VERIFY_AADHAAR_FIRST'));
-      return;
-    }
+    // if (!this.isAadhaarVerified || !this.aadhaarToken) {
+    //   this.toasterService.warning('', this.utilService.translateString('VERIFY_AADHAAR_FIRST'));
+    //   return;
+    // }
 
     if (this.registerForm.valid) {
       this.isLoading = true;
       const payload =
       {
-        url: this.authConfigService.config.bffUrl + '/v1/sso/learner/register',
+        url: this.authConfigService.config.bulkIssuance + '/bulk/v1/learner/register',
         data: {
           "name": this.registerForm.value.name,
           "gender": this.registerForm.value.gender,
           "dob": this.registerForm.value.dob,
           "username": this.registerForm.value.username,
-          "password": this.registerForm.value.password,
-          "recoveryphone": this.registerForm.value.recoveryPhone.toString(),
-          "kyc_aadhaar_token": this.aadhaarToken
+          // "password": this.registerForm.value.password,
+          "recoveryphone": this.registerForm.value.username,
+          // "kyc_aadhaar_token": this.aadhaarToken
         }
       }
 

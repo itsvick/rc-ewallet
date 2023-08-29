@@ -358,5 +358,6 @@
     "VERIFY_AADHAAR_FIRST": "कृपया पहले आधार सत्यापित करें",
     "REGISTRATION_FAILED_TRY_AGAIN": "पंजीकरण विफल हुआ। कृपया पुनः प्रयास करें",
     "VERIFY_AADHAAR": "सत्यापित करें",
-    "UNABLE_TO_FETCH_PHONE_NUMBER_FROM_MERI_PEHCHAAN": "मेरी-पहचान से फ़ोन नंबर लाने में असमर्थ"
+    "UNABLE_TO_FETCH_PHONE_NUMBER_FROM_MERI_PEHCHAAN": "मेरी-पहचान से फ़ोन नंबर लाने में असमर्थ",
+    "USERNAME_MOBILE_NUMBER": "उपयोगकर्ता नाम और मोबाइल नंबर"
 }
