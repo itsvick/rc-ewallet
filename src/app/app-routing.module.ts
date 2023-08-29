@@ -39,6 +39,8 @@ import { OpportuntiesComponent } from './opportunties_dynamic/opportunties.compo
 import { OpportunitieComponent } from './opportunitie/opportunitie.component';
 import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
 import { AccountComponent } from './account/account.component';
+import { WalletWorkerComponent } from './wallet-worker/wallet-worker.component';
+import { WalletUiGetComponent } from './wallet-ui-get/wallet-ui-get.component';
 
 const routes: Routes = [
   {
@@ -180,6 +182,27 @@ const routes: Routes = [
       }
     },
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'wallet-worker',
+    component: WalletWorkerComponent,
+    canActivate: [AuthGuard],
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'Wallet Worker', pageid: 'walletworker', type: 'view', subtype: 'scroll'
+      }
+    }
+  },
+  {
+    path: 'wallet-worker/wallet-ui-get',
+    component: WalletUiGetComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'Wallet Worker Get', pageid: 'walletworkerget', type: 'view', subtype: 'scroll'
+      }
+    }
   },
   {
     path: '**',
