@@ -12,6 +12,7 @@
   "title": "Universal Learners Passport",
   "baseUrl": "https://devulp.uniteframework.io/registry",
   "bffUrl": "https://devulp.uniteframework.io/ulp-bff",
+  "bulkIssuance": "https://devulp.uniteframework.io/bulk-issuance",
   "schemaUrl": "https://devulp.uniteframework.io/registry/api/docs/swagger.json",
   "footerText": "Universal Learners Passport",
   "languages": [

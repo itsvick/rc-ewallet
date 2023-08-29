@@ -16,7 +16,7 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-md-6 col-12 offset-md-3">
-          <div class="mb-3 pb-10">
+          <div class="mb-2 pb-10">
             <div class="label-float">
               <input type="text" class="form-control p-4" id="name" name="name" formControlName="name"
                 placeholder="{{'ENTER_YOUR_NAME' | translate}}" [readonly]="isDigilockerUser">
@@ -34,10 +34,10 @@
           </div>
         </div>
         <div class="col-md-6 col-12 offset-md-3">
-          <div class="mb-3 pb-10">
+          <div class="mb-2 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control calendar p-4" id="dob" name="dob" formControlName="dob" bsDatepicker [bsConfig]="bsConfig"
-              (bsValueChange)="onDOBValueChange($event)" [readonly]="true" [attr.disabled]="isDigilockerUser ? '' : null">
+              (bsValueChange)="onDOBValueChange($event)" [readonly]="true" [attr.disabled]="isDigilockerUser ? '' : null" placeholder="DD/MM/YYYY">
               <label for="dob">{{'DOB' | translate}}</label>
             </div>
             <p class="text-danger pt-2 mb-0 font-size-sm"
@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="col-md-6 col-12 offset-md-3">
-          <div class="mb-3 pb-10">
+          <div class="mb-2 pb-10">
             <div class="label-float w-100">
               <select class="w-20 form-control" formControlName="gender" [attr.disabled]="isDigilockerUser ? '' : null">
                 <option value="" disabled selected>{{'SELECT_GENDER' | translate}}</option>
@@ -60,7 +60,7 @@
               {{'GENDER_REQUIRED' | translate }}</p>
           </div>
         </div>
-        <div class="col-md-5 col-10 offset-md-3" [ngClass]="{'col-md-4 col-12': isAadhaarVerified}">
+        <!-- <div class="col-md-5 col-10 offset-md-3" [ngClass]="{'col-md-4 col-12': isAadhaarVerified}">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control p-4" id="aadhaarId" name="aadhaarId" formControlName="aadhaarId"
@@ -74,17 +74,17 @@
               *ngIf="registerFormControl.aadhaarId.invalid && registerFormControl.aadhaarId.touched">
               {{'ENTER_VALID_AADHAAR_NUMBER' | translate }}</p>
           </div>
-        </div>
-        <div class="col-md-1 col-2 mb-3 d-flex justify-content-center align-items-center" *ngIf="!isAadhaarVerified">
+        </div> -->
+        <!-- <div class="col-md-1 col-2 mb-3 d-flex justify-content-center align-items-center" *ngIf="!isAadhaarVerified">
           <button type="button" (click)="verifyAadhaar()" class="btn btn-primary">{{'VERIFY_AADHAAR' |
             translate}}</button>
-        </div>
+        </div> -->
         <div class="col-md-6 col-12 offset-md-3">
-          <div class="mb-3 pb-10">
+          <div class="mb-2 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control p-4" id="username" name="username" formControlName="username"
               minlength="10" maxlength="10" placeholder="{{'ENTER_YOUR_USERNAME' | translate}}" [readonly]="isDigilockerUser">
-              <label for="username">{{'USERNAME_MOBILE_NUMBER' | translate}}</label>
+              <label for="username">{{'MOBILE_NUMBER' | translate}}</label>
             </div>
             <p class="text-danger pt-2 mb-0 font-size-sm"
               *ngIf="registerFormControl.username.invalid && registerFormControl.username.touched">
@@ -102,7 +102,7 @@
               *ngIf="registerFormControl.password.invalid && registerFormControl.password.touched">{{'PASSWORD_REQUIRED' | translate }}</p>
           </div>
         </div> -->
-        <div class="col-md-6 col-12 offset-md-3">
+        <!-- <div class="col-md-6 col-12 offset-md-3">
           <div class="mb-3 pb-10">
             <div class="label-float w-100">
               <input type="text" class="form-control p-4" id="recoveryPhone" name="recoveryPhone" minlength="10" maxlength="10"
@@ -114,7 +114,7 @@
               *ngIf="registerFormControl.recoveryPhone.invalid && registerFormControl.recoveryPhone.touched">
               {{'ENTER_VALID_RECOVERY_PHONE' | translate }}</p>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="pb-10 text-center d-flex justify-content-center">
         <button type="submit" [disabled]="registerForm?.invalid" [ngClass]="{'disable-btn': !registerForm?.valid}"
@@ -142,7 +142,7 @@
   </div>
 </ng-template>
 
-<ng-template #otpModal tabindex="-1" role="dialog" aria-labelledby="otpModal">
+<!-- <ng-template #otpModal tabindex="-1" role="dialog" aria-labelledby="otpModal">
   <div class="modal-content bo-rd-10">
     <div class="modal-header">
       <h5 class="modal-title">{{'CONFIRM_OTP' | translate}}</h5>
@@ -165,4 +165,4 @@
         translate}}</button>
     </div>
   </div>
-</ng-template>
+</ng-template> -->
