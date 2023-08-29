@@ -46,8 +46,7 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        this.showToolbar =
-          this.activatedRoute.root.firstChild.snapshot.data['showToolbar'];
+        this.showToolbar = this.activatedRoute.root.firstChild.snapshot.data['showToolbar'];
       });
   }
 }

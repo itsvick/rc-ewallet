@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { forkJoin, Observable, of } from 'rxjs';
-import { concatMap, map, switchMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CredentialService } from 'src/app/services/credential/credential.service';
 import { DataService } from 'src/app/services/data/data-request.service';
@@ -25,6 +24,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   allCredentials: any;
   showCredentialList = false;
   selectedCategory: string = '';
+
   @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
 
   constructor(
@@ -46,6 +46,10 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       this.allCredentials = [...this.credentialService.credentialList];
     } else {
       this.fetchCredentialCategories();
+    }
+
+    if(!this.authService.isKYCCompleted()){
+      this.router.navigate(['/aadhaar-kyc']);
     }
   }
 
