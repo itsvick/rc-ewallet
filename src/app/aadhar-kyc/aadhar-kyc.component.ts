@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
@@ -6,6 +6,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { AuthConfigService } from '../authentication/auth-config.service';
 import { DataService } from '../services/data/data-request.service';
 import { map } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AadhaarKycStatusComponent } from '../aadhaar-kyc-status/aadhaar-kyc-status.component';
 
 @Component({
   selector: 'app-aadhar-kyc',
@@ -25,23 +27,15 @@ export class AadharKycComponent implements OnInit {
 
   @ViewChild("otpModel") otpModel: ElementRef;
 
+  @Output() kycCompleted = new EventEmitter<boolean>();
+
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
     private readonly authConfigService: AuthConfigService,
-    private readonly dataService: DataService
-  ) {
-    const navigation = this.router.getCurrentNavigation();
-    // this.state = { ...navigation.extras.state };
-
-    // if (!Object.keys(this.state).length) {
-    //   if (this.authService.isLoggedIn) {
-    //     this.router.navigate(['/home']);
-    //   } else {
-    //     this.router.navigate(['/login']);
-    //   }
-    // }
-  }
+    private readonly dataService: DataService,
+    private readonly modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.aadhaarFormControl.valueChanges.subscribe((value: any) => {
@@ -63,11 +57,12 @@ export class AadharKycComponent implements OnInit {
     }
     this.authService.aadhaarKYC(payload).subscribe((res: any) => {
       this.getDetails();
-      this.showKYCStatus = true;
       this.isAadhaarVerified = true;
+      this.openStatusModal();
+      this.kycCompleted.emit(true);
     }, (error) => {
-      this.showKYCStatus = true;
       this.isAadhaarVerified = false;
+      this.openStatusModal();
     });
   }
 
@@ -91,6 +86,24 @@ export class AadharKycComponent implements OnInit {
 
   startKYC() {
     this.showForm = true;
+  }
+
+  openStatusModal() {
+    const modalRef = this.modalService.open(AadhaarKycStatusComponent, {
+      windowClass: 'round-corner-border',
+      centered: true,
+      size: 'sm'
+    });
+
+    modalRef.componentInstance.isVerified = this.isAadhaarVerified;
+    modalRef.componentInstance.tryAgain.subscribe(() => {
+      modalRef.dismiss();
+    });
+
+    modalRef.componentInstance.close.subscribe(() => {
+      this.kycCompleted.emit(true);
+      modalRef.dismiss();
+    });
   }
 
 }

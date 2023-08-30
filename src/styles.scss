@@ -1203,3 +1203,8 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   display: none;
 }
+
+
+.round-corner-border .modal-content {
+  border-radius: 10px;
+}

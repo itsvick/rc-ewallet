@@ -25,6 +25,8 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   showCredentialList = false;
   selectedCategory: string = '';
 
+  showAadhaarKYC = false;
+
   @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
 
   constructor(
@@ -41,9 +43,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     if (!this.authService.isKYCCompleted()) {
-      this.toastMessage.error('', this.generalService.translateString('COMPLETE_AADHAAR_KYC_FIRST'))
-      this.router.navigate(['/aadhaar-kyc']);
-      return;
+      this.showAadhaarKYC = true;
     }
     if (this.credentialService.selectedCategory) {
       this.selectedCategory = this.credentialService.selectedCategory;
@@ -52,7 +52,6 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     } else {
       this.fetchCredentialCategories();
     }
-
   }
 
   fetchCredentialCategories() {
