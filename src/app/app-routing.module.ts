@@ -115,17 +115,17 @@ const routes: Routes = [
     },
     canActivate: [AuthGuard]
   },
-  {
-    path: 'aadhaar-kyc',
-    component: AadharKycComponent,
-    data: {
-      showToolbar: false,
-      telemetry: {
-        env: 'home', pageid: 'home', type: 'list', subtype: 'scroll'
-      },
-    },
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'aadhaar-kyc',
+  //   component: AadharKycComponent,
+  //   data: {
+  //     showToolbar: false,
+  //     telemetry: {
+  //       env: 'home', pageid: 'home', type: 'list', subtype: 'scroll'
+  //     },
+  //   },
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'search-certificates',
     component: SearchCertificatesComponent,
@@ -171,15 +171,15 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'account',
+    path: 'settings/account',
     component: AccountComponent,
     data: {
-      showToolbar: false,
+      showToolbar: true,
       telemetry: {
         env: 'account', pageid: 'account', type: 'view', subtype: 'scroll'
       }
     },
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

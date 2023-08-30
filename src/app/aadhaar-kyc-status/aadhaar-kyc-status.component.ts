@@ -10,6 +10,7 @@ export class AadhaarKycStatusComponent implements OnInit {
 
   @Input() isVerified: boolean;
   @Output() tryAgain = new EventEmitter();
+  @Output() close = new EventEmitter();
   constructor(
     private readonly router: Router
   ) { }
@@ -18,5 +19,9 @@ export class AadhaarKycStatusComponent implements OnInit {
 
   emitTryAgain() {
     this.tryAgain.emit();
+  }
+
+  emitClose() {
+    this.close.emit();
   }
 }

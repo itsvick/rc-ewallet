@@ -365,5 +365,6 @@
     "USERNAME_MOBILE_NUMBER": "Username/Mobile Number",
     "MOBILE_NUMBER": "Mobile Number",
     "ENTER_VALID_MOBILE_NUMBER": "Enter Valid Mobile Number",
-    "COMPLETE_AADHAAR_KYC_FIRST": "Please complete Aadhar KYC first"
+    "COMPLETE_AADHAAR_KYC_FIRST": "Please complete Aadhar KYC first",
+    "AADHAAR_TOKEN": "Aadhaar Token"
 }
