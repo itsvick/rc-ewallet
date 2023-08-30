@@ -38,6 +38,7 @@ import { RegisterComponent } from './register/register.component';
 import { OpportuntiesComponent } from './opportunties_dynamic/opportunties.component';
 import { OpportunitieComponent } from './opportunitie/opportunitie.component';
 import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   {
@@ -168,6 +169,17 @@ const routes: Routes = [
       }
     },
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'account', pageid: 'account', type: 'view', subtype: 'scroll'
+      }
+    },
+    // canActivate: [AuthGuard]
   },
   {
     path: '**',
