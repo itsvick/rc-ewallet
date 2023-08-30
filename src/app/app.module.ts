@@ -151,6 +151,7 @@ import { OpportunitieComponent } from './opportunitie/opportunitie.component';
 import { configurationFactory } from './configuration.factory';
 import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
 import { AadhaarKycStatusComponent } from './aadhaar-kyc-status/aadhaar-kyc-status.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -207,7 +208,8 @@ import { AadhaarKycStatusComponent } from './aadhaar-kyc-status/aadhaar-kyc-stat
     OpportuntiesComponent,
     OpportunitieComponent,
     AadharKycComponent,
-    AadhaarKycStatusComponent
+    AadhaarKycStatusComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
