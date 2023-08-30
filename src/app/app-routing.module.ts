@@ -171,15 +171,15 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'account',
+    path: 'settings/account',
     component: AccountComponent,
     data: {
-      showToolbar: false,
+      showToolbar: true,
       telemetry: {
         env: 'account', pageid: 'account', type: 'view', subtype: 'scroll'
       }
     },
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
