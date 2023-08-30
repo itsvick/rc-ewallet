@@ -21,11 +21,6 @@ export class OpportunitieComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (!this.authService.isKYCCompleted()) {
-      this.toastMsgService.error('', this.utilService.translateString('COMPLETE_AADHAAR_KYC_FIRST'))
-      this.router.navigate(['/aadhaar-kyc']);
-      return;
-    }
     this.opportunities= (opp as any).default;
   }
 }
