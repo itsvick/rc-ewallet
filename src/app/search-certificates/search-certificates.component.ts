@@ -40,11 +40,6 @@ export class SearchCertificatesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.authService.isKYCCompleted()) {
-      this.toastMsgService.error('', this.utilService.translateString('COMPLETE_AADHAAR_KYC_FIRST'))
-      this.router.navigate(['/aadhaar-kyc']);
-      return;
-    }
     this.fetchCredentials();
   }
 
