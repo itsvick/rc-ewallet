@@ -49,7 +49,7 @@ export class AuthGuard extends KeycloakAuthGuard {
             //         console.log({ res });
             //     });
             const isTokenAvailable = localStorage.getItem('token');
-            if (isTokenAvailable) {
+            if (isTokenAvailable || state.url == '/wallet-worker') {
                 this.keycloak
                     .getKeycloakInstance()
                     .login(<KeycloakLoginOptions>{
