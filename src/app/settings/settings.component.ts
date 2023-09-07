@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {
   NgbModal,
   NgbModalOptions,
@@ -6,17 +6,17 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../services/auth/auth.service';
 import { GeneralService } from '../services/general/general.service';
-import { IInteractEventInput } from '../services/telemetry/telemetry-interface';
+import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ThemeService } from '../../app/services/theme/theme.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, AfterViewInit {
 
   languageSwitchRef: NgbModalRef;
   languages = [];
@@ -31,7 +31,8 @@ export class SettingsComponent implements OnInit {
     private readonly generalService: GeneralService,
     private readonly toastMsgService: ToastMessageService,
     private readonly router: Router,
-    private themeService: ThemeService
+    private readonly themeService: ThemeService,
+    private readonly activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -82,6 +83,10 @@ export class SettingsComponent implements OnInit {
     this.authService.doLogout();
   }
 
+  ngAfterViewInit(): void {
+    this.raiseImpressionEvent();
+  }
+
   raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {
     const telemetryInteract: IInteractEventInput = {
       context: {
@@ -95,6 +100,22 @@ export class SettingsComponent implements OnInit {
       },
     };
     this.telemetryService.interact(telemetryInteract);
+  }
+
+  raiseImpressionEvent() {
+    const telemetryImpression: IImpressionEventInput = {
+      context: {
+        env: this.activatedRoute.snapshot?.data?.telemetry?.env,
+        cdata: []
+      },
+      edata: {
+        type: this.activatedRoute.snapshot?.data?.telemetry?.type,
+        pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
+        uri: this.router.url,
+        subtype: this.activatedRoute.snapshot?.data?.telemetry?.subtype,
+      }
+    };
+    this.telemetryService.impression(telemetryImpression);
   }
 
 }
