@@ -91,6 +91,7 @@ export class SearchCertificatesComponent implements OnInit {
   }
 
   renderCertificate(credential: any) {
+    this.raiseInteractEvent('credential-view');
     const navigationExtras: NavigationExtras = {
       state: credential,
     };
