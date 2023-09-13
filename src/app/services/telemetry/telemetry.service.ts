@@ -55,7 +55,7 @@ export class TelemetryService {
         authtoken: this.context.authToken || '',
         uid: this.context.uid || '',
         sid: this.context.sid,
-        batchsize: 2,
+        batchsize: 20,
         mode: this.context.mode,
         host: this.context.host,
         endpoint: this.context.endpoint || '/v1/telemetry',
