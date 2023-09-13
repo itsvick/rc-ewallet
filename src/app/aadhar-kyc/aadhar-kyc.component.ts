@@ -79,9 +79,9 @@ export class AadharKycComponent implements OnInit {
 
     let apiUrl;
     if (localStorage.getItem('isDigilockerUser') === 'true') {
-      apiUrl = `${this.authConfigService.config.bulkIssuance}/bulk/v1/learner/digi/getdetail`;
+      apiUrl = `${this.authConfigService.config.bffUrl}/v1/learner/digi/getdetail`;
     } else {
-      apiUrl = `${this.authConfigService.config.bulkIssuance}/bulk/v1/learner/getdetail`;
+      apiUrl = `${this.authConfigService.config.bffUrl}/v1/learner/getdetail`;
     }
 
     this.dataService.get({ url: apiUrl, header: headerOptions }).pipe(map((res: any) => {
