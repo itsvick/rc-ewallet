@@ -2,6 +2,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router, RouterStateSnapshot } from '@angular/router';
 import * as dayjs from 'dayjs';
+import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakLoginOptions } from 'keycloak-js';
 import { Observable } from 'rxjs';
@@ -11,6 +12,8 @@ import { GeneralService } from 'src/app/services/general/general.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 import { AppConfig } from '../../app.config';
 import { AuthConfigService } from '../auth-config.service';
+
+dayjs.extend(customParseFormat);
 
 @Component({
   selector: 'app-keycloaklogin',
@@ -90,15 +93,9 @@ export class KeycloakloginComponent implements OnInit {
           }
         }, error => {
           if (error?.error?.success === false) {
-            let dob;
-            if (accountRes?.attributes?.dob?.[0]) {
-              dob = dayjs(accountRes.attributes.dob[0], 'DD/MM/YYYY').format('DD/MM/YYYY');
-            }
             this.router.navigate(['/register'], {
               queryParams: {
-                name: accountRes.attributes.name[0],
-                dob,
-                gender: accountRes.attributes.gender[0],
+                ...this.digiLockerUser,
                 username: accountRes.attributes.phone_number[0]
               }
             })
