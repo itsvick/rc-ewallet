@@ -41,6 +41,8 @@ import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
 import { AccountComponent } from './account/account.component';
 import { WalletWorkerComponent } from './wallet-worker/wallet-worker.component';
 import { WalletUiGetComponent } from './wallet-ui-get/wallet-ui-get.component';
+import { RaiseClaimsComponent } from './raise-claims/raise-claims.component';
+import { RequestCorrectionComponent } from './request-correction/request-correction.component';
 
 const routes: Routes = [
   {
@@ -171,6 +173,26 @@ const routes: Routes = [
       }
     },
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'raise-claims',
+    component: RaiseClaimsComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'raise-claims', pageid: 'raise-claims', type: 'view', subtype: 'scroll'
+      }
+    },
+  },
+  {
+    path: 'request-correction',
+    component: RequestCorrectionComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'request-correction', pageid: 'request-correction', type: 'view', subtype: 'scroll'
+      }
+    },
   },
   {
     path: 'settings/account',
