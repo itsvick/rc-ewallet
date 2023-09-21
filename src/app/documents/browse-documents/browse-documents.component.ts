@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CredentialService } from 'src/app/services/credential/credential.service';
 import { DataService } from 'src/app/services/data/data-request.service';
 import { GeneralService } from 'src/app/services/general/general.service';
-import { IImpressionEventInput } from 'src/app/services/telemetry/telemetry-interface';
+import { IImpressionEventInput, IInteractEventInput } from 'src/app/services/telemetry/telemetry-interface';
 import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 
@@ -25,6 +25,8 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   showCredentialList = false;
   selectedCategory: string = '';
 
+  showAadhaarKYC = false;
+
   @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
 
   constructor(
@@ -41,9 +43,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     if (!this.authService.isKYCCompleted()) {
-      this.toastMessage.error('', this.generalService.translateString('COMPLETE_AADHAAR_KYC_FIRST'))
-      this.router.navigate(['/aadhaar-kyc']);
-      return;
+      this.showAadhaarKYC = true;
     }
     if (this.credentialService.selectedCategory) {
       this.selectedCategory = this.credentialService.selectedCategory;
@@ -52,7 +52,6 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     } else {
       this.fetchCredentialCategories();
     }
-
   }
 
   fetchCredentialCategories() {
@@ -60,7 +59,9 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       this.showApproval = false;
       console.log("DID", this.authService.currentUser.did);
       this.isLoading = true;
-      this.credentialService.getAllCredentials().pipe(map((res: any) => {
+      this.credentialService.getAllCredentials().pipe(
+        first(),
+        map((res: any) => {
         console.log("result", res);
         this.allCredentials = res;
         res.map((item: any) => {
@@ -79,6 +80,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   showCredentials(category) {
     this.selectedCategory = category?.name;
     this.showCredentialList = true;
+    this.raiseInteractEvent('credential-type-select')
     // const navigationExtras: NavigationExtras = {
     //   state: category
     // }
@@ -157,6 +159,22 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       }
     };
     this.telemetryService.impression(telemetryImpression);
+  }
+
+  raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {
+    const telemetryInteract: IInteractEventInput = {
+      context: {
+        env: this.activatedRoute.snapshot?.data?.telemetry?.env,
+        cdata: []
+      },
+      edata: {
+        id,
+        type,
+        subtype,
+        pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
+      }
+    };
+    this.telemetryService.interact(telemetryInteract);
   }
 
 }

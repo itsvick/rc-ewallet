@@ -152,6 +152,10 @@ import { configurationFactory } from './configuration.factory';
 import { AadharKycComponent } from './aadhar-kyc/aadhar-kyc.component';
 import { AadhaarKycStatusComponent } from './aadhaar-kyc-status/aadhaar-kyc-status.component';
 import { AccountComponent } from './account/account.component';
+import { WalletWorkerComponent } from './wallet-worker/wallet-worker.component';
+import { WalletUiGetComponent } from './wallet-ui-get/wallet-ui-get.component';
+import { RaiseClaimsComponent } from './raise-claims/raise-claims.component';
+import { RequestCorrectionComponent } from './request-correction/request-correction.component';
 
 @NgModule({
   declarations: [
@@ -209,7 +213,11 @@ import { AccountComponent } from './account/account.component';
     OpportunitieComponent,
     AadharKycComponent,
     AadhaarKycStatusComponent,
-    AccountComponent
+    AccountComponent,
+    WalletWorkerComponent,
+    WalletUiGetComponent,
+    RaiseClaimsComponent,
+    RequestCorrectionComponent,
   ],
   imports: [
     BrowserModule,

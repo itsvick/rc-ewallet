@@ -1,32 +1,33 @@
-<div class="container pb-0 mt-20">
-        <div>
-            <div  class="head-title text-center"> Hi
-                 <span class="text-blue-shade0 pl-1">Ekta Yadav</span>
-            </div>
-            <dl class="row mt-3 mx-2">
-                <dt class="col-sm-12">School</dt>
-                <dd class="col-sm-12">DPS Public School</dd>
-              
-                <dt class="col-sm-12">Aadhaar Number</dt>
-                <dd class="col-sm-12">
-                 *******3421
-                </dd>
-              
-                <dt class="col-sm-12">Phone Number</dt>
-                <dd class="col-sm-12">8087660652</dd>
-              
-                <dt class="col-sm-12 text-truncate">Date of Birth</dt>
-                <dd class="col-sm-12">29/12/1995</dd>
-              
-                <dt class="col-sm-12">Gender</dt>
-                <dd class="col-sm-12">
-                  Female
-                </dd>
-              </dl>
-        </div>   
-        <div class="text-center">
-            <button type="button" class="btn btn-primary btn-md my-3 px-5 fs-12 text-inherit">Raise a claim</button>
-            <div><i class="fa fa-sign-out pr-2 fs-20"></i>Logout</div>
-        </div> 
-        
+<div class="container pb-4 mt-20 mb-8">
+  <div>
+    <div class="head-title text-center">{{'HI' | translate}}
+      <span class="text-blue-shade0 pl-1">{{accountDetails?.name}}</span>
+    </div>
+    <dl class="row mt-3 mx-2">
+      <dt class="col-sm-12">{{'SCHOOL' | translate}}</dt>
+      <dd class="col-sm-12">DPS Public School</dd>
+
+      <dt class="col-sm-12">{{'AADHAAR_TOKEN' | translate}}</dt>
+      <dd class="col-sm-12">
+        {{accountDetails?.kyc_aadhaar_token}}
+      </dd>
+
+      <dt class="col-sm-12">{{'PHONE_NO' | translate}}</dt>
+      <dd class="col-sm-12">{{accountDetails?.username}}</dd>
+
+      <dt class="col-sm-12 text-truncate">Date of Birth</dt>
+      <dd class="col-sm-12">{{accountDetails?.dob}}</dd>
+
+      <dt class="col-sm-12">{{'GENDER' | translate}}</dt>
+      <dd class="col-sm-12">
+        <span *ngIf="accountDetails?.gender==='M'">{{'MALE' | translate}}</span>
+        <span *ngIf="accountDetails?.gender==='F'">{{'FEMALE' | translate}}</span>
+      </dd>
+    </dl>
+  </div>
+  <div class="text-center">
+    <button type="button" class="btn btn-primary btn-md my-3 px-5 fs-12 text-inherit">{{'RAISE_A_CLAIM' | translate}}</button>
+    <div [routerLink]="['/logout']"><i class="fa fa-sign-out pr-2 fs-20"></i>{{'LOGOUT' | translate}}</div>
+  </div>
+
 </div>

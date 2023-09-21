@@ -16,7 +16,6 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class AuthService {
   baseUrl: string;
-  bulkIssuance: string;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   _currentUser;
   _digilockerAccessToken: string;
@@ -31,7 +30,6 @@ export class AuthService {
     //   this.baseUrl = config.bffUrl;
     // })
     this.baseUrl = config.default.bffUrl;
-    this.bulkIssuance = config.default.bulkIssuance;
   }
 
   // Sign-up
@@ -57,7 +55,7 @@ export class AuthService {
   }
 
   aadhaarKYC(payload: any) {
-    const api = `${this.bulkIssuance}/bulk/v1/learner/aadhaar`;
+    const api = `${this.baseUrl}/v1/learner/aadhaar`;
     return this.http.post(api, payload);
   }
 

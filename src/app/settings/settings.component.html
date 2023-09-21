@@ -8,7 +8,7 @@
             <i class="fa fa-user float-left fs-26" aria-hidden="true"></i>
           </div>
           <div class="pl-10">
-            <div class="fs-16">{{ "ACCOUNT" | translate }}</div>
+            <div class="fs-16" [routerLink]="['/settings/account']" (click)="raiseInteractEvent('account-page-nav-btn')">{{ "ACCOUNT" | translate }}</div>
             <div class="fs-14 text-gray-100">
               {{ "PRIVACY_SECURITY_OR_NUMBER" | translate }}
             </div>
