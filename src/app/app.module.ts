@@ -154,6 +154,8 @@ import { AadhaarKycStatusComponent } from './aadhaar-kyc-status/aadhaar-kyc-stat
 import { AccountComponent } from './account/account.component';
 import { WalletWorkerComponent } from './wallet-worker/wallet-worker.component';
 import { WalletUiGetComponent } from './wallet-ui-get/wallet-ui-get.component';
+import { RaiseClaimsComponent } from './raise-claims/raise-claims.component';
+import { RequestCorrectionComponent } from './request-correction/request-correction.component';
 
 @NgModule({
   declarations: [
@@ -214,6 +216,8 @@ import { WalletUiGetComponent } from './wallet-ui-get/wallet-ui-get.component';
     AccountComponent,
     WalletWorkerComponent,
     WalletUiGetComponent,
+    RaiseClaimsComponent,
+    RequestCorrectionComponent,
   ],
   imports: [
     BrowserModule,
