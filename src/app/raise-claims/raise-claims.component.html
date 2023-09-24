@@ -1,23 +1,117 @@
-<div class="container">
-<div class="fs-18 font-600 text-underline">Raise Grievance for Credentials</div>
-<div class="fs-14 text-black-grey py-2 text-center ">Select from below either to raise requests for correction or raise claim for a credential from your school!</div>
-<div class="bg-grey-shade1 my-2">
-    <div class="d-flex p-2 justify-content-center align-items-center">
-        <img src="assets/images/raise-claim.png" alt="">
-        <div class="font-600 fs-16 text-grey-shade3 text-underline">Raise Claims</div>
+<div class="container mb-100">
+    <div class="bg-grey-shade1 my-2">
+        <span class="ml-3 float-left">
+            <i [routerLink]="['/request-correction']" class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
+        </span>
+        <div class="d-flex p-2 justify-content-center align-items-center">
+            <img src="assets/images/raise-claim.png" alt="">
+            <div class="font-600 fs-16 text-grey-shade3 text-underline" [routerLink]="['/raise-claims']">{{'RAISE_CLAIMS' | translate}}
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <!-- <form [formGroup]="basicClaimForm" (ngSubmit)="onBasicClaimFormSubmit($event)"> -->
+            <div class="mb-3 pb-10">
+                <label for="state">{{'SELECT_CREDENTIAL_TYPE' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-control" aria-label="Select Credential Type" [(ngModel)]="credSchemaId"
+                    (ngModelChange)="onSchemaChange()">
+                    <option value="" disabled selected>{{'SELECT_CREDENTIAL_TYPE' | translate}}</option>
+                    <option *ngFor="let schema of schemas" [value]="schema.schema_id">{{schema.schema_name}}</option>
+                </select>
+            </div>
+            <!-- <div class="mb-3 pb-10">
+                <label for="state">{{'STATE' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-control p-2 text-truncate" id="state" formControlName="state"
+                    (change)="onStateChange($event.target.value)">
+                    <option value="" disabled selected>{{'SELECT_STATE' | translate}}</option>
+                    <option *ngFor="let item of stateList" [value]="item?.stateCode">{{item?.stateName}}</option>
+                </select>
+            </div>
+
+            <div class="mb-3 pb-10">
+                <label for="district">{{'DISTRICT' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-control p-2 text-truncate" id="district" formControlName="district"
+                    (change)="onDistrictChange($event.target.value)">
+                    <option value="" disabled selected>{{'SELECT_DISTRICT' | translate}}</option>
+                    <option *ngFor="let item of districtList" [value]="item?.districtCode">{{item?.districtName}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3 pb-10">
+                <label for="block">{{'BLOCK' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-control p-2 text-truncate" id="block" formControlName="block"
+                    (change)="onBlockChange($event.target.value)">
+                    <option value="" disabled selected>{{'SELECT_BLOCK' | translate}}</option>
+                    <option *ngFor="let item of blockList" [value]="item?.blockCode">{{item?.blockName}}</option>
+                </select>
+            </div>
+
+            <div class="mb-3 pb-10">
+                <label for="school">{{'SCHOOL' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-control p-2 text-truncate" id="school" formControlName="school"
+                    (change)="onSchoolChange($event.target.value)">
+                    <option value="" disabled selected>{{'SELECT_SCHOOL' | translate}}</option>
+                    <option *ngFor="let item of schoolList" [value]="item?.udiseCode">{{item?.schoolName}}</option>
+                </select>
+            </div> -->
+
+            <!-- <div class="pb-10 text-center">
+                <button class="btn btn-primary" type="submit" [disabled]="basicClaimForm.invalid">{{'NEXT' | translate}}</button>
+            </div> -->
+        <!-- </form> -->
+
+
+        <form [formGroup]="claimForm" (ngSubmit)="onSubmit($event)" *ngIf="fields.length">
+            <div class="row">
+                <div *ngFor="let field of fields" class="col-6 pt-3">
+                    <label [for]="field.key">{{field.label}}<span class="text-danger"
+                            *ngIf="field.isRequired">*</span></label>
+                    <input type="text" [formControlName]="field.key" class="form-control" [name]="field.key"
+                        [placeholder]="field.label" />
+                    <p class="text-danger pt-2 mb-0"
+                        *ngIf="claimForm.controls[field.key]?.dirty && claimForm.controls[field.key]?.invalid">
+                        {{'PLEASE_ENTER_VALID' | translate : {value1: field.label} }}</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button class="btn btn-primary" type="submit">{{'SUBMIT' | translate}}</button>
+            </div>
+        </form>
     </div>
 </div>
-<div class="grey-bg p-3  my-3 text-center">
-    <div class="fs-16">I here by confirm that, I am a student of “ Grade 4th “ in “ Vidyapeeth Public School” .</div>
+
+
+<div class="text-center" *ngIf="isLoading">
+    <div class="center-loading">
+        <div class="spinner-border">
+        </div>
+    </div>
 </div>
-<div class="d-flex justify-content-center align-items-center my-5">
-    <button type="button" class="blue-outline text-danger mr-2"><i class="fa fa-close pr-2"></i>Cancel</button>
-    <button type="button" class="blue-outline text-success"><i class="fa fa-check pr-2"></i>Confirm</button>
-</div>
-<div class="grey-bg p-3  my-3 text-center">
-    <div class="fs-16">“ Your request for an Enrollment Credentials has been forwarded to the Principal. “</div>
-</div>
-<div class="text-center my-5">
-    <button type="button" class="blue-outline text-success">Ok</button>
-</div>
-</div>
+
+<!-- <div class="container">
+    <div class="fs-18 font-600 text-underline">Raise Grievance for Credentials</div>
+    <div class="fs-14 text-black-grey py-2 text-center ">Select from below either to raise requests for correction or
+        raise claim for a credential from your school!</div>
+    <div class="bg-grey-shade1 my-2">
+        <div class="d-flex p-2 justify-content-center align-items-center">
+            <img src="assets/images/raise-claim.png" alt="">
+            <div class="font-600 fs-16 text-grey-shade3 text-underline">Raise Claims</div>
+        </div>
+    </div>
+    <div class="grey-bg p-3  my-3 text-center">
+        <div class="fs-16">I here by confirm that, I am a student of “ Grade 4th “ in “ Vidyapeeth Public School” .
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center my-5">
+        <button type="button" class="blue-outline text-danger mr-2"><i class="fa fa-close pr-2"></i>Cancel</button>
+        <button type="button" class="blue-outline text-success"><i class="fa fa-check pr-2"></i>Confirm</button>
+    </div>
+    <div class="grey-bg p-3  my-3 text-center">
+        <div class="fs-16">“ Your request for an Enrollment Credentials has been forwarded to the Principal. “</div>
+    </div>
+    <div class="text-center my-5">
+        <button type="button" class="blue-outline text-success">Ok</button>
+    </div>
+</div> -->

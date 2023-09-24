@@ -1,7 +1,12 @@
-<div class=" mb-4 mt-4 d-flex justify-content-around align-content-center">
-  <div class="head-title" *ngIf="showUsername">
+<div class=" mb-4 mt-4 d-flex justify-content-between align-content-center">
+  <div class="head-title pl-2" *ngIf="showUsername">
     {{ "HI" | translate }}
     <span class="text-blue-shade0 pl-1">{{authService?.currentUser?.name | titlecase}}</span>
+  </div>
+  <div class="claim-status">
+    <button class="border rounded border-danger text-danger" *ngIf="status ==='rejected'">{{'APPROVAL_REJECTED' | translate}}</button>
+    <button class="border rounded border-success text-success" *ngIf="status ==='approved'">{{'APPROVED' | translate}}</button>
+    <button class="border rounded border-secondary text-secondary" *ngIf="status ==='pending'">{{'APPROVAL_PENDING' | translate}}</button>
   </div>
 </div>
 <div class="text-center container flex-center">

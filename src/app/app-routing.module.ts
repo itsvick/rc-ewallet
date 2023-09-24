@@ -114,7 +114,7 @@ const routes: Routes = [
     data: {
       showToolbar: true,
       telemetry: {
-        env: 'home', pageid: 'home', type: 'list', subtype: 'scroll'
+        env: 'opportunities', pageid: 'home', type: 'list', subtype: 'scroll'
       },
     },
     canActivate: [AuthGuard]
@@ -136,7 +136,7 @@ const routes: Routes = [
     data: {
       showToolbar: true,
       telemetry: {
-        env: 'search', pageid: 'search', type: 'list', subtype: 'scroll'
+        env: 'home', pageid: 'search', type: 'list', subtype: 'scroll'
       },
     },
     canActivate: [AuthGuard]
@@ -147,7 +147,7 @@ const routes: Routes = [
     data: {
       showToolbar: false,
       telemetry: {
-        env: 'doc-view', pageid: 'doc-view', type: 'view', subtype: 'scroll'
+        env: 'home', pageid: 'doc-view', type: 'view', subtype: 'scroll'
       }
     },
     canActivate: [AuthGuard]
@@ -158,7 +158,7 @@ const routes: Routes = [
     data: {
       showToolbar: true,
       telemetry: {
-        env: 'scan certificate', pageid: 'scan-code', type: 'view', subtype: 'scroll'
+        env: 'home', pageid: 'scan-code', type: 'view', subtype: 'scroll'
       }
     },
     canActivate: [AuthGuard]
@@ -169,7 +169,7 @@ const routes: Routes = [
     data: {
       showToolbar: false,
       telemetry: {
-        env: 'dashboard', pageid: 'sign-out', type: 'view', subtype: 'scroll'
+        env: 'settings', pageid: 'sign-out', type: 'view', subtype: 'scroll'
       }
     },
     canActivate: [AuthGuard]
@@ -178,9 +178,9 @@ const routes: Routes = [
     path: 'raise-claims',
     component: RaiseClaimsComponent,
     data: {
-      showToolbar: false,
+      showToolbar: true,
       telemetry: {
-        env: 'raise-claims', pageid: 'raise-claims', type: 'view', subtype: 'scroll'
+        env: 'home', pageid: 'raise-claims', type: 'view', subtype: 'scroll'
       }
     },
   },
@@ -188,9 +188,9 @@ const routes: Routes = [
     path: 'request-correction',
     component: RequestCorrectionComponent,
     data: {
-      showToolbar: false,
+      showToolbar: true,
       telemetry: {
-        env: 'request-correction', pageid: 'request-correction', type: 'view', subtype: 'scroll'
+        env: 'home', pageid: 'request-correction', type: 'view', subtype: 'scroll'
       }
     },
   },
@@ -200,7 +200,7 @@ const routes: Routes = [
     data: {
       showToolbar: true,
       telemetry: {
-        env: 'account', pageid: 'account', type: 'view', subtype: 'scroll'
+        env: 'settings', pageid: 'account', type: 'view', subtype: 'scroll'
       }
     },
     canActivate: [AuthGuard]

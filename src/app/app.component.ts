@@ -13,6 +13,7 @@ import { AuthService } from './services/auth/auth.service';
 export class AppComponent implements OnInit {
   showToolbar = false;
   ELOCKER_THEME: string;
+  env: string;
   constructor(
     private themeService: ThemeService,
     private activatedRoute: ActivatedRoute,
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit {
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.showToolbar = this.activatedRoute.root.firstChild.snapshot.data['showToolbar'];
+        this.env = this.activatedRoute.root.firstChild.snapshot.data['telemetry'].env;
       });
   }
 }

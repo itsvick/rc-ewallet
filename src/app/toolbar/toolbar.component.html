@@ -1,6 +1,6 @@
 <div class="toolbar">
-  <div class="tab" *ngFor="let tab of tabList" [routerLink]="[tab?.redirectTo]" routerLinkActive="active"
-    [routerLinkActiveOptions]="{exact:false}" (click)="raiseInteractEvent(tab?.id+'-tab'); clearCredentials();">
+  <div class="tab" *ngFor="let tab of tabList" [routerLink]="[tab?.redirectTo]" [ngClass]="{'active': tab.id === env}"
+    (click)="raiseInteractEvent(tab?.id+'-tab'); clearCredentials();">
     <i [class]="tab?.className" class="fs-18"></i>
     <div class="tab-label">{{tab?.title | translate}}</div>
   </div>

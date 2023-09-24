@@ -18,22 +18,17 @@ import { ToastMessageService } from 'src/app/services/toast-message/toast-messag
 export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   categories = [];
   isLoading = false;
-  approvalModalRef: NgbModalRef;
-  showApproval = false;
   isClaimRejected = false;
   allCredentials: any;
   showCredentialList = false;
   selectedCategory: string = '';
-
   showAadhaarKYC = false;
-
-  @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
+  showMenuList = true;
 
   constructor(
     private router: Router,
     public generalService: GeneralService,
     public authService: AuthService,
-    private dataService: DataService,
     private toastMessage: ToastMessageService,
     private activatedRoute: ActivatedRoute,
     private readonly modalService: NgbModal,
@@ -47,7 +42,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     }
     if (this.credentialService.selectedCategory) {
       this.selectedCategory = this.credentialService.selectedCategory;
-      this.showCredentialList = true;
+      // this.showCredentialList = true;
       this.allCredentials = [...this.credentialService.credentialList];
     } else {
       this.fetchCredentialCategories();
@@ -56,7 +51,6 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
 
   fetchCredentialCategories() {
     if (this.authService?.currentUser?.did) {
-      this.showApproval = false;
       console.log("DID", this.authService.currentUser.did);
       this.isLoading = true;
       this.credentialService.getAllCredentials().pipe(
@@ -77,9 +71,15 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     }
   }
 
+
+  showCredentialTypes() {
+    this.showMenuList = false;
+    this.showCredentialList = true;
+  }
+
   showCredentials(category) {
     this.selectedCategory = category?.name;
-    this.showCredentialList = true;
+    // this.showCredentialList = true;
     this.raiseInteractEvent('credential-type-select')
     // const navigationExtras: NavigationExtras = {
     //   state: category
