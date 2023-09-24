@@ -363,5 +363,22 @@
     "MOBILE_NUMBER": "मोबाइल नंबर",
     "ENTER_VALID_MOBILE_NUMBER": "कृपया मान्य मोबाइल नंबर दर्ज करें",
     "COMPLETE_AADHAAR_KYC_FIRST": "कृपया पहले आधार केवाईसी सत्यापित करें",
-    "AADHAAR_TOKEN": "आधार टोकन"
+    "AADHAAR_TOKEN": "आधार टोकन",
+    "APPROVAL_REJECTED": "मंजूरी अस्वीकृत",
+    "APPROVED": "मंजूर",
+    "APPROVAL_PENDING": "मंजूरी की प्रतीक्षा",
+    "VIEW_ISSUED_CREDENTIALS": "जारी किए गए प्रमाणपत्र देखें",
+    "ADD_DOCUMENTS_FROM_DIGILOCKER": "डिजीलॉकर से दस्तावेज़ जोड़ें",
+    "VIEW_DOCUMENTS_FROM_DIGILOCKER": "डिजीलॉकर से दस्तावेज़ देखें",
+    "ISSUED_CREDENTIALS": "जारी किए गए प्रमाणपत्र",
+    "RAISE_CLAIMS": "दावे उठाएं",
+    "SELECT_CREDENTIAL_TYPE": "प्रमाणपत्र प्रकार चुनें",
+    "PLEASE_ENTER_VALID": "कृपया मान्य {{value1}} दर्ज करें",
+    "PLEASE_SELECT_SCHEMA_FIRST": "कृपया पहले स्कीमा चुनें",
+    "RAISE_GRIEVANCE_FOR_CREDENTIALS": "प्रमाणपत्रों के लिए शिकायत दर्ज करें",
+    "CLAIM_HEADING": "नीचे से चुनें कि सुधार के लिए अनुरोध दर्ज करें या अपने स्कूल से कोई प्रमाणपत्र के लिए दावा दर्ज करें!",
+    "OR": "या",
+    "REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS": "जारी किए गए प्रमाणपत्र में सुधार का अनुरोध करें",
+    "ADD_DATA_FOR_CORRECTION": "कृपया नीचे सुधार डेटा जोड़ें। यह प्रमुखाचार के लिए प्रिंसिपल को फॉरवर्ड किया जाएगा।",
+    "CORRECTION_REQUEST_SUCCESS": "आपका {{value1}} के लिए सुधार अनुरोध प्रिंसिपल को भेज दिया गया है।"
 }
