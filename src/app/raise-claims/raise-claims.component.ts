@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CredentialService } from '../services/credential/credential.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
@@ -6,6 +6,9 @@ import { GeneralService } from '../services/general/general.service';
 import { UtilService } from '../services/util/util.service';
 import { ClaimGrievanceService } from '../services/claim-grievance.service';
 import { IBlock, IDistrict, ISchool, IState } from '../app-interface';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { race } from 'rxjs';
 
 @Component({
   selector: 'app-raise-claims',
@@ -35,20 +38,24 @@ export class RaiseClaimsComponent implements OnInit {
   // step = 1;
 
 
-  basicClaimForm = new FormGroup({
-    schemaId: new FormControl('', [Validators.required]),
-    state: new FormControl('', [Validators.required]),
-    district: new FormControl('', [Validators.required]),
-    block: new FormControl('', [Validators.required]),
-    school: new FormControl('', [Validators.required])
-  });
+  // basicClaimForm = new FormGroup({
+  //   schemaId: new FormControl('', [Validators.required]),
+  //   state: new FormControl('', [Validators.required]),
+  //   district: new FormControl('', [Validators.required]),
+  //   block: new FormControl('', [Validators.required]),
+  //   school: new FormControl('', [Validators.required])
+  // });
+  successModalRef: NgbModalRef;
+  @ViewChild('successModal') successModal: TemplateRef<any>;
 
   constructor(
     private readonly credentialService: CredentialService,
     private readonly toastMsg: ToastMessageService,
     private readonly generalService: GeneralService,
     private readonly utilService: UtilService,
-    private readonly claimGrievanceService: ClaimGrievanceService
+    private readonly claimGrievanceService: ClaimGrievanceService,
+    private readonly modalService: NgbModal,
+    private readonly router: Router
   ) { }
 
   ngOnInit(): void {
@@ -59,7 +66,7 @@ export class RaiseClaimsComponent implements OnInit {
   getSchemaList() {
     this.credentialService.getSchemaList().subscribe((schemas: any) => {
       console.log(schemas);
-      this.schemas = schemas;
+      this.schemas = schemas.filter(item => item.schema_name === 'Enrollment Credentials'); //TODO: Remove this hard coded
     }, error => {
       console.log(error);
     });
@@ -108,21 +115,25 @@ export class RaiseClaimsComponent implements OnInit {
   }
 
   onSubmit(event) {
+    //TODO: Add confirmation page here
     console.log(event);
     console.log("singleIssueForm", this.claimForm.valid);
     console.log("value", this.claimForm.value);
 
     if (this.claimForm.valid) {
       const payload = {
-        "attest_school_id": "09270815702",
-        "attest_school_name": "UPS SARAI DAMU (1 to 8)",
-        "credential_schema_id": this.credSchemaId,
-        "credentialSubject": this.claimForm.value
+        credential_schema_id: this.credSchemaId,
+        credentialSubject: this.claimForm.value
       }
       this.claimGrievanceService.raiseClaim(payload).subscribe(res => {
         console.log("res", res);
+        this.successModalRef = this.modalService.open(this.successModal);
+        race(this.successModalRef.closed, this.successModalRef.dismissed).subscribe(() => {
+          this.router.navigate(['/home']);
+        });
       }, error => {
         console.log("error", error);
+        //TODO: Add error handling toast or modal
       });
     }
   }
@@ -211,5 +222,12 @@ export class RaiseClaimsComponent implements OnInit {
   // onBasicClaimFormSubmit() {
   //   this.step = 2;
   // }
+
+
+  closeModal() {
+    if (this.successModalRef) {
+      this.successModalRef.close();
+    }
+  }
 
 }

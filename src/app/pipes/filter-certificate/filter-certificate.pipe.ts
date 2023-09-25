@@ -11,7 +11,7 @@ export class FilterCertificatePipe implements PipeTransform {
       return value;
     }
 
-    return value.filter((item: any) => item?.credential_schema?.name?.toLowerCase().includes(filterString.toLowerCase()))
+    return value.filter((item: any) => item?.credential_schema?.schema?.name?.toLowerCase().includes(filterString.toLowerCase()))
   }
 
 }

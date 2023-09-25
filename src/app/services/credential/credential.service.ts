@@ -75,6 +75,9 @@ export class CredentialService {
 
     const payload = { url: `${this.baseUrl}/v1/credentials/schema/json/${schemaId}` };
     return this.dataService.get(payload).pipe(map((res: any) => {
+      if (Array.isArray(res.result)) {
+        res.result = res.result[0];
+      }
       const schema = this.findSchema(res.result.id);
       if (!schema) {
         this.schemas.push(res.result);
@@ -85,30 +88,25 @@ export class CredentialService {
 
   getAllCredentials(): Observable<any> {
     return this.getCredentials().pipe(
-      switchMap((credentials: any) => {
-        if (credentials.length) {
-          return forkJoin(
-            credentials.map((cred: any) => {
-              return this.getCredentialSchemaId(cred.id).pipe(
-                concatMap((res: any) => {
-                  console.log("res", res);
-                  cred.schemaId = res.credential_schema;
-                  return of(cred);
-                  // return this.getSchema(res.credential_schema).pipe(
-                  //   map((schema: any) => {
-                  //     cred.credential_schema = {...schema};
-                  //     return cred;
-                  //   })
-                  // );
-                })
-              );
-            })
-          );
-        }
-        return of([]);
-      }), switchMap((res: any) => {
+      // switchMap((credentials: any) => {
+      //   if (credentials.length) {
+      //     return forkJoin(
+      //       credentials.map((cred: any) => {
+      //         return this.getCredentialSchemaId(cred.id).pipe(
+      //           concatMap((res: any) => {
+      //             console.log("res", res);
+      //             cred.schemaId = res.credential_schema;
+      //             return of(cred);
+      //           })
+      //         );
+      //       })
+      //     );
+      //   }
+      //   return of([]);
+      // }), 
+      switchMap((res: any) => {
         console.log("res", res);
-        const schemaIds = [...new Set(res.map((item: any) => item.schemaId))];
+        const schemaIds = [...new Set(res.map((item: any) => item.credentialSchemaId))];
         return from(schemaIds).pipe(
           switchMap((schemaId: any) => {
             return this.getSchema(schemaId);
@@ -171,7 +169,7 @@ export class CredentialService {
         schema_id: schemaId
       }
     }
-    return this.dataService.post(payload).pipe( map((res: any) => res.result));
+    return this.dataService.post(payload).pipe(map((res: any) => res.result));
   }
 
 

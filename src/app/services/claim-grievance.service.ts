@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ClaimGrievanceService {
 
-  bffUrl = 'https://produlp.uniteframework.io/ulp-bff' || this.config.getEnv('bffUrl');
+  bffUrl = this.config.getEnv('bffUrl');
   constructor(
     private readonly dataService: DataService,
     private readonly config: AppConfig
@@ -73,4 +73,16 @@ export class ClaimGrievanceService {
     return this.dataService.post(request).pipe(map(res => res.result));
   }
 
+  getClaimStatus(): Observable<any> {
+    const request = {
+      url: `${this.bffUrl}/v1/claim/search`,
+      data: {
+        type: 'student'
+      }
+    }
+    return this.dataService.post(request).pipe(map(res => {
+      console.log("getClaimStatus", res);
+      return res.result;
+    }));
+  }
 }

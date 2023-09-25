@@ -28,14 +28,14 @@
                       <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/icon.png'" />
                     </div>
                     <div class="card-intro-info">
-                      <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.name === 'Assessment Credentials'">
-                        {{ item?.credentialSubject?.assessment || item?.credential_schema?.name | titlecase}}
+                      <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.schema?.name === 'Assessment Credentials'">
+                        {{ item?.credentialSubject?.assessment || item?.credential_schema?.schema?.name | titlecase}}
                       </div>
-                      <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.name === 'Enrollment Credentials'">
-                        {{ item?.credentialSubject?.school_name || item?.credential_schema?.name | titlecase}}
+                      <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.schema?.name === 'Enrollment Credentials'">
+                        {{ item?.credentialSubject?.school_name || item?.credential_schema?.schema?.name | titlecase}}
                       </div>
-                      <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.name === 'Benefits Credentials'">
-                        {{ item?.credentialSubject?.schemeName || item?.credential_schema?.name | titlecase }}
+                      <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.schema?.name === 'Benefits Credentials'">
+                        {{ item?.credentialSubject?.schemeName || item?.credential_schema?.schema?.name | titlecase }}
                       </div>
                       <div class="text-grey fs-12">
                         {{ item | replacePlaceholder }}

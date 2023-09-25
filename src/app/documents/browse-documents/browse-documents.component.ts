@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { first, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ClaimGrievanceService } from 'src/app/services/claim-grievance.service';
 import { CredentialService } from 'src/app/services/credential/credential.service';
 import { DataService } from 'src/app/services/data/data-request.service';
 import { GeneralService } from 'src/app/services/general/general.service';
@@ -20,10 +21,12 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isClaimRejected = false;
   allCredentials: any;
+  showCredCategories = false;
   showCredentialList = false;
   selectedCategory: string = '';
   showAadhaarKYC = false;
   showMenuList = true;
+  claimStatus: string;
 
   constructor(
     private router: Router,
@@ -33,7 +36,8 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private readonly modalService: NgbModal,
     private telemetryService: TelemetryService,
-    private readonly credentialService: CredentialService
+    private readonly credentialService: CredentialService,
+    private readonly claimGrievanceService: ClaimGrievanceService
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +51,17 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     } else {
       this.fetchCredentialCategories();
     }
+
+    this.getClaimStatus();
+  }
+
+  getClaimStatus() {
+    this.claimGrievanceService.getClaimStatus().subscribe((res: any) => {
+      console.log("res", res);
+      this.claimStatus = res;
+    }, error => {
+      console.error("error", error);
+    });
   }
 
   fetchCredentialCategories() {
@@ -56,38 +71,43 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       this.credentialService.getAllCredentials().pipe(
         first(),
         map((res: any) => {
-        console.log("result", res);
-        this.allCredentials = res;
-        res.map((item: any) => {
-          this.updateCategoryList(item.credential_schema.name);
+          console.log("result", res);
+          this.allCredentials = res;
+          res.map((item: any) => {
+            const schema = Array.isArray(item.credential_schema) && item.credential_schema.length ? item.credential_schema[0]?.schema : item.credential_schema?.schema;
+            this.updateCategoryList(schema?.name, schema?.id);
+          });
+          console.log("this.categories", this.categories);
+          return res;
+        })).subscribe(res => {
+          this.isLoading = false;
+        }, error => {
+          this.isLoading = false;
         });
-        console.log("this.categories", this.categories);
-        return res;
-      })).subscribe(res => {
-        this.isLoading = false;
-      }, error => {
-        this.isLoading = false;
-      });
     }
   }
 
 
   showCredentialTypes() {
     this.showMenuList = false;
-    this.showCredentialList = true;
+    this.showCredCategories = true;
   }
 
   showCredentials(category) {
     this.selectedCategory = category?.name;
-    // this.showCredentialList = true;
+    this.showCredentialList = true;
+    this.showCredCategories = false;
     this.raiseInteractEvent('credential-type-select')
     // const navigationExtras: NavigationExtras = {
-    //   state: category
+    //   // state: category
+    //   queryParams: {
+
+    //   }
     // }
-    // this.router.navigate(['/search-certificates'], navigationExtras);
+    this.router.navigate(['/search-certificates', category.id]);
   }
 
-  updateCategoryList(name: string) {
+  updateCategoryList(name: string, id: string) {
     if (name) {
       const category = this.categories.find((item: any) => item.name === name);
       if (category) {
@@ -108,7 +128,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
             image = 'assets/images/enroll.svg';
         }
 
-        this.categories.push({ name, count: 1, image });
+        this.categories.push({ name, count: 1, image, id: id });
       }
     }
   }
