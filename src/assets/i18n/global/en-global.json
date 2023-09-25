@@ -383,5 +383,6 @@
     "OR": "OR",
     "REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS": "Request correction in Issued credentials",
     "ADD_DATA_FOR_CORRECTION": "Please add the correction Data below. This will be forwarded to the Principal for corrections.",
-    "CORRECTION_REQUEST_SUCCESS": "Your Correction Request for {{value1}}  has been sent to the Principal"
+    "CORRECTION_REQUEST_SUCCESS": "Your Correction Request for {{value1}}  has been sent to the Principal",
+    "WELCOME_DESCRIPTION":"Welcome to your Student Portal! You can view you credentials, raise claims and grievances for credentials in this portal and discover opportunities in this portal"
 }
