@@ -10,6 +10,7 @@ import {
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 import { UtilService } from '../services/util/util.service';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-certificates',
@@ -40,10 +41,27 @@ export class SearchCertificatesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchCredentials();
+    // this.fetchCredentials();
+    this.activatedRoute.params.subscribe((params: any) => {
+      console.log("params", params);
+      if (params?.schemaId) {
+        this.fetchCredentials(params.schemaId);
+      }
+    });
   }
 
-  fetchCredentials() {
+  fetchCredentials(schemaId) {
+    this.credentialService.getAllCredentials().pipe(map((res: any) => {
+      return res.filter(item => item.credentialSchemaId === schemaId);
+    })).subscribe((res: any) => {
+      console.log("res-search", res);
+      this.credentialList = res;
+    }, error => {
+      console.error("Error", error);
+    });
+  }
+
+  fetchCredentials1() {
     // this.credentials$ = this.credentialService.getAllCredentials().pipe(
     //   map((res: any) => {
     //     if (this.schema?.name) {

@@ -1,4 +1,4 @@
-<div class=" mb-4 mt-4 d-flex justify-content-between align-content-center">
+<div class=" mb-4 mt-4 d-flex align-content-center" [ngClass]="status ? 'justify-content-between' : 'justify-content-center'">
   <div class="head-title pl-2" *ngIf="showUsername">
     {{ "HI" | translate }}
     <span class="text-blue-shade0 pl-1">{{authService?.currentUser?.name | titlecase}}</span>
@@ -9,7 +9,7 @@
     <button class="border rounded border-secondary text-secondary" *ngIf="status ==='pending'">{{'APPROVAL_PENDING' | translate}}</button>
   </div>
 </div>
-<div class="text-center container flex-center">
+<div class="text-center container flex-center" *ngIf="showLogo">
   <div class="row">
     <div class="col-12" [ngClass]="{ 'card mb-3 linear-bg': showBackground }">
       <div class="row g-0 px-3">
@@ -18,7 +18,8 @@
     </div>
   </div>
 </div>
-<div class="mt-5 pb-10">
+<div class="mt-3 pb-10">
   <h4 class="text-primary-color font-600 fs-20 text-center">{{title}}</h4>
-  <p class="subtitle fs-16 text-center Dn-sans">{{'WELCOME_DESCRIPTION' | translate}}</p>
+  <p class="subtitle fs-16 text-center Dn-sans" *ngIf="showDescription">{{'WELCOME_DESCRIPTION' | translate}}</p>
+  <p class="subtitle fs-16 text-center Dn-sans" *ngIf="!showDescription">{{'WELCOME_TO_YOUR_ACADEMIC_WALLET' | translate}}</p>
 </div>

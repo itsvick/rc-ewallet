@@ -131,7 +131,7 @@ const routes: Routes = [
   //   canActivate: [AuthGuard]
   // },
   {
-    path: 'search-certificates',
+    path: 'search-certificates/:schemaId',
     component: SearchCertificatesComponent,
     data: {
       showToolbar: true,

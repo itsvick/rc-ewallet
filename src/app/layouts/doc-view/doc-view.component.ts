@@ -58,7 +58,7 @@ export class DocViewComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.credential?.credential_schema) {
-            this.schemaId = this.credential.schemaId;
+            this.schemaId = this.credential.credentialSchemaId;
             this.getTemplate(this.schemaId).subscribe((res) => {
                 this.templateId = res?.id;
                 this.getPDF(res?.template);
@@ -70,7 +70,7 @@ export class DocViewComponent implements OnInit {
     }
 
     getTemplate(id: string): Observable<any> {
-        return this.generalService.getData(`${this.baseUrl}/v1/credentials/rendertemplateschema/${id}`, true).pipe(
+        return this.generalService.postData(`${this.baseUrl}/v1/credential/schema/template/list`, { schema_id: id }).pipe(
             map((res: any) => {
                 if (res.result.length > 1) {
                     const selectedLangKey = localStorage.getItem('setLanguage');

@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class RequestCorrectionComponent implements OnInit {
 
   credentialList: any[] = [];
-  showCorrectionRequest = true;
+  showCorrectionRequest = false;
   selectedCredential: any;
   currentUser: any;
   grievanceMessage: string;
@@ -36,9 +36,9 @@ export class RequestCorrectionComponent implements OnInit {
     this.currentUser = this.authService.currentUser;
     console.log("currentUser", this.currentUser);
 
-    setTimeout(() => {
-      this.successModalRef = this.modalService.open(this.successModal);
-    }, 5000);
+    // setTimeout(() => {
+    //   this.successModalRef = this.modalService.open(this.successModal);
+    // }, 5000);
   }
 
   cancel() {

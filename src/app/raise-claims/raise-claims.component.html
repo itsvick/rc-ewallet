@@ -5,22 +5,23 @@
         </span>
         <div class="d-flex p-2 justify-content-center align-items-center">
             <img src="assets/images/raise-claim.png" alt="">
-            <div class="font-600 fs-16 text-grey-shade3 text-underline" [routerLink]="['/raise-claims']">{{'RAISE_CLAIMS' | translate}}
+            <div class="font-600 fs-16 text-grey-shade3 text-underline" [routerLink]="['/raise-claims']">
+                {{'RAISE_CLAIMS' | translate}}
             </div>
         </div>
     </div>
 
     <div>
         <!-- <form [formGroup]="basicClaimForm" (ngSubmit)="onBasicClaimFormSubmit($event)"> -->
-            <div class="mb-3 pb-10">
-                <label for="state">{{'SELECT_CREDENTIAL_TYPE' | translate}}<span class="text-danger">*</span></label>
-                <select class="form-control" aria-label="Select Credential Type" [(ngModel)]="credSchemaId"
-                    (ngModelChange)="onSchemaChange()">
-                    <option value="" disabled selected>{{'SELECT_CREDENTIAL_TYPE' | translate}}</option>
-                    <option *ngFor="let schema of schemas" [value]="schema.schema_id">{{schema.schema_name}}</option>
-                </select>
-            </div>
-            <!-- <div class="mb-3 pb-10">
+        <div class="mb-3 pb-10">
+            <label for="state">{{'SELECT_CREDENTIAL_TYPE' | translate}}<span class="text-danger">*</span></label>
+            <select class="form-control" aria-label="Select Credential Type" [(ngModel)]="credSchemaId"
+                (ngModelChange)="onSchemaChange()">
+                <option value="" disabled selected>{{'SELECT_CREDENTIAL_TYPE' | translate}}</option>
+                <option *ngFor="let schema of schemas" [value]="schema.schema_id">{{schema.schema_name}}</option>
+            </select>
+        </div>
+        <!-- <div class="mb-3 pb-10">
                 <label for="state">{{'STATE' | translate}}<span class="text-danger">*</span></label>
                 <select class="form-control p-2 text-truncate" id="state" formControlName="state"
                     (change)="onStateChange($event.target.value)">
@@ -57,7 +58,7 @@
                 </select>
             </div> -->
 
-            <!-- <div class="pb-10 text-center">
+        <!-- <div class="pb-10 text-center">
                 <button class="btn btn-primary" type="submit" [disabled]="basicClaimForm.invalid">{{'NEXT' | translate}}</button>
             </div> -->
         <!-- </form> -->
@@ -115,3 +116,15 @@
         <button type="button" class="blue-outline text-success">Ok</button>
     </div>
 </div> -->
+
+
+<ng-template #successModal tabindex="-1" role="dialog" aria-labelledby="successModal">
+    <div class="modal-content">
+        <div class="modal-body">
+            <p>“ {{'ENROLL_CRED_CLAIM_RAISED' | translate}} “</p>
+            <div class="text-center">
+                <button class="btn btn-outline-primary text-center mt-3" (click)="closeModal()">{{'OK' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
