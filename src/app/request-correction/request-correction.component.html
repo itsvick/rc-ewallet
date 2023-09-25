@@ -1,19 +1,102 @@
 <div class="container">
-    <div class="fs-20 font-600 text-underline text-grey-shade1 text-center">Request Corrections in Issued Credentials</div>
-    <div class="my-3 fs-16 text-grey-shade2">“ Please add the correction Data below. This will be forwarded to the Principal for corrections. “</div>
-    <div class="my-3 blue-bx">
-        <div class="d-flex px-2 py-2">
-            <div class="fs-15 text-grey-shade3">Name: &nbsp; </div>
-            <div class="fs-15 font-500">Vikas Kanujiya</div>
+    <ng-container *ngIf="!showCorrectionRequest">
+        <h2 class="fs-18 font-600 text-underline mt-3 text-center">{{'RAISE_GRIEVANCE_FOR_CREDENTIALS' | translate}}
+        </h2>
+        <div class="fs-14 text-black-grey py-2 text-center ">{{'CLAIM_HEADING' | translate}}</div>
+        <div class="bg-grey-shade1 my-2">
+            <div class="d-flex p-2 justify-content-center align-items-center">
+                <img src="assets/images/raise-claim.png" alt="">
+                <div class="font-600 fs-16 text-grey-shade3 text-underline" [routerLink]="['/raise-claims']">
+                    {{'RAISE_CLAIMS' | translate}}
+                </div>
+            </div>
         </div>
-        <div class="d-flex px-2 py-2">
-            <div class="fs-15 text-grey-shade3">Subject: &nbsp; </div>
-            <div class="fs-15 font-500">Correction of  “ Class 2 Marksheet ”</div>
+        <div class="py-3 d-flex align-items-center hr-line">
+            <hr class="flex-grow-1" />
+            <div class="text-secondary px-3">{{'OR' | translate}}</div>
+            <hr class="flex-grow-1" />
         </div>
-    </div>
-    <textarea></textarea>
-    <div class="d-flex justify-content-center align-items-center my-3">
-        <button type="button" class="blue-outline text-danger mr-2"><i class="fa fa-close pr-2"></i>Cancel</button>
-        <button type="button" class="blue-outline text-success"><i class="fa fa-check pr-2"></i>Confirm</button>
-    </div>
+
+        <h3 class="fs-16 font-600 text-center text-underline">{{'REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS' | translate}}
+        </h3>
+        <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2" *ngFor="let item of credentialList">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-image">
+                        <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/icon.png'" />
+                    </div>
+                    <div class="card-intro-info">
+                        <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.name === 'Enrollment Credentials'">
+                            {{ item?.credentialSubject?.school_name || item?.credential_schema?.name | titlecase}}
+                        </div>
+                        <div class="text-grey fs-12">
+                            {{ item | replacePlaceholder }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+
+    <ng-container *ngIf="showCorrectionRequest">
+        <h2 class="fs-20 font-600 text-underline mt-3 text-center">{{'REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS' |
+            translate}}</h2>
+        <!-- <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2" >
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-image">
+                        <img [src]="selectedCredential?.logoUrl ? selectedCredential.logoUrl : 'assets/images/icon.png'" />
+                    </div>
+                    <div class="card-intro-info">
+                        <div class="mb-2 fs-14" *ngIf="selectedCredential?.credential_schema?.name === 'Enrollment Credentials'">
+                            {{ selectedCredential?.credentialSubject?.school_name || selectedCredential?.credential_schema?.name | titlecase}}
+                        </div>
+                        <div class="text-grey fs-12">
+                            {{ selectedCredential | replacePlaceholder }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <p class="text-center">“ {{'ADD_DATA_FOR_CORRECTION' | translate}} “</p>
+        <div class="subject-box">
+            <div class="row">
+                <span class="brown-shade-1 font-400 col-2 text-right p-0">{{'NAME' | translate}}:</span>
+                <span class="col-10 text-left font-600">{{currentUser?.name}}</span>
+            </div>
+            <div class="row">
+                <span class="brown-shade-1 font-400 col-2 text-right p-0">{{'SUBJECT' | translate}}:</span>
+                <span class="col-10 text-left font-600">Correction of "Class 2 Marksheet"</span>
+            </div>
+        </div>
+        <textarea name="" id="" placeholder="Type here..." rows="10" [(ngModel)]="grievanceMessage"></textarea>
+        <div class="d-flex justify-content-center mt-3">
+            <button class="btn btn-outline-danger mr-3">
+                <i class="fa fa-close"></i>
+                {{'CANCEL' | translate}}
+            </button>
+            <button class="btn btn-outline-success">
+                <i class="fa fa-solid fa-check"></i>
+                {{'CONFIRM' | translate}}
+            </button>
+        </div>
+    </ng-container>
 </div>
+
+<ng-template #successModal tabindex="-1" role="dialog" aria-labelledby="successModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="btn-close ml-auto" role="button" data-dismiss="modal" aria-label="Close"
+                (click)="closeModal()">
+                <i class="fa fa-close"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>“ {{'PLEASE_ENTER_VALID' | translate : {value1: 'Class 2 Marksheet'} }} “</p>
+            <div class="text-center">
+                <button class="btn btn-outline-primary text-center mt-3" (click)="closeModal()">{{'OK' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

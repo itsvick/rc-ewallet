@@ -143,4 +143,37 @@ export class CredentialService {
     const payload = { url: `${this.baseUrl}/v1/credentials/get/${credentialId}` };
     return this.dataService.get(payload);
   }
+
+  /**
+   * Retrieves the list of schemas from the server.
+   * @return {Observable<any>} An observable that emits the list of schemas.
+   */
+  getSchemaList(): Observable<any> {
+    const payload = {
+      url: `${this.baseUrl}/v1/credential/schema/list`,
+      data: {
+        taglist: "q2ulp" //TODO: need to remove this hard coded tag //ulpq2 tag1 q2ulp
+      }
+    }
+    return this.dataService.post(payload).pipe(map((res: any) => res.result));
+  }
+
+  /**
+   * Retrieves the schema fields for a given schema ID.
+   *
+   * @param {string} schemaId - The ID of the schema.
+   * @return {Observable<any>} An observable that emits the schema fields.
+   */
+  getSchemaFields(schemaId: string): Observable<any> {
+    const payload = {
+      url: `${this.baseUrl}/v1/credential/schema/fields`,
+      data: {
+        schema_id: schemaId
+      }
+    }
+    return this.dataService.post(payload).pipe( map((res: any) => res.result));
+  }
+
+
+
 }

@@ -38,4 +38,18 @@ export class UtilService {
   translateString(constant: string): string {
     return this.translateService.instant(constant);
   }
+
+  variableNameToReadableString(variableName: string) {
+    // Replace underscores and split words
+    let words = variableName.split('_').join(' ').split(/(?=[A-Z])/).join(' ');
+
+    // Capitalize the first letter of each word
+    words = words.charAt(0).toUpperCase() + words.slice(1);
+
+    if (words.length < 4) {
+      words = words.toUpperCase();
+    }
+
+    return words;
+  }
 }

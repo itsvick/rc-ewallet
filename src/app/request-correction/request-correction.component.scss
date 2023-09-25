@@ -1,4 +1,25 @@
-.blue-bx{
-    background: #F4FBFF;    
-    border: 1px solid #E8E8E8
+.blue-bx {
+    background: #f4fbff;
+    border: 1px solid #e8e8e8;
+}
+
+.hr-line {
+    border-color: #ccc;
+    color: #ccc;
+}
+
+.subject-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4fbff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.brown-shade-1 {
+    color: #8e909a;
+}
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100% !important;
 }

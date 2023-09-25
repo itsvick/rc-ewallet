@@ -14,6 +14,7 @@ export class GlobalHeaderComponent implements OnInit {
   @Input() showBackground = false;
   @Input() showTitle = false;
   @Input() showUsername = false;
+  @Input() status = 'approved';
   ELOCKER_THEME: string;
 
   title: string = 'ELOCKER';

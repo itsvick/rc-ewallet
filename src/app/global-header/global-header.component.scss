@@ -1,5 +1,12 @@
-.bg-btn-blue{
-    background: #5526F5;
+.bg-btn-blue {
+    background: #5526f5;
     padding: 8px 8px;
     border-radius: 4px;
+}
+.claim-status {
+    button {
+        padding: 8px;
+        cursor: default;
+        background: #fff;
+    }
 }

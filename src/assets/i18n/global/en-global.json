@@ -366,5 +366,22 @@
     "MOBILE_NUMBER": "Mobile Number",
     "ENTER_VALID_MOBILE_NUMBER": "Enter Valid Mobile Number",
     "COMPLETE_AADHAAR_KYC_FIRST": "Please complete Aadhar KYC first",
-    "AADHAAR_TOKEN": "Aadhaar Token"
+    "AADHAAR_TOKEN": "Aadhaar Token",
+    "APPROVAL_REJECTED": "Approval Rejected",
+    "APPROVED": "Approved",
+    "APPROVAL_PENDING": "Approval Pending",
+    "VIEW_ISSUED_CREDENTIALS": "View Issued credentials",
+    "ADD_DOCUMENTS_FROM_DIGILOCKER": "Add Documents from Digilocker",
+    "VIEW_DOCUMENTS_FROM_DIGILOCKER": "View Documents from Digilocker",
+    "ISSUED_CREDENTIALS": "Issued Credentials",
+    "RAISE_CLAIMS": "Raise Claims",
+    "SELECT_CREDENTIAL_TYPE": "Select Credential Type",
+    "PLEASE_ENTER_VALID": "Please enter valid {{value1}}",
+    "PLEASE_SELECT_SCHEMA_FIRST": "Please select schema first",
+    "RAISE_GRIEVANCE_FOR_CREDENTIALS": "Raise Grievance for Credentials",
+    "CLAIM_HEADING": "Select from below either to raise requests for correction or raise claim for a credential from your school!",
+    "OR": "OR",
+    "REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS": "Request correction in Issued credentials",
+    "ADD_DATA_FOR_CORRECTION": "Please add the correction Data below. This will be forwarded to the Principal for corrections.",
+    "CORRECTION_REQUEST_SUCCESS": "Your Correction Request for {{value1}}  has been sent to the Principal"
 }
