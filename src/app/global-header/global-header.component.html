@@ -6,7 +6,7 @@
   <div class="claim-status">
     <button class="border rounded border-danger text-danger" *ngIf="status ==='rejected'">{{'APPROVAL_REJECTED' | translate}}</button>
     <button class="border rounded border-success text-success" *ngIf="status ==='approved'">{{'APPROVED' | translate}}</button>
-    <button class="border rounded border-secondary text-secondary" *ngIf="status ==='pending'">{{'APPROVAL_PENDING' | translate}}</button>
+    <button class="border rounded border-secondary text-secondary" *ngIf="status ==='raise'">{{'APPROVAL_PENDING' | translate}}</button>
   </div>
 </div>
 <div class="text-center container flex-center" *ngIf="showLogo">
