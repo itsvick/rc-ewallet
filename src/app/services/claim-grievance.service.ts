@@ -24,47 +24,6 @@ export class ClaimGrievanceService {
     return this.dataService.post(request).pipe(map(res => res.result));
   }
 
-  getStateList(): Observable<any> {
-    let url = `${this.bffUrl}/v1/school/stateList`;
-    return this.dataService.get({ url }).pipe(
-      map((res: any) => {
-        console.log("states res", res);
-        return res.response;
-      })
-    );
-  }
-
-
-  getDistrictList(payload: { stateCode: string }) {
-    let url = `${this.bffUrl}/v1/school/districtList`;
-    return this.dataService.post({ url, data: payload }).pipe(
-      map((res: any) => {
-        console.log("districts res", res);
-        return res.response;
-      })
-    );
-  }
-
-  getBlockList(payload: { districtCode: string }) {
-    let url = `${this.bffUrl}/v1/school/blockList`;
-    return this.dataService.post({ url, data: payload }).pipe(
-      map((res: any) => {
-        console.log("block res", res);
-        return res.response;
-      })
-    );
-  }
-
-  getSchoolList(payload: { "regionType": string, "regionCd": string, "sortBy": string }) {
-    let url = `${this.bffUrl}/v1/school/schoolList`;
-    return this.dataService.post({ url, data: payload }).pipe(
-      map((res: any) => {
-        console.log("schools res", res);
-        return res.response;
-      })
-    );
-  }
-
   raiseGrievance(payload): Observable<any> {
     const request = {
       url: `${this.bffUrl}/v1/grievance/sent`,

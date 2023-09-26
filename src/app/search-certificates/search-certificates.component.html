@@ -1,5 +1,10 @@
+<div class="container text-center pb-0 mt-3 wallet">
+  <app-global-header [showBackground]="true" [showTitle]="true" [showUsername]="true"></app-global-header>
+</div>
+
 <div class="pb-200">
   <div class="container mt-2">
+    <h4 class="text-center text-underline" *ngIf="credentialList.length">{{credentialList[0]?.credential_schema?.schema?.name}}</h4>
     <!-- <div class="row">
       <div class="col-12 font-600">
         <i class="fa fa-arrow-left pr-4" (click)="goBack()"></i>

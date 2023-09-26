@@ -66,6 +66,7 @@ export class AadharKycComponent implements OnInit {
       this.isAadhaarVerified = true;
       this.openStatusModal();
       this.kycCompleted.emit(true);
+      this.router.navigate(['/home']);
     }, (error) => {
       this.isAadhaarVerified = false;
       this.openStatusModal();

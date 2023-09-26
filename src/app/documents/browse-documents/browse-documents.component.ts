@@ -43,6 +43,8 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (!this.authService.isKYCCompleted()) {
       this.showAadhaarKYC = true;
+      this.router.navigate(['/aadhaar-kyc']);
+      return;
     }
     if (this.credentialService.selectedCategory) {
       this.selectedCategory = this.credentialService.selectedCategory;
@@ -58,7 +60,11 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   getClaimStatus() {
     this.claimGrievanceService.getClaimStatus().subscribe((res: any) => {
       console.log("res", res);
-      this.claimStatus = res;
+      if (Array.isArray(res) && res.length) {
+        this.claimStatus = res[0].claim_status;
+      } else {
+        this.claimStatus = res?.claim_status ? res.claim_status : '';
+      }
     }, error => {
       console.error("error", error);
     });
