@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AadhaarKycStatusComponent } from '../aadhaar-kyc-status/aadhaar-kyc-status.component';
 import { IInteractEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
+import { race } from 'rxjs';
 
 @Component({
   selector: 'app-aadhar-kyc',
@@ -66,7 +67,6 @@ export class AadharKycComponent implements OnInit {
       this.isAadhaarVerified = true;
       this.openStatusModal();
       this.kycCompleted.emit(true);
-      this.router.navigate(['/home']);
     }, (error) => {
       this.isAadhaarVerified = false;
       this.openStatusModal();
@@ -109,11 +109,18 @@ export class AadharKycComponent implements OnInit {
       modalRef.dismiss();
     });
 
-    modalRef.componentInstance.close.subscribe(() => {
-      this.raiseInteractEvent('aadhaar-kyc-success-goto-wallet');
+    race(modalRef.closed, modalRef.dismissed).subscribe(res => {
       this.kycCompleted.emit(true);
-      modalRef.dismiss();
+      this.router.navigate(['/home']);
     });
+
+    modalRef.componentInstance.close
+      .subscribe(() => {
+        this.raiseInteractEvent('aadhaar-kyc-success-goto-wallet');
+        this.kycCompleted.emit(true);
+        modalRef.dismiss();
+        this.router.navigate(['/home']);
+      });
   }
 
   raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {
