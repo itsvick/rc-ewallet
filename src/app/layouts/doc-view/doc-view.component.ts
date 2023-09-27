@@ -3,13 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput } from 'src/app/services/telemetry/telemetry-interface';
 import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 import { AuthConfigService } from 'src/app/authentication/auth-config.service';
+import { CredentialService } from 'src/app/services/credential/credential.service';
 
 @Component({
     selector: 'app-doc-view',
@@ -23,13 +24,13 @@ export class DocViewComponent implements OnInit {
     document = [];
     loader: boolean = true;
     docName: any;
-    docDetails: any;
     credential: any;
     schemaId: string;
     templateId: string;
     blob: Blob;
     canShareFile = !!navigator.share;
-    private readonly canGoBack: boolean;
+    credentialId: string;
+
     constructor(
         public generalService: GeneralService,
         private router: Router,
@@ -40,78 +41,74 @@ export class DocViewComponent implements OnInit {
         private telemetryService: TelemetryService,
         private readonly toastMessage: ToastMessageService,
         private readonly authConfigService: AuthConfigService,
+        private readonly credentialService: CredentialService
     ) {
         this.baseUrl = this.authConfigService.config.bffUrl;
-        const navigation = this.router.getCurrentNavigation();
-        this.credential = { ...navigation.extras.state };
-        this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
-
-        if (!this.credential) {
-            if (this.canGoBack) {
-                this.location.back();
-            } else {
-                this.router.navigate(['/home']);
-            }
-        }
     }
 
     ngOnInit(): void {
-        if (this.credential?.credential_schema) {
-            this.schemaId = this.credential.credentialSchemaId;
-            this.getTemplate(this.schemaId).subscribe((res) => {
-                this.templateId = res?.templateId;
-                this.getPDF(this.credential.id, this.templateId);
-            });
-        } else {
-            this.router.navigate(['/home']);
-            console.error("Something went wrong!");
-        }
+        this.activatedRoute.params.subscribe((params) => {
+            console.log("params", params);
+            if (params.credentialId) {
+                this.credentialId = params.credentialId;
+                this.getCredential().subscribe((result: any) => {
+                    this.getPDF(this.credentialId, this.templateId);
+                });
+            }
+        });
     }
 
-    getTemplate(id: string): Observable<any> {
-        return this.generalService.postData(`${this.baseUrl}/v1/credential/schema/template/list`, { schema_id: id }).pipe(
-            map((res: any) => {
-                if (res.result.length > 1) {
+    getCredential() {
+        return this.credentialService.getCredentialById(this.credentialId)
+            .pipe(map((res) => {
+                this.credential = res;
+                return res;
+            }), switchMap((cred: any) => {
+                return this.getTemplate(cred.credentialSchemaId).pipe(map((template: any) => {
+                    this.templateId = template?.templateId;
+                    return { credential: cred, template };
+                }));
+            }));
+    }
+
+    getTemplate(schemaId: string): Observable<any> {
+        return this.credentialService.getTemplates(schemaId).pipe(map((templates: any) => {
+                if (templates.length > 1) {
                     const selectedLangKey = localStorage.getItem('setLanguage');
                     const certExpireTime = new Date(this.credential.expirationDate).getTime();
                     const currentDateTime = new Date().getTime();
                     const isExpired = certExpireTime < currentDateTime;
 
                     const type = isExpired ? `inactive-${selectedLangKey}` : `active-${selectedLangKey}`;
-                    const template = res.result.find((item: any) => item.type === type);
+                    const template = templates.find((item: any) => item.type === type);
 
                     if (template) {
                         return template;
                     } else {
-                        const genericTemplate = res.result.find((item: any) => item.type === 'Handlebar');
+                        const genericTemplate = templates.find((item: any) => item.type.toLowerCase() === 'handlebar');
                         if (genericTemplate) {
                             return genericTemplate;
                         } else {
-                            return res.result[0];
+                            return templates[0];
                         }
                     }
-                } else if (res.result.length === 1) {
-                    return res.result[0];
+                } else if (templates.length === 1) {
+                    return templates[0];
                 }
                 throwError('Template not attached to schema');
             })
         )
     }
 
-    getPDF(crdentialId: string, templateId: string) {
+    getPDF(credentialId: string, templateId: string) {
         let headerOptions = new HttpHeaders({
             'Accept': 'application/pdf'
         });
         let requestOptions = { headers: headerOptions, responseType: 'blob' as 'json' };
-        // const credential_schema = this.credential.credential_schema;
-        // const currentCredential = { ...this.credential };
-        // delete currentCredential.credential_schema;
-        // delete currentCredential.schemaId;
         const request = {
-            credentialid: crdentialId,
+            credentialid: credentialId,
             templateid: templateId,
         }
-        // delete request.credential.credentialSubject;
         this.http.post(`${this.baseUrl}/v1/credentials/render`, request, requestOptions).pipe(map((data: any) => {
             this.blob = new Blob([data], {
                 type: 'application/pdf' // must match the Accept type
@@ -159,7 +156,6 @@ export class DocViewComponent implements OnInit {
             navigator.share(shareData).then((res: any) => {
                 console.log("File shared successfully!");
             }).catch((error: any) => {
-                // this.toastMessage.error("", this.generalService.translateString('SHARED_OPERATION_FAILED'));
                 console.error("Shared operation failed!", error);
             })
         } else {

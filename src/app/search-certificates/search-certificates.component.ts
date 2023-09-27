@@ -58,7 +58,7 @@ export class SearchCertificatesComponent implements OnInit {
     const navigationExtras: NavigationExtras = {
       state: credential,
     };
-    this.router.navigate(['/doc-view'], navigationExtras);
+    this.router.navigate(['/doc-view', credential.id], navigationExtras);
   }
 
   ngAfterViewInit(): void {

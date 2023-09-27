@@ -135,8 +135,8 @@ export class CredentialService {
    * @returns 
    */
   getCredentialById(credentialId: string): Observable<any> {
-    const payload = { url: `${this.baseUrl}/v1/credentials/get/${credentialId}` };
-    return this.dataService.get(payload);
+    const payload = { url: `${this.baseUrl}/v1/credentials/json/${credentialId}` };
+    return this.dataService.get(payload).pipe(map((res: any) => res.result));;
   }
 
   /**
@@ -164,6 +164,16 @@ export class CredentialService {
       url: `${this.baseUrl}/v1/credential/schema/fields`,
       data: {
         schema_id: schemaId
+      }
+    }
+    return this.dataService.post(payload).pipe(map((res: any) => res.result));
+  }
+
+  getTemplates(schemaId: string) {
+    const payload = {
+      url: `${this.baseUrl}/v1/credential/schema/template/list`,
+      data: {
+        "schema_id": schemaId
       }
     }
     return this.dataService.post(payload).pipe(map((res: any) => res.result));
