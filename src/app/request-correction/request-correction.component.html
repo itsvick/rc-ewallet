@@ -4,7 +4,8 @@
         </h2>
         <div class="fs-14 text-black-grey py-2 text-center ">{{'CLAIM_HEADING' | translate}}</div>
         <div class="bg-grey-shade1 my-2">
-            <div class="d-flex p-2 justify-content-center align-items-center cursor-pointer" [routerLink]="['/raise-claims']">
+            <div class="d-flex p-2 justify-content-center align-items-center cursor-pointer"
+                [routerLink]="['/raise-claims']">
                 <img src="assets/images/raise-claim.png" alt="">
                 <div class="font-600 fs-16 text-grey-shade3 text-underline">
                     {{'RAISE_CLAIMS' | translate}}
@@ -17,7 +18,7 @@
             <hr class="flex-grow-1" />
         </div>
 
-        <h3 class="fs-16 font-600 text-center text-underline">{{'REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS' | translate}}
+        <h3 class="fs-16 font-600 text-center text-underline mb-4">{{'REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS' | translate}}
         </h3>
         <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2" *ngFor="let item of credentialList">
             <div class="card" (click)="selectCredential(item)">
@@ -26,18 +27,20 @@
                         <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/logo.svg'" />
                     </div>
                     <div class="card-intro-info">
-                        <div class="mb-2 fs-14">
-                            {{ item?.credentialSubject?.orgName || "Enrollment Credentials"}}
+                        <div class="mb-2 fs-14 font-600">
+                            <span *ngIf="item?.credentialSubject?.unitAssociatedWith">{{ 'CLASS_CERTIFICATE' | translate: {value1: item?.credentialSubject?.unitAssociatedWith} }}</span>
+                            <span *ngIf="!item?.credentialSubject?.unitAssociatedWith">Enrollment Credentials</span>
                         </div>
-                        <div class="text-grey fs-12">
-                            {{ item | replacePlaceholder }}
+                        <div class="text-grey fs-12" *ngIf="item?.credentialSubject?.orgName">
+                            {{ item?.credentialSubject?.orgName }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <h6 class="text-center mt-5" *ngIf="!credentialList?.length && !isLoading">{{'NO_RECORDS_FOUND' | translate}}</h6>
+        <h6 class="text-center mt-5" *ngIf="!credentialList?.length && !isLoading">{{'NO_RECORDS_FOUND' | translate}}
+        </h6>
 
         <div class="d-flex justify-content-center" *ngIf="isLoading">
             <div class="spinner-border" style="width: 2rem; height: 2rem;" role="status">
@@ -48,7 +51,7 @@
 
 
     <ng-container *ngIf="showCorrectionRequest">
-        <h2 class="fs-20 font-600 text-underline mt-3 text-center">{{'REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS' |
+        <h2 class="fs-20 font-600 text-underline my-4 text-center">{{'REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS' |
             translate}}</h2>
         <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2">
             <div class="card" *ngIf="selectedCredential">
@@ -58,11 +61,12 @@
                             [src]="selectedCredential?.logoUrl ? selectedCredential.logoUrl : 'assets/images/logo.svg'" />
                     </div>
                     <div class="card-intro-info">
-                        <div class="mb-2 fs-14">
-                            {{ selectedCredential?.credentialSubject?.orgName}}
+                        <div class="mb-2 fs-14 font-600">
+                            <span *ngIf="selectedCredential?.credentialSubject?.unitAssociatedWith">{{ 'CLASS_CERTIFICATE' | translate: {value1: selectedCredential?.credentialSubject?.unitAssociatedWith} }}</span>
+                            <span *ngIf="!selectedCredential?.credentialSubject?.unitAssociatedWith">Enrollment Credentials</span>
                         </div>
-                        <div class="text-grey fs-12">
-                            {{ selectedCredential | replacePlaceholder }}
+                        <div class="text-grey fs-12" *ngIf="selectedCredential?.credentialSubject?.orgName">
+                            {{ selectedCredential?.credentialSubject?.orgName }}
                         </div>
                     </div>
                 </div>
@@ -79,7 +83,6 @@
                 <span class="col-10 text-left font-600">
                     {{'CORRECTION_OF_CLASS' | translate: {value1:
                     selectedCredential?.credentialSubject?.unitAssociatedWith} }}
-                    <!-- {{'PLEASE_ENTER_VALID' | translate : {value1: field.label} }} -->
                 </span>
             </div>
         </div>
@@ -101,8 +104,7 @@
 <ng-template #successModal tabindex="-1" role="dialog" aria-labelledby="successModal">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="btn-close ml-auto" role="button" data-dismiss="modal" aria-label="Close"
-                (click)="closeModal()">
+            <button type="button" class="btn-close ml-auto" role="button" aria-label="Close" (click)="closeModal()">
                 <i class="fa fa-close"></i>
             </button>
         </div>

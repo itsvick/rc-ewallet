@@ -5,7 +5,6 @@ import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data/data-request.service';
 import { AuthConfigService } from 'src/app/authentication/auth-config.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +12,6 @@ export class CredentialService {
   baseUrl: string;
   private schemas: any[] = [];
   private schemaIds = {};
-  selectedCategory: string = '';
-  credentialList = [];
 
   constructor(
     private readonly dataService: DataService,
@@ -171,7 +168,4 @@ export class CredentialService {
     }
     return this.dataService.post(payload).pipe(map((res: any) => res.result));
   }
-
-
-
 }

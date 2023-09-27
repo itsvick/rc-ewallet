@@ -1,15 +1,14 @@
 <div class="container text-center pb-0 mt-3 wallet">
-    <app-global-header [showBackground]="true" [showTitle]="true" [showUsername]="true" [status]="claimStatus"></app-global-header>
+    <app-global-header [showBackground]="true" [showTitle]="true" [showUsername]="true"
+        [status]="claimStatus"></app-global-header>
 </div>
 
 <hr>
-<!-- <app-aadhar-kyc *ngIf="showAadhaarKYC" (kycCompleted)="showAadhaarKYC = false"></app-aadhar-kyc> -->
-
-<div class="pb-200" *ngIf="!showAadhaarKYC">
+<div class="pb-200">
     <div class="container text-center pb-0 mt-20">
         <div class="row" *ngIf="showMenuList">
             <div class="col-12 col-md-6 col-lg-4" (click)="showCredentialTypes()">
-                <div class="card mb-3">
+                <div class="card mb-3 cursor-pointer">
                     <div class="row g-0 p-4">
                         <div class="col-2 p-0">
                             <div class="img-circle">
@@ -23,7 +22,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card mb-3">
+                <div class="card mb-3 cursor-pointer">
                     <div class="row g-0 p-4">
                         <div class="col-2 p-0">
                             <div class="img-circle">
@@ -31,13 +30,14 @@
                             </div>
                         </div>
                         <div class="col-10 align-self-center">
-                            <h5 class="text-left ps-2 fs-14 font-600">{{'ADD_DOCUMENTS_FROM_DIGILOCKER' | translate}}</h5>
+                            <h5 class="text-left ps-2 fs-14 font-600">{{'ADD_DOCUMENTS_FROM_DIGILOCKER' | translate}}
+                            </h5>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card mb-3">
+                <div class="card mb-3 cursor-pointer">
                     <div class="row g-0 p-4">
                         <div class="col-2 p-0">
                             <div class="img-circle">
@@ -45,13 +45,14 @@
                             </div>
                         </div>
                         <div class="col-10 align-self-center">
-                            <h5 class="text-left ps-2 fs-14 font-600">{{'VIEW_DOCUMENTS_FROM_DIGILOCKER' | translate}}</h5>
+                            <h5 class="text-left ps-2 fs-14 font-600">{{'VIEW_DOCUMENTS_FROM_DIGILOCKER' | translate}}
+                            </h5>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4" [routerLink]="['/request-correction']">
-                <div class="card mb-3">
+                <div class="card mb-3 cursor-pointer">
                     <div class="row g-0 p-4">
                         <div class="col-2 p-0">
                             <div class="img-circle">
@@ -59,17 +60,21 @@
                             </div>
                         </div>
                         <div class="col-10 align-self-center">
-                            <h5 class="text-left ps-2 fs-14 font-600">{{'RAISE_GRIEVANCE_FOR_CREDENTIALS' | translate}}</h5>
+                            <h5 class="text-left ps-2 fs-14 font-600">{{'RAISE_GRIEVANCE_FOR_CREDENTIALS' | translate}}
+                            </h5>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <ng-container *ngIf="showCredCategories">
-            <h4 class="text-center text-underline">{{'ISSUED_CREDENTIALS' | translate}}</h4>
+            <h5 class="text-center text-underline mb-4">
+                <i [routerLink]="['/home']" class="fas fa-arrow-left float-left mr-2 cursor-pointer" aria-hidden="true"></i>
+                {{'ISSUED_CREDENTIALS' | translate}}
+            </h5>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4" *ngFor="let category of categories">
-                    <div class="card mb-3" (click)="showCredentials(category)">
+                    <div class="card cursor-pointer" (click)="showCredentials(category)">
                         <div class="row g-0 p-4">
                             <div class="col-2 p-0">
                                 <div class="img-circle">
@@ -86,16 +91,13 @@
                     </div>
                 </div>
             </div>
-        </ng-container>
-
-    </div>
-    <!-- <app-search-certificates *ngIf="showCredentialList" [credentials]="allCredentials" [category]="selectedCategory"
-        (back)="onBack()"></app-search-certificates> -->
-    <div *ngIf="isLoading" class="text-center">
-        <div class="d-flex justify-content-center">
-            <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
-                <span class="sr-only">{{ "LOADING" | translate }}</span>
+            <div *ngIf="isLoading" class="text-center mt-3">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                        <span class="sr-only">{{ "LOADING" | translate }}</span>
+                    </div>
+                </div>
             </div>
-        </div>
+        </ng-container>
     </div>
 </div>

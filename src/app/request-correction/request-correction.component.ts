@@ -38,11 +38,7 @@ export class RequestCorrectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser;
-    console.log("currentUser", this.currentUser);
     this.getIssuedCredentials();
-    // setTimeout(() => {
-    //   this.successModalRef = this.modalService.open(this.successModal);
-    // }, 5000);
   }
 
   cancelCorrection() {
@@ -86,7 +82,6 @@ export class RequestCorrectionComponent implements OnInit {
       return of([]);
     })).subscribe((res: any) => {
       this.isLoading = false;
-      console.log("res", res);
       this.credentialList = res
     }, error => {
       this.isLoading = false;

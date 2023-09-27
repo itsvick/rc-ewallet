@@ -109,6 +109,17 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'issued-credentials',
+    component: BrowseDocumentsComponent,
+    data: {
+      showToolbar: true,
+      telemetry: {
+        env: 'home', pageid: 'issued-credentials', type: 'list', subtype: 'scroll'
+      },
+    },
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'opportunities',
     component: OpportunitieComponent,
     data: {

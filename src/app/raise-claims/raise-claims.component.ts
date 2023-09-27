@@ -50,12 +50,10 @@ export class RaiseClaimsComponent implements OnInit {
       this.claimForm = undefined;
     }
     this.credentialService.getSchemaFields(this.credSchemaId).subscribe((schemaDetails: any) => {
-      console.log(schemaDetails);
       this.schemaDetails = schemaDetails;
       this.showSingleCredentialForm();
       this.isLoading = false;
     }, error => {
-      console.log(error);
       this.toastMsg.error('', this.generalService.translateString('SOMETHING_WENT_WRONG'));
       this.isLoading = false;
     });
@@ -66,9 +64,7 @@ export class RaiseClaimsComponent implements OnInit {
       if (this.credSchemaId === this.schemaDetails?.id) {
         let columnFields = [...this.schemaDetails.register_required, ...this.schemaDetails.required, ...this.schemaDetails.optional];
         columnFields = [...new Set(columnFields.map(item => item.trim()))]; //Remove spaces and duplicates
-        console.log("columnFields", columnFields);
         const formGroupFields = this.getFormControlsFields(columnFields);
-        console.log("formGroupFields", formGroupFields);
         this.claimForm = new FormGroup(formGroupFields);
       }
     } else {
@@ -92,10 +88,6 @@ export class RaiseClaimsComponent implements OnInit {
   }
 
   onSubmit(event) {
-    console.log(event);
-    console.log("singleIssueForm", this.claimForm.valid);
-    console.log("value", this.claimForm.value);
-
     if (this.claimForm.valid) {
       this.isClaimRaised = true;
     }
@@ -109,11 +101,9 @@ export class RaiseClaimsComponent implements OnInit {
     }
     this.claimGrievanceService.raiseClaim(payload).subscribe(res => {
       this.isLoading = false;
-      console.log("res", res);
       this.showSuccessMessage = true;
     }, error => {
       this.isLoading = false;
-      console.log("error", error);
       this.toastMsg.error('', this.generalService.translateString('ERROR_WHILE_RAISING_CLAIM'));
     });
   }
