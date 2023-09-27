@@ -136,7 +136,7 @@ export class CredentialService {
    */
   getCredentialById(credentialId: string): Observable<any> {
     const payload = { url: `${this.baseUrl}/v1/credentials/json/${credentialId}` };
-    return this.dataService.get(payload).pipe(map((res: any) => res.result));;
+    return this.dataService.get(payload).pipe(map((res: any) => res.result));
   }
 
   /**
