@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   baseUrl: 'https://ulp.uniteframework.io/ulp-bff',
   schemaUrl: 'assets/config/schema.json', //asset path OR URL
-  logo: 'assets/images/logo.png', //asset path OR URL
+  logo: 'assets/images/header.png', //asset path OR URL
   keycloakConfig: {
     url: 'https://ndear.xiv.in/auth',
     realm: 'ndear',

@@ -30,7 +30,7 @@
                 <div class="card" (click)="renderCertificate(item)">
                   <div class="card-body">
                     <div class="card-image">
-                      <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/icon.png'" />
+                      <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/logo.svg'" />
                     </div>
                     <div class="card-intro-info">
                       <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.schema?.name === 'Assessment Credentials'">
@@ -52,7 +52,7 @@
               <div *ngIf="!filteredList.length" class="d-flex justify-content-center">{{'NO_RECORDS_FOUND' | translate}}</div>
             </ng-container>
           </ng-container>
-          <ng-template #loading class="text-center">
+          <ng-template #loading class="text-center" *ngIf="isLoading">
             <div class="d-flex justify-content-center">
               <div class="spinner-border" style="width: 5rem; height: 5rem" role="status">
                 <span class="sr-only">{{ "LOADING" | translate }}</span>

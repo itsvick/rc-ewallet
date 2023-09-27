@@ -6,14 +6,14 @@
   </div>
 
   <div class="text-center pb-0 d-flex flex-justify-center" *ngIf="!credential?.credentialSubject?.school_name">
-      <img src="assets/images/logo.png" class="img-fluid" alt="..." />
+      <img src="assets/images/header.png" class="img-fluid" alt="..." />
 
   </div>
 
 
   <div *ngIf="credential?.credentialSubject?.school_name">
     <div class="flex-center">
-      <img src="assets/images/logo.png" alt="header-round">
+      <img src="assets/images/header.png" alt="header-round">
     </div>
     <div class="text-center fw-700 fs-14 ps-4 pt-2">
       {{credential?.credentialSubject?.school_name}}

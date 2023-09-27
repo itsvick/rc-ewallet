@@ -60,8 +60,8 @@ export class DocViewComponent implements OnInit {
         if (this.credential?.credential_schema) {
             this.schemaId = this.credential.credentialSchemaId;
             this.getTemplate(this.schemaId).subscribe((res) => {
-                this.templateId = res?.id;
-                this.getPDF(res?.template);
+                this.templateId = res?.templateId;
+                this.getPDF(this.credential.id, this.templateId);
             });
         } else {
             this.router.navigate(['/home']);
@@ -99,20 +99,18 @@ export class DocViewComponent implements OnInit {
         )
     }
 
-    getPDF(template) {
+    getPDF(crdentialId: string, templateId: string) {
         let headerOptions = new HttpHeaders({
             'Accept': 'application/pdf'
         });
         let requestOptions = { headers: headerOptions, responseType: 'blob' as 'json' };
-        const credential_schema = this.credential.credential_schema;
-        const currentCredential = { ...this.credential };
-        delete currentCredential.credential_schema;
-        delete currentCredential.schemaId;
+        // const credential_schema = this.credential.credential_schema;
+        // const currentCredential = { ...this.credential };
+        // delete currentCredential.credential_schema;
+        // delete currentCredential.schemaId;
         const request = {
-            credential: currentCredential,
-            schema: credential_schema,
-            template: template,
-            output: "HTML"
+            credentialid: crdentialId,
+            templateid: templateId,
         }
         // delete request.credential.credentialSubject;
         this.http.post(`${this.baseUrl}/v1/credentials/render`, request, requestOptions).pipe(map((data: any) => {

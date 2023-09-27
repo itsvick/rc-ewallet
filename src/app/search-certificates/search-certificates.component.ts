@@ -21,6 +21,7 @@ export class SearchCertificatesComponent implements OnInit {
   credentials$: Observable<any>;
   searchKey: string = '';
   schema: any;
+  isLoading = false;
 
   credentialList = [];
 
@@ -51,12 +52,15 @@ export class SearchCertificatesComponent implements OnInit {
   }
 
   fetchCredentials(schemaId) {
+    this.isLoading = true;
     this.credentialService.getAllCredentials().pipe(map((res: any) => {
       return res.filter(item => item.credentialSchemaId === schemaId);
     })).subscribe((res: any) => {
+      this.isLoading = false;
       console.log("res-search", res);
       this.credentialList = res;
     }, error => {
+      this.isLoading = false;
       console.error("Error", error);
     });
   }
