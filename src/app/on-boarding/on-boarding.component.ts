@@ -44,7 +44,7 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
         this.keycloakService.clearToken();
       }
     } catch(error) {
-      console.log("error==>", error);
+      console.error("error==>", error);
       localStorage.clear();
       this.keycloakService.clearToken();
     }
@@ -52,7 +52,6 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
 
   openSSO() {
     this.generalService.getData(`${this.baseUrl}/v1/sso/digilocker/authorize/ewallet`, true).subscribe((res) => {
-      console.log("Response", res);
       window.open(res.digiauthurl, "_self");
     });
   }

@@ -53,12 +53,10 @@ export class AppConfig {
 
                 switch (envResponse['environment']) {
                     case 'production': {
-                        console.log("in production")
                         request = this.http.get('/assets/config/config.json');
                     } break;
 
                     case 'development': {
-                        console.log("in development")
                         request = this.http.get('/assets/config/config.json');
                     } break;
 

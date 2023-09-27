@@ -46,7 +46,6 @@ export class EkycComponent implements OnInit, AfterViewInit {
     this.userInfo = navigation.extras.state;
     this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
 
-    console.log("userInfo", this.userInfo);
     if (!this.userInfo) {
       if (this.canGoBack) {
         this.location.back();
@@ -120,7 +119,6 @@ export class EkycComponent implements OnInit, AfterViewInit {
     }
     this.authService.verifyAccountAadharLink(payload).subscribe((res: any) => {
       this.isLoading = false;
-      console.log("Aadharlink Res", res);
 
       if (res.user === 'FOUND') {
         if (res.token) {

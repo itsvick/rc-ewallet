@@ -40,9 +40,7 @@ export class KeycloakloginComponent implements OnInit {
     const isLoggedIn = await this.keycloakService.isLoggedIn();
     if (isLoggedIn) {
       const accountRes: any = await this.keycloakService.loadUserProfile();
-      console.log("accountRes", accountRes);
       if (accountRes?.attributes?.entity?.[0]) {
-        console.log(accountRes['attributes'].entity[0]);
         this.entity = accountRes.attributes.entity[0];
       }
       if (accountRes?.attributes?.locale?.length) {
@@ -67,10 +65,8 @@ export class KeycloakloginComponent implements OnInit {
 
       this.user = this.keycloakService.getUsername();
       const token = await this.keycloakService.getToken();
-      console.log('keyCloak teacher token - ', token);
       localStorage.setItem('token', token);
       localStorage.setItem('loggedInUser', this.user);
-      console.log('---------', this.config.getEnv('appType'))
 
       if (this.isDigilockerUser) {
         const payload = {
@@ -81,7 +77,6 @@ export class KeycloakloginComponent implements OnInit {
           })
         }
         this.dataService.post(payload).subscribe((res: any) => {
-          console.log(res);
           if (res.result) {
             localStorage.setItem('currentUser', JSON.stringify(res.result));
           }
@@ -124,7 +119,7 @@ export class KeycloakloginComponent implements OnInit {
           }
         }, (err) => {
           // this.router.navigate(['/home']);
-          console.log(err);
+          console.error(err);
           this.router.navigate(['/logout']);
         });
       }
@@ -147,8 +142,6 @@ export class KeycloakloginComponent implements OnInit {
       Authorization: 'Bearer ' + localStorage.getItem('token')
     });
     return this.dataService.get({ url: `${this.authConfigService.config.bffUrl}/v1/learner/getdetail`, header: headerOptions }).pipe(map((res: any) => {
-      console.log(res);
-
       localStorage.setItem('currentUser', JSON.stringify(res.result));
       return res;
     }));

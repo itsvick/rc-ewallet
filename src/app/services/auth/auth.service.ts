@@ -74,8 +74,6 @@ export class AuthService {
     return this.http
       .post<any>(`${this.baseUrl}/v1/sso/student/login`, user)
       .pipe(tap((res: any) => {
-        console.log("res", res);
-
         if (!res.success) {
           throwError('Incorrect username or password')
         }
@@ -137,7 +135,6 @@ export class AuthService {
     let api = `${this.baseUrl}/v1/sso/user/ewallet`;
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res: any) => {
-        console.log("profile res", res);
         if (res?.result?.DID) {
           localStorage.setItem('currentUser', JSON.stringify(res.result));
         }

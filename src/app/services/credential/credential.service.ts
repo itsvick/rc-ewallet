@@ -65,7 +65,6 @@ export class CredentialService {
 
   getSchema(schemaId: string): Observable<any> {
     const schema = this.findSchema(schemaId);
-    console.log("saved schemas", this.schemas);
     if (schema) {
       return of(schema);
     }
@@ -91,7 +90,6 @@ export class CredentialService {
       //       credentials.map((cred: any) => {
       //         return this.getCredentialSchemaId(cred.id).pipe(
       //           concatMap((res: any) => {
-      //             console.log("res", res);
       //             cred.schemaId = res.credential_schema;
       //             return of(cred);
       //           })
@@ -102,7 +100,6 @@ export class CredentialService {
       //   return of([]);
       // }), 
       switchMap((res: any) => {
-        console.log("res", res);
         const schemaIds = [...new Set(res.map((item: any) => item.credentialSchemaId))];
         return from(schemaIds).pipe(
           switchMap((schemaId: any) => {
