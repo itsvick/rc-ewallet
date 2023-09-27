@@ -4,7 +4,8 @@
 
 <div class="pb-200">
   <div class="container mt-2">
-    <h4 class="text-center text-underline" *ngIf="credentialList.length">{{credentialList[0]?.credential_schema?.schema?.name}}</h4>
+    <h4 class="text-center text-underline" *ngIf="credentialList.length">
+      {{credentialList[0]?.credential_schema?.schema?.name}}</h4>
     <!-- <div class="row">
       <div class="col-12 font-600">
         <i class="fa fa-arrow-left pr-4" (click)="goBack()"></i>
@@ -24,19 +25,21 @@
           </div>
         </div> -->
         <div class="row justify-content-center">
-          <ng-container *ngIf="credentialList; else loading">
+          <ng-container *ngIf="credentialList.length">
             <ng-container *ngIf="(credentialList | filterCertificate:searchKey) as filteredList; else: noItems">
               <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2" *ngFor="let item of filteredList">
-                <div class="card" (click)="renderCertificate(item)">
+                <div class="card cursor-pointer" (click)="renderCertificate(item)" >
                   <div class="card-body">
                     <div class="card-image">
                       <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/logo.svg'" />
                     </div>
                     <div class="card-intro-info">
-                      <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.schema?.name === 'Assessment Credentials'">
+                      <div class="mb-2 fs-14"
+                        *ngIf="item?.credential_schema?.schema?.name === 'Assessment Credentials'">
                         {{ item?.credentialSubject?.assessment || item?.credential_schema?.schema?.name | titlecase}}
                       </div>
-                      <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.schema?.name === 'Enrollment Credentials'">
+                      <div class="mb-2 fs-14"
+                        *ngIf="item?.credential_schema?.schema?.name === 'Enrollment Credentials'">
                         {{ item?.credentialSubject?.school_name || item?.credential_schema?.schema?.name | titlecase}}
                       </div>
                       <div class="mb-2 fs-14" *ngIf="item?.credential_schema?.schema?.name === 'Benefits Credentials'">
@@ -49,16 +52,17 @@
                   </div>
                 </div>
               </div>
-              <div *ngIf="!filteredList.length" class="d-flex justify-content-center">{{'NO_RECORDS_FOUND' | translate}}</div>
+              <div *ngIf="!filteredList.length" class="d-flex justify-content-center">{{'NO_RECORDS_FOUND' | translate}}
+              </div>
             </ng-container>
           </ng-container>
-          <ng-template #loading class="text-center" *ngIf="isLoading">
+          <ng-container class="text-center" *ngIf="isLoading">
             <div class="d-flex justify-content-center">
-              <div class="spinner-border" style="width: 5rem; height: 5rem" role="status">
+              <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
                 <span class="sr-only">{{ "LOADING" | translate }}</span>
               </div>
             </div>
-          </ng-template>
+          </ng-container>
         </div>
         <ng-template #noItems>
           <p class="text-center">{{'NO_RECORDS_FOUND' | translate}}</p>
