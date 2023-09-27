@@ -41,7 +41,6 @@ export class DocViewComponent implements OnInit {
         private readonly toastMessage: ToastMessageService,
         private readonly authConfigService: AuthConfigService,
     ) {
-        // this.baseUrl = environment.baseUrl;
         this.baseUrl = this.authConfigService.config.bffUrl;
         const navigation = this.router.getCurrentNavigation();
         this.credential = { ...navigation.extras.state };

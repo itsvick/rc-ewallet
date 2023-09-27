@@ -391,5 +391,6 @@
     "ENTER_THE_FOLLOWING_DETAILS": "Enter the following details",
     "ENTER_A": "Enter a {{value1}}",
     "CLAIM_DECLARATION": "I here by confirm that, I am a student of “Grade {{value1}}“ in “{{value2}}”",
-    "ERROR_WHILE_RAISING_CLAIM": "Error while raising claim"
+    "ERROR_WHILE_RAISING_CLAIM": "Error while raising claim",
+    "CLASS_CERTIFICATE": "Class {{value1}} Certificate"
 }
