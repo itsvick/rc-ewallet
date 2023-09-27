@@ -380,5 +380,6 @@
     "OR": "या",
     "REQUEST_CORRECTION_IN_ISSUED_CREDENTIALS": "जारी किए गए प्रमाणपत्र में सुधार का अनुरोध करें",
     "ADD_DATA_FOR_CORRECTION": "कृपया नीचे सुधार डेटा जोड़ें। यह प्रमुखाचार के लिए प्रिंसिपल को फॉरवर्ड किया जाएगा।",
-    "CORRECTION_REQUEST_SUCCESS": "आपका {{value1}} के लिए सुधार अनुरोध प्रिंसिपल को भेज दिया गया है।"
+    "CORRECTION_REQUEST_SUCCESS": "आपका {{value1}} के लिए सुधार अनुरोध प्रिंसिपल को भेज दिया गया है।",
+    "ENTER_THE_FOLLOWING_DETAILS":"निम्नलिखित विवरण दर्ज करें"
 }

@@ -387,5 +387,6 @@
     "WELCOME_DESCRIPTION":"Welcome to your Student Portal!  You can view you credentials, raise claims and grievances for credentials in this portal and discover opportunities in this portal",
     "ENROLL_CRED_CLAIM_RAISED": "Your request for an Enrollment Credentials has been forwarded to the Principal.",
     "TYPE_HERE": "Type Here...",
-    "CORRECTION_OF_CLASS": "Correction of Class “{{value1}} Marksheet“"
+    "CORRECTION_OF_CLASS": "Correction of Class “{{value1}} Marksheet“",
+    "ENTER_THE_FOLLOWING_DETAILS":"Enter the following details"
 }
