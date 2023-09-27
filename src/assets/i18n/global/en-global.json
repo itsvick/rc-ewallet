@@ -388,5 +388,8 @@
     "ENROLL_CRED_CLAIM_RAISED": "Your request for an Enrollment Credentials has been forwarded to the Principal.",
     "TYPE_HERE": "Type Here...",
     "CORRECTION_OF_CLASS": "Correction of Class “{{value1}} Marksheet“",
-    "ENTER_THE_FOLLOWING_DETAILS":"Enter the following details"
+    "ENTER_THE_FOLLOWING_DETAILS": "Enter the following details",
+    "ENTER_A": "Enter a {{value1}}",
+    "CLAIM_DECLARATION": "I here by confirm that, I am a student of “Grade {{value1}}“ in “{{value2}}”",
+    "ERROR_WHILE_RAISING_CLAIM": "Error while raising claim"
 }
