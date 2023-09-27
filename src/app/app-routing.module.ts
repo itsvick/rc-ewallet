@@ -153,6 +153,17 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'doc-view/:credentialId',
+    component: DocViewComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'home', pageid: 'doc-view', type: 'view', subtype: 'scroll'
+      }
+    },
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'doc-view',
     component: DocViewComponent,
     data: {
