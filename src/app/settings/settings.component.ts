@@ -55,8 +55,6 @@ export class SettingsComponent implements OnInit, AfterViewInit {
         return item;
       });
     }
-
-    console.log("languages", this.languages);
   }
 
   showLanguageModal() {

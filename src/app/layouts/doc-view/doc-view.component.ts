@@ -48,7 +48,6 @@ export class DocViewComponent implements OnInit {
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe((params) => {
-            console.log("params", params);
             if (params.credentialId) {
                 this.credentialId = params.credentialId;
                 this.getCredential().subscribe((result: any) => {
@@ -154,13 +153,12 @@ export class DocViewComponent implements OnInit {
 
         if (navigator.share) {
             navigator.share(shareData).then((res: any) => {
-                console.log("File shared successfully!");
             }).catch((error: any) => {
                 console.error("Shared operation failed!", error);
             })
         } else {
             this.toastMessage.error("", this.generalService.translateString('SHARED_OPERATION_FAILED'));
-            console.log("Share not supported");
+            console.error("Share not supported");
         }
     }
 

@@ -4,7 +4,6 @@ import {
     Router,
     RouterStateSnapshot,
 } from '@angular/router';
-import { error } from 'console';
 import { KeycloakAuthGuard, KeycloakEvent, KeycloakEventType, KeycloakService } from 'keycloak-angular';
 import { KeycloakLoginOptions } from 'keycloak-js';
 
@@ -24,7 +23,6 @@ export class AuthGuard extends KeycloakAuthGuard {
         state: RouterStateSnapshot
     ): Promise<any> {
         const isLoggedIn = await this.keycloak.isLoggedIn();
-        console.log('isLoggedIn', isLoggedIn);
         // Force the user to log in if currently unauthenticated.
         if (!this.authenticated) {
             /* await this.keycloak.login({

@@ -36,10 +36,9 @@ export class RaiseClaimsComponent implements OnInit {
 
   getSchemaList() {
     this.credentialService.getSchemaList().subscribe((schemas: any) => {
-      console.log(schemas);
       this.schemas = schemas.filter(item => item.schema_name === 'Enrollment Credentials'); //TODO: Remove this hard coded
     }, error => {
-      console.log(error);
+      console.error(error);
     });
   }
 

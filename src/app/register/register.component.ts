@@ -142,7 +142,6 @@ export class RegisterComponent implements OnInit {
       this.registerForm.patchValue({
         dob: formattedDate
       });
-      console.log(this.registerForm);
     }
   }
 
@@ -170,7 +169,6 @@ export class RegisterComponent implements OnInit {
       }
 
       this.dataService.post(payload).subscribe((result: any) => {
-        console.log("User registered successfully");
         this.isLoading = false;
         const options: NgbModalOptions = {
           backdrop: 'static',
@@ -186,7 +184,6 @@ export class RegisterComponent implements OnInit {
         // }, 2000);
 
         // this.registerModalRef.dismissed.subscribe((reason) => {
-        //   console.log("reason", reason);
 
         //   const navigationExtras: NavigationExtras = {
         //     state: {
@@ -198,7 +195,7 @@ export class RegisterComponent implements OnInit {
         //   this.router.navigate(['/aadhaar-kyc'], navigationExtras);
         // });
       }, (error: any) => {
-        console.log("error", error);
+        console.error("error", error);
         this.isLoading = false;
         const message = error?.error?.message ? error?.error?.message : this.utilService.translateString('REGISTRATION_FAILED_TRY_AGAIN');
         this.toasterService.error("", message);

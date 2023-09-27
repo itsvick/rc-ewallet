@@ -27,7 +27,6 @@ export class DataService {
    */
   private getHeader(headers?: HttpOptions['headers']): HttpOptions['headers'] {
     this.keycloak.isLoggedIn().then((res) => {
-      console.log(res);
       this.isLoggedIn = res;
     })
 

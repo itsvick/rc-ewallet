@@ -36,7 +36,6 @@ export class AppComponent implements OnInit {
       this.authService.currentUser?.DID || 'anonymous';
     if (EkTelemetry) {
       EkTelemetry.getFingerPrint((deviceId, components, version) => {
-        console.log('deviceId', deviceId);
         this.telemetryService.did = deviceId;
         this.telemetryService.initializeTelemetry();
       });

@@ -24,7 +24,6 @@ export class ToolbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("envvv", this.env);
     this.getRouteData();
     this.schemaService.getToolbarJson().subscribe((schemaRes) => {
       const filtered = schemaRes.sidebar.filter(obj => {
@@ -35,9 +34,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   getRouteData() {
-    console.log("router data", this.activatedRoute.snapshot.data)
     this.activatedRoute.data.subscribe((data) => {
-      console.log("subscribe", data);
     });
     this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
@@ -47,8 +44,6 @@ export class ToolbarComponent implements OnInit {
   }
 
   clearCredentials() {
-    this.credentialService.credentialList = [];
-    this.credentialService.selectedCategory = '';
   }
 
   raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {

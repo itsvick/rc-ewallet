@@ -40,7 +40,6 @@ export class ClaimGrievanceService {
       }
     }
     return this.dataService.post(request).pipe(map(res => {
-      console.log("getClaimStatus", res);
       return res.result;
     }));
   }
