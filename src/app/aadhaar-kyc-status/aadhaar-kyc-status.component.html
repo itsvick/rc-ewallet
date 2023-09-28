@@ -27,7 +27,7 @@
 
     <div class="mt-5 mb-5 flex-center">
       <button type="submit" *ngIf="isVerified" class="login-btn bg-blue-dark font-600 urbanist w-60 fs-14 mt-4"
-        (click)="emitClose()">{{'GO_TO_WALLET' | translate}}</button>
+        (click)="emitClose()">{{'GO_TO_HOME' | translate}}</button>
       <button type="submit" *ngIf="!isVerified" class="login-btn bg-blue-dark font-600 urbanist w-60 fs-14 mt-4"
         (click)="emitTryAgain()"> {{'TRY_AGAIN' | translate}}</button>
     </div>
