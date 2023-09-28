@@ -383,7 +383,7 @@
     "CORRECTION_REQUEST_SUCCESS": "आपका {{value1}} के लिए सुधार अनुरोध प्रिंसिपल को भेज दिया गया है।",
     "ENTER_THE_FOLLOWING_DETAILS":"निम्नलिखित विवरण दर्ज करें",
     "ENTER_A": "{{value1}} दर्ज करें",
-    "CLAIM_DECLARATION": "मैं यहाँ पुष्टि करता हूँ कि, मैं “{{value2}}” में “{{value1}}” कक्ष का एक छात्र हूँ।",
+    "CLAIM_DECLARATION": "मैं यहाँ पुष्टि करता हूँ कि, मैं “{{value1}}“ स्कूल का एक छात्र हूँ।",
     "ERROR_WHILE_RAISING_CLAIM": "दावा दर्ज करते समय त्रुटि",
     "CLASS_CERTIFICATE": "{{value1}} कक्ष प्रमाणपत्र",
     "GO_TO_HOME": "होम पर जाएं"
