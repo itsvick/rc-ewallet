@@ -1,16 +1,15 @@
 <div class="container mb-100">
-    <div class="bg-grey-shade1 my-2">
+    <div class="bg-grey-shade1 my-2 d-flex align-items-center">
         <span class="ml-3 float-left">
             <i [routerLink]="['/request-correction']" class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
         </span>
-        <div class="d-flex p-2 justify-content-center align-items-center">
+        <div class="d-flex p-2 pl-60 justify-content-center align-items-center">
             <img src="assets/images/raise-claim.png" alt="">
             <div class="font-600 fs-16 text-grey-shade3 text-underline" [routerLink]="['/raise-claims']">
                 {{'RAISE_CLAIMS' | translate}}
             </div>
         </div>
     </div>
-
     <div *ngIf="!isClaimRaised && !showSuccessMessage">
         <div class="mb-3 pb-10 did-floating-label-content">
             <label for="state">{{'SELECT_CREDENTIAL_TYPE' | translate}}<span class="text-danger">*</span></label>
