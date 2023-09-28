@@ -44,8 +44,7 @@
     <div *ngIf="isClaimRaised && !showSuccessMessage">
         <div class="grey-bg p-3 my-3 text-center">
             <div class="fs-16">
-                {{'CLAIM_DECLARATION' | translate: {value1: claimForm?.value?.unitAssociatedWith || '', value2:
-                claimForm?.value?.orgName || ''} }}
+                {{'CLAIM_DECLARATION' | translate: {value1: claimForm?.value?.orgName || ''} }}
             </div>
         </div>
         <div class="d-flex justify-content-center align-items-center my-5">
