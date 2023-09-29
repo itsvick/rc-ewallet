@@ -75,12 +75,12 @@
         <p class="text-center">“ {{'ADD_DATA_FOR_CORRECTION' | translate}} “</p>
         <div class="subject-box">
             <div class="row">
-                <span class="brown-shade-1 font-400 col-2 text-right p-0">{{'NAME' | translate}}:</span>
-                <span class="col-10 text-left font-600">{{currentUser?.name}}</span>
+                <span class="brown-shade-1 font-400 col-2 text-right">{{'NAME' | translate}}:</span>
+                <span class="col-10 text-left font-600 pl-4">{{currentUser?.name}}</span>
             </div>
             <div class="row">
-                <span class="brown-shade-1 font-400 col-2 text-right p-0">{{'SUBJECT' | translate}}:</span>
-                <span class="col-10 text-left font-600">
+                <span class="brown-shade-1 font-400 col-2 text-right">{{'SUBJECT' | translate}}:</span>
+                <span class="col-10 text-left font-600 pl-4">
                     {{'CORRECTION_OF_CLASS' | translate: {value1:
                     selectedCredential?.credentialSubject?.unitAssociatedWith} }}
                 </span>
