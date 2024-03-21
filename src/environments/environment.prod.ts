@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://ulp.uniteframework.io/ulp-bff',
+  baseUrl: 'https://ulp.tekdinext.com/ulp-bff',
 };

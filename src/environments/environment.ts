@@ -6,7 +6,7 @@ import { GeneralService } from "src/app/services/general/general.service";
 
 export const environment = {
   production: false,
-  baseUrl: 'https://ulp.uniteframework.io/ulp-bff',
+  baseUrl: 'https://ulp.tekdinext.com/ulp-bff',
   schemaUrl: 'assets/config/schema.json', //asset path OR URL
   logo: 'assets/images/header.png', //asset path OR URL
   keycloakConfig: {
