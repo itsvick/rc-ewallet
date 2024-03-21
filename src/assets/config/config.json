@@ -1,7 +1,7 @@
 {
   "environment": "development",
   "keycloak": {
-    "url": "https://devulp.uniteframework.io/auth",
+    "url": "https://ulp.tekdinext.com/auth",
     "clientId": "registry-frontend",
     "realm": "sunbird-rc"
   },
@@ -10,11 +10,11 @@
   "languageFolder": "/assets/i18n",
   "logoPath": "/assets/images/logo.png",
   "title": "Universal Learners Passport",
-  "baseUrl": "https://devulp.uniteframework.io/registry",
-  "bffUrl": "https://devulp.uniteframework.io/ulp-bff",
-  "bulkIssuance": "https://devulp.uniteframework.io/bulk-issuance",
-  "schemaUrl": "https://devulp.uniteframework.io/registry/api/docs/swagger.json",
-  "telemetryUrl": "https://devulp.uniteframework.io/telemetry",
+  "baseUrl": "https://ulp.tekdinext.com/registry",
+  "bffUrl": "https://ulp.tekdinext.com/ulp-bff",
+  "bulkIssuance": "https://ulp.tekdinext.com/bulk-issuance",
+  "schemaUrl": "https://ulp.tekdinext.com/registry/api/docs/swagger.json",
+  "telemetryUrl": "https://ulp.tekdinext.com/telemetry",
   "footerText": "Universal Learners Passport",
   "languages": [
     "en",
